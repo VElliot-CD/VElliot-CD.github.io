@@ -280,6 +280,13 @@ img {
   color: var(--ink);
 }
 
+.button-placeholder,
+.button-placeholder:hover {
+  cursor: default;
+  opacity: 0.62;
+  transform: none;
+}
+
 .quick-facts {
   display: flex;
   flex-wrap: wrap;
@@ -487,7 +494,7 @@ img {
 .project-card {
   position: relative;
   display: flex;
-  min-height: 390px;
+  min-height: 590px;
   padding: 34px;
   flex-direction: column;
   overflow: hidden;
@@ -510,8 +517,22 @@ img {
 }
 
 .project-card h3 {
-  max-width: 70%;
-  margin-top: 82px;
+  max-width: 78%;
+  margin-top: 72px;
+}
+
+.project-highlights {
+  display: grid;
+  margin: 22px 0 0;
+  padding-left: 18px;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.project-highlights li::marker {
+  color: var(--accent);
 }
 
 .project-meta,
@@ -956,7 +977,7 @@ img {
   }
 
   .project-card {
-    min-height: 360px;
+    min-height: 0;
     padding: 26px;
   }
 
@@ -1123,9 +1144,8 @@ img {
     </footer>
     <script>
 /*
- * 只需编辑这个文件，就能替换网站上的个人信息。
- * Keep the same field names in both `zh` and `en` sections.
- * URL 不需要使用时请留空字符串，例如 url: ""。
+ * Homepage content for Litao Liu.
+ * Edit this file to update text, links, or project details.
  */
 
 window.SITE_DATA = {
@@ -1134,15 +1154,15 @@ window.SITE_DATA = {
     photo: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9IiMxNzMyMkYiLz4KICA8Y2lyY2xlIGN4PSI2MzQiIGN5PSIxODgiIHI9IjE5NiIgZmlsbD0iI0IzNTEzMiIgZmlsbC1vcGFjaXR5PSIwLjc4Ii8+CiAgPGNpcmNsZSBjeD0iMTcxIiBjeT0iNzk5IiByPSIyNzIiIGZpbGw9IiNFN0M5QjciIGZpbGwtb3BhY2l0eT0iMC4xNyIvPgogIDxwYXRoIGQ9Ik0wIDY3MEMxMjkgNTU5IDI1MSA1MjYgMzY2IDU3MEM0ODYgNjE1IDU2MSA1ODcgODAwIDM5NVYxMDAwSDBWNjcwWiIgZmlsbD0iI0Y0RjFFOSIgZmlsbC1vcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSI1MTAiIGZpbGw9IiNGNEYxRTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNzYiIGxldHRlci1zcGFjaW5nPSItOCI+WU48L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI1OTAiIGZpbGw9IiNFN0M5QjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjgiPllPVVIgUEhPVE88L3RleHQ+Cjwvc3ZnPgo=",
     cvUrl: "",
     scholarUrl: "",
-    githubUrl: "",
+    githubUrl: "https://github.com/VElliot-CD",
     orcidUrl: "",
-    email: "your.name@example.com",
+    email: "",
   },
 
   zh: {
     meta: {
       title: "Litao Liu｜个人学术主页",
-      description: "Litao Liu 的个人学术主页：研究方向、代表性成果、教育经历与联系方式。",
+      description: "Litao Liu 的个人学术主页：模拟与混合信号集成电路、数字硬件、功率电子与嵌入式系统项目。",
     },
     ui: {
       skip: "跳到主要内容",
@@ -1153,130 +1173,182 @@ window.SITE_DATA = {
       backToTop: "返回顶部 ↑",
       scholar: "查看 Google Scholar",
       email: "发送邮件",
+      emailPlaceholder: "邮箱暂未公开",
       cv: "下载简历",
-      researchCta: "了解我的研究",
+      researchCta: "查看项目",
       github: "GitHub",
       orcid: "ORCID",
     },
     nav: {
       about: "关于",
-      research: "研究",
-      publications: "成果",
+      research: "方向",
+      publications: "技术报告",
       experience: "经历",
       contact: "联系",
     },
     profile: {
       name: "Litao Liu",
       eyebrow: "你好，我是",
-      role: "研究生 / 青年研究者",
-      organization: "你的学校或研究机构",
-      summary: "在这里用 2–3 句话说明你的研究领域、最关心的科学问题，以及你希望通过研究带来的价值。尽量具体，让同行和招生委员会快速认识你。",
-      location: "城市，中国",
-      status: "欢迎科研合作与学术交流",
-      photoAlt: "Litao Liu 的个人照片",
+      role: "电子工程本科生",
+      organization: "电子科技大学格拉斯哥学院",
+      summary: "我关注从器件、电路到系统的完整设计与验证。目前的项目跨越 CMOS 模拟集成电路、VHDL 数字后端、功率变换与嵌入式硬件；我习惯用仿真、测试和量化指标检验设计。",
+      location: "成都，中国",
+      status: "欢迎交流集成电路、功率电子与嵌入式系统项目",
+      photoAlt: "Litao Liu 的个人照片位置（暂未上传）",
+      emailPlaceholder: "邮箱暂未公开",
     },
     stats: [
-      { value: "待填", label: "同行评审论文" },
-      { value: "待填", label: "科研项目" },
-      { value: "待填", label: "会议报告" },
-      { value: "待填", label: "奖项与荣誉" },
+      { value: "4", label: "代表性项目" },
+      { value: "5", label: "工艺角验证" },
+      { value: "4", label: "核心工具链" },
+      { value: "3", label: "设计层级" },
     ],
     research: {
-      kicker: "Research focus",
-      title: "我关心的问题",
-      intro: "用三个相互关联的方向勾勒你的研究版图。每个方向应说明“研究什么”和“为什么重要”。",
+      kicker: "Technical focus",
+      title: "从芯片到系统的工程实践",
+      intro: "我的项目围绕三个相互连接的方向展开：先理解器件与电路，再完成数字接口与系统集成，并用仿真和实验闭环验证。",
       items: [
         {
-          title: "研究方向一",
-          description: "说明这一方向的核心科学问题、研究对象，以及你正在采用的主要方法。",
+          title: "模拟与混合信号集成电路",
+          description: "关注晶体管级建模、偏置与补偿设计、版图实现及寄生参数后仿真，重视 PVT 工艺角下的性能与鲁棒性。",
         },
         {
-          title: "研究方向二",
-          description: "说明这个方向与整体研究目标的联系，并点出你的独特切入角度。",
+          title: "数字硬件与 RTL 验证",
+          description: "使用 VHDL 进行模块化数字后端设计，通过 testbench、综合、实现与时序报告验证接口和状态行为。",
         },
         {
-          title: "研究方向三",
-          description: "说明该方向潜在的理论贡献、应用价值或社会影响。",
+          title: "功率电子与嵌入式系统",
+          description: "围绕 PWM、整流与 DC–DC/逆变电路开展仿真和实测，并参与 PCB、传感器、执行器及控制器的系统集成。",
         },
       ],
     },
     projects: {
       kicker: "Selected work",
       title: "代表性项目",
-      intro: "项目介绍重点写你的角色、采取的方法和可验证的结果，不只是项目背景。",
+      intro: "以下项目从 13 份实验与课程报告中筛选，重点呈现可核验的技术结果，以及我在个人或小组项目中的具体贡献。",
       items: [
         {
-          period: "20XX — 至今",
-          role: "项目负责人 / 核心成员",
-          title: "在此填写代表性科研项目名称",
-          description: "简要介绍研究问题、你的具体贡献，以及已取得的阶段性结果。可补充代码、数据或论文链接。",
-          tags: ["研究方法", "工具或平台", "关键词"],
+          period: "2026",
+          role: "个人项目 · 全流程设计与验证",
+          title: "两级 CMOS 运算放大器：从器件表征到版图后仿真",
+          description: "基于 CSMC 0.50 μm st02 工艺，在 Cadence Virtuoso / Spectre 中完成 NMOS 表征、共源放大器、两级运放原理图、版图、DRC/LVS、寄生提取与后仿真。",
+          highlights: [
+            "后仿真：82.93 dB 开环增益、22.48 MHz 单位增益带宽、52.4° 相位裕度",
+            "1.195 mW 功耗，PSRR 76.73 dB，CMRR 86.95 dB",
+            "tt / ff / ss / sf / fs 五个工艺角均满足设计指标",
+          ],
+          tags: ["Cadence Virtuoso", "Spectre", "DRC / LVS", "Post-layout"],
         },
         {
-          period: "20XX — 20XX",
-          role: "你的项目角色",
-          title: "在此填写第二个科研项目名称",
-          description: "用量化结果增强说服力，例如数据规模、性能提升、实验轮次或成果产出。",
-          tags: ["研究方法", "数据分析", "跨学科"],
+          period: "2026",
+          role: "小组项目 · 数字后端设计与验证",
+          title: "基于 PT100 的混合信号温度传感器 IC",
+          description: "面向 −20 至 80°C 工业室内监测节点，参与由模拟前端、12 位 SAR ADC、校准路径与数字后端组成的混合信号测温系统；我负责 Vivado 数字部分的 VHDL 设计与验证。",
+          highlights: [
+            "完成越界检测、LED 控制、数据打包、串行器与顶层集成 5 个 RTL 模块",
+            "实现 12 位温度码、4 位设备 ID 与 16 位 LSB-first 串行输出",
+            "五组物理输入码通过顶层 testbench；实现报告显示 WNS > 0、TNS = 0",
+          ],
+          tags: ["VHDL", "Xilinx Vivado", "RTL", "Mixed-signal"],
+        },
+        {
+          period: "2026",
+          role: "小组项目 · 硬件子系统负责人",
+          title: "24 GHz 雷达辅助的自主循迹智能车",
+          description: "开发集循迹、LoRa 通信和雷达避障于一体的四轮智能车。负责硬件子系统，并在后期参与整车集成、循迹调参与故障定位。",
+          highlights: [
+            "依据接口需求完成原理图、PCB 布局、焊接、电路装配与机械制作",
+            "集成 STM32G431RBT6、HLK-LD2450 雷达、8 路红外阵列与双电机驱动",
+            "协助排查并修正车辆左偏；最终完成核心功能，项目支出 2061 元，低于 2500 元预算",
+          ],
+          tags: ["PCB", "STM32", "24 GHz Radar", "System Integration"],
+        },
+        {
+          period: "2026",
+          role: "个人实验 · 仿真与硬件测试",
+          title: "功率变换与控制实验组合",
+          description: "通过四组连续实验研究 PWM 发生器、整流滤波与线性稳压、Boost 变换器，以及单相全桥逆变器的调制方式和频谱特性。",
+          highlights: [
+            "Boost 硬件将 5 V 升压至 10.0 V 与 20.0 V，纹波分别约 70 mV 与 72 mV",
+            "将滤波电容由 2.2 mF 增至 6.9 mF，使实测纹波由 1.40 V 降至 0.74 V",
+            "在 LTspice 中比较方波、双极性 PWM 与单极性 PWM，并完成傅里叶与 THD 分析",
+          ],
+          tags: ["LTspice", "PWM", "DC–DC", "Oscilloscope"],
         },
       ],
     },
     publications: {
-      kicker: "Publications",
-      title: "代表性成果",
+      kicker: "Technical reports",
+      title: "技术报告与课程成果",
       items: [
         {
-          title: "在此填写代表性论文、预印本或学术成果标题",
-          authors: "Litao Liu，合作者姓名",
-          venue: "期刊或会议名称，年份",
+          title: "Comprehensive Experiment of Modern Electronic Technology",
+          authors: "Litao Liu · 个人设计报告（64 页）",
+          venue: "器件表征、模拟电路、两级运放与版图后仿真，2026",
           links: [],
         },
         {
-          title: "在此填写第二项代表性成果",
-          authors: "合作者姓名，Litao Liu",
-          venue: "期刊、会议或项目平台，年份",
+          title: "PSRR-Oriented Design and Front-End Simulation of a Two-Stage CMOS Operational Amplifier Based on SMIC18MMRF",
+          authors: "Litao Liu · 个人技术论文",
+          venue: "85.96 dB 开环增益；79.54 dB PSRR，2026",
+          links: [],
+        },
+        {
+          title: "Mixed-Signal PT100 Temperature Measurement IC",
+          authors: "Group 5 · Litao Liu 负责数字后端设计与验证",
+          venue: "Integrated Circuit Design 项目报告，2026",
+          links: [],
+        },
+        {
+          title: "Power Electronics Laboratory Series",
+          authors: "Litao Liu · 四份个人实验报告",
+          venue: "PWM、整流稳压、Boost 变换器与全桥逆变器，2026",
           links: [],
         },
       ],
     },
     experience: {
       kicker: "Background",
-      title: "学术经历",
+      title: "学习与技术背景",
       educationTitle: "教育经历",
-      awardsTitle: "奖项与荣誉",
+      awardsTitle: "相关课程",
       education: [
         {
-          date: "20XX — 至今",
-          degree: "学位与专业",
-          institution: "学校 / 学院 / 实验室",
-          detail: "导师：姓名教授｜研究方向：你的方向",
-        },
-        {
-          date: "20XX — 20XX",
-          degree: "学位与专业",
-          institution: "学校 / 学院",
-          detail: "可填写排名、毕业论文或重要经历",
+          date: "2023 — 至今",
+          degree: "本科工程学习",
+          institution: "电子科技大学格拉斯哥学院",
+          detail: "当前项目方向：集成电路设计、功率电子、嵌入式硬件与工程系统集成",
         },
       ],
       awards: [
-        { title: "奖项或荣誉名称", organization: "颁发机构", year: "20XX" },
-        { title: "奖学金或竞赛名称", organization: "颁发机构", year: "20XX" },
-        { title: "学术服务或其他荣誉", organization: "相关机构", year: "20XX" },
+        { title: "现代电子技术综合实验", organization: "模拟 IC 设计与版图验证", year: "2026" },
+        { title: "集成电路设计", organization: "混合信号系统与数字后端", year: "2026" },
+        { title: "功率电子", organization: "变换器、PWM 与实验测试", year: "2026" },
+        { title: "工程项目管理与财务", organization: "智能车系统项目", year: "2026" },
       ],
     },
     skills: {
       kicker: "Capabilities",
-      title: "研究能力",
+      title: "工程能力",
       groups: [
-        { title: "研究方法", items: ["方法或实验技术一", "方法或实验技术二", "文献综述与研究设计"] },
-        { title: "计算与工具", items: ["Python / R / MATLAB", "数据分析与可视化", "专业软件或实验平台"] },
-        { title: "学术沟通", items: ["中英文论文写作", "会议报告与海报展示", "跨团队协作"] },
+        {
+          title: "IC 设计与验证",
+          items: ["Cadence Virtuoso / Spectre", "晶体管尺寸、偏置与米勒补偿", "DRC、LVS、寄生提取与工艺角仿真"],
+        },
+        {
+          title: "数字与嵌入式",
+          items: ["VHDL 与 Xilinx Vivado", "RTL、testbench、综合实现与时序检查", "STM32 系统接口与软硬件联调"],
+        },
+        {
+          title: "功率与原型实践",
+          items: ["LTspice 与 PWM / 变换器 / 逆变器", "示波器、数字万用表与波形分析", "PCB、焊接、装配与系统故障定位"],
+        },
       ],
     },
     contact: {
       kicker: "Get in touch",
-      title: "有值得一起探索的问题？",
-      copy: "欢迎就科研合作、学术访问或共同感兴趣的研究问题与我联系。",
+      title: "一起讨论电子系统里的好问题",
+      copy: "欢迎通过 GitHub 与我交流集成电路、数字硬件、功率电子或嵌入式系统项目。",
     },
     footer: "© {year} Litao Liu。使用 GitHub Pages 发布。",
   },
@@ -1284,7 +1356,7 @@ window.SITE_DATA = {
   en: {
     meta: {
       title: "Litao Liu | Academic Profile",
-      description: "Academic profile of Litao Liu: research interests, selected work, education, and contact information.",
+      description: "Academic profile of Litao Liu: analog and mixed-signal ICs, digital hardware, power electronics, and embedded systems.",
     },
     ui: {
       skip: "Skip to main content",
@@ -1295,130 +1367,182 @@ window.SITE_DATA = {
       backToTop: "Back to top ↑",
       scholar: "Google Scholar",
       email: "Email me",
+      emailPlaceholder: "Email available later",
       cv: "Download CV",
-      researchCta: "Explore my research",
+      researchCta: "View projects",
       github: "GitHub",
       orcid: "ORCID",
     },
     nav: {
       about: "About",
-      research: "Research",
-      publications: "Publications",
-      experience: "Experience",
+      research: "Focus",
+      publications: "Reports",
+      experience: "Background",
       contact: "Contact",
     },
     profile: {
       name: "Litao Liu",
       eyebrow: "Hello, I’m",
-      role: "Graduate Student / Early-career Researcher",
-      organization: "Your University or Research Institute",
-      summary: "In two or three sentences, introduce your field, the scientific questions you care about, and the impact you hope your work can make. Be specific enough for fellow researchers and selection committees to understand you quickly.",
-      location: "City, Country",
-      status: "Open to research collaboration",
-      photoAlt: "Portrait of Litao Liu",
+      role: "Undergraduate Engineering Student",
+      organization: "Glasgow College, UESTC",
+      summary: "I work across the device, circuit, and system levels of electronic engineering. My projects span CMOS analog ICs, VHDL digital backends, power conversion, and embedded hardware, with an emphasis on simulation, measurement, and evidence-based verification.",
+      location: "Chengdu, China",
+      status: "Open to conversations on IC, power electronics, and embedded projects",
+      photoAlt: "Reserved portrait area for Litao Liu",
+      emailPlaceholder: "Email available later",
     },
     stats: [
-      { value: "TBD", label: "Peer-reviewed papers" },
-      { value: "TBD", label: "Research projects" },
-      { value: "TBD", label: "Conference talks" },
-      { value: "TBD", label: "Awards & honors" },
+      { value: "4", label: "Featured projects" },
+      { value: "5", label: "Process corners" },
+      { value: "4", label: "Core toolchains" },
+      { value: "3", label: "Design levels" },
     ],
     research: {
-      kicker: "Research focus",
-      title: "Questions I care about",
-      intro: "Use three connected themes to map your research. Each theme should explain both what you study and why it matters.",
+      kicker: "Technical focus",
+      title: "Engineering from silicon to systems",
+      intro: "My work connects three layers: understanding devices and circuits, building digital interfaces, and integrating complete systems with simulation and laboratory verification.",
       items: [
         {
-          title: "Research direction one",
-          description: "Describe the central question, research object, and the primary methods you use in this direction.",
+          title: "Analog & Mixed-Signal IC Design",
+          description: "Transistor-level modelling, bias and compensation design, layout implementation, and extracted simulation, with attention to performance across PVT corners.",
         },
         {
-          title: "Research direction two",
-          description: "Explain how this direction supports your broader agenda and highlight your distinctive perspective.",
+          title: "Digital Hardware & RTL Verification",
+          description: "Modular VHDL backend design validated through testbenches, synthesis, implementation, timing reports, and interface-level checks.",
         },
         {
-          title: "Research direction three",
-          description: "Describe its potential theoretical contribution, practical value, or wider social impact.",
+          title: "Power Electronics & Embedded Systems",
+          description: "Simulation and measurement of PWM, rectifiers, DC–DC converters, and inverters, alongside PCB, sensor, actuator, and controller integration.",
         },
       ],
     },
     projects: {
       kicker: "Selected work",
       title: "Featured projects",
-      intro: "Focus on your role, methods, and verifiable outcomes—not only the project background.",
+      intro: "Selected from thirteen laboratory and course reports, these projects emphasize verifiable results and my specific contribution to individual and team work.",
       items: [
         {
-          period: "20XX — Present",
-          role: "Lead / Core contributor",
-          title: "Add the title of a representative research project",
-          description: "Briefly introduce the research question, your specific contribution, and the outcomes so far. Add code, data, or publication links when available.",
-          tags: ["Method", "Tool or platform", "Keyword"],
+          period: "2026",
+          role: "Individual · Full design and verification flow",
+          title: "Two-Stage CMOS Operational Amplifier: Device to Post-Layout",
+          description: "Using the CSMC 0.50 μm st02 process, I completed NMOS characterisation, a common-source amplifier, the two-stage op-amp schematic, layout, DRC/LVS, extraction, and post-layout simulation in Cadence Virtuoso / Spectre.",
+          highlights: [
+            "Post-layout: 82.93 dB open-loop gain, 22.48 MHz UGBW, and 52.4° phase margin",
+            "1.195 mW power, 76.73 dB PSRR, and 86.95 dB CMRR",
+            "All specifications passed across tt / ff / ss / sf / fs corners",
+          ],
+          tags: ["Cadence Virtuoso", "Spectre", "DRC / LVS", "Post-layout"],
         },
         {
-          period: "20XX — 20XX",
-          role: "Your project role",
-          title: "Add the title of a second research project",
-          description: "Strengthen the description with measurable evidence, such as dataset size, performance gain, experiments, or resulting outputs.",
-          tags: ["Method", "Data analysis", "Interdisciplinary"],
+          period: "2026",
+          role: "Team · Digital backend design and verification",
+          title: "Mixed-Signal PT100 Temperature Sensor IC",
+          description: "For an industrial indoor node spanning −20 to 80°C, our team combined an analog front end, 12-bit SAR ADC, calibration path, and digital backend. I was responsible for the Vivado-based VHDL design and verification of the digital section.",
+          highlights: [
+            "Built five RTL blocks: range detector, LED controller, data packer, serializer, and top-level integration",
+            "Implemented 12-bit temperature codes, a 4-bit device ID, and 16-bit LSB-first serial output",
+            "Five physical input codes passed the top-level testbench; implementation achieved WNS > 0 and TNS = 0",
+          ],
+          tags: ["VHDL", "Xilinx Vivado", "RTL", "Mixed-signal"],
+        },
+        {
+          period: "2026",
+          role: "Team · Hardware subsystem lead",
+          title: "Autonomous Path-Following Vehicle with 24 GHz Radar",
+          description: "Developed a four-wheel vehicle combining path following, LoRa communication, and radar-based obstacle avoidance. I led the hardware subsystem and later supported vehicle integration, tuning, and fault isolation.",
+          highlights: [
+            "Produced the schematic and PCB layout from interface requirements, then handled soldering, circuit assembly, and mechanical fabrication",
+            "Integrated STM32G431RBT6, HLK-LD2450 radar, an 8-channel IR array, and dual motor drivers",
+            "Helped diagnose and correct leftward drift; core functions were completed at RMB 2,061, below the RMB 2,500 cap",
+          ],
+          tags: ["PCB", "STM32", "24 GHz Radar", "System Integration"],
+        },
+        {
+          period: "2026",
+          role: "Individual · Simulation and bench testing",
+          title: "Power Conversion & Control Laboratory Portfolio",
+          description: "Four linked experiments covering a PWM generator, rectification and linear regulation, a boost converter, and modulation and spectral analysis of a single-phase full-bridge inverter.",
+          highlights: [
+            "Boosted 5 V to measured 10.0 V and 20.0 V with approximately 70 mV and 72 mV ripple",
+            "Increasing filter capacitance from 2.2 mF to 6.9 mF reduced measured ripple from 1.40 V to 0.74 V",
+            "Compared square-wave, bipolar PWM, and unipolar PWM in LTspice using Fourier and THD analysis",
+          ],
+          tags: ["LTspice", "PWM", "DC–DC", "Oscilloscope"],
         },
       ],
     },
     publications: {
-      kicker: "Publications",
-      title: "Selected outputs",
+      kicker: "Technical reports",
+      title: "Reports & course outputs",
       items: [
         {
-          title: "Add the title of a representative paper, preprint, or scholarly output",
-          authors: "Litao Liu, Collaborator Name",
-          venue: "Journal or Conference, Year",
+          title: "Comprehensive Experiment of Modern Electronic Technology",
+          authors: "Litao Liu · Individual 64-page design report",
+          venue: "Device characterisation, analog circuits, two-stage op-amp, and post-layout verification, 2026",
           links: [],
         },
         {
-          title: "Add a second representative output",
-          authors: "Collaborator Name, Litao Liu",
-          venue: "Journal, Conference, or Platform, Year",
+          title: "PSRR-Oriented Design and Front-End Simulation of a Two-Stage CMOS Operational Amplifier Based on SMIC18MMRF",
+          authors: "Litao Liu · Individual technical paper",
+          venue: "85.96 dB open-loop gain and 79.54 dB PSRR, 2026",
+          links: [],
+        },
+        {
+          title: "Mixed-Signal PT100 Temperature Measurement IC",
+          authors: "Group 5 · Litao Liu: digital backend design and verification",
+          venue: "Integrated Circuit Design project report, 2026",
+          links: [],
+        },
+        {
+          title: "Power Electronics Laboratory Series",
+          authors: "Litao Liu · Four individual laboratory reports",
+          venue: "PWM, rectification, boost conversion, and full-bridge inverters, 2026",
           links: [],
         },
       ],
     },
     experience: {
       kicker: "Background",
-      title: "Academic journey",
+      title: "Education & technical background",
       educationTitle: "Education",
-      awardsTitle: "Awards & honors",
+      awardsTitle: "Relevant coursework",
       education: [
         {
-          date: "20XX — Present",
-          degree: "Degree and Major",
-          institution: "University / School / Laboratory",
-          detail: "Advisor: Prof. Name | Focus: Your research direction",
-        },
-        {
-          date: "20XX — 20XX",
-          degree: "Degree and Major",
-          institution: "University / School",
-          detail: "Add ranking, thesis topic, or a formative experience",
+          date: "2023 — Present",
+          degree: "Undergraduate Engineering Studies",
+          institution: "Glasgow College, University of Electronic Science and Technology of China",
+          detail: "Current project focus: IC design, power electronics, embedded hardware, and engineering system integration",
         },
       ],
       awards: [
-        { title: "Award or honor", organization: "Awarding organization", year: "20XX" },
-        { title: "Scholarship or competition", organization: "Awarding organization", year: "20XX" },
-        { title: "Academic service or honor", organization: "Relevant organization", year: "20XX" },
+        { title: "Comprehensive Modern Electronics Laboratory", organization: "Analog IC design and layout verification", year: "2026" },
+        { title: "Integrated Circuit Design", organization: "Mixed-signal systems and digital backends", year: "2026" },
+        { title: "Power Electronics", organization: "Converters, PWM, and laboratory measurement", year: "2026" },
+        { title: "Engineering Project Management & Finance", organization: "Autonomous vehicle system project", year: "2026" },
       ],
     },
     skills: {
       kicker: "Capabilities",
-      title: "Research toolkit",
+      title: "Engineering toolkit",
       groups: [
-        { title: "Research methods", items: ["Method or experimental technique", "Method or experimental technique", "Literature review and study design"] },
-        { title: "Computing & tools", items: ["Python / R / MATLAB", "Data analysis and visualization", "Domain software or research platform"] },
-        { title: "Communication", items: ["Academic writing in English and Chinese", "Conference talks and posters", "Cross-team collaboration"] },
+        {
+          title: "IC Design & Verification",
+          items: ["Cadence Virtuoso / Spectre", "Transistor sizing, biasing, and Miller compensation", "DRC, LVS, extraction, and corner simulation"],
+        },
+        {
+          title: "Digital & Embedded",
+          items: ["VHDL and Xilinx Vivado", "RTL, testbenches, synthesis, implementation, and timing", "STM32 interfaces and hardware–software integration"],
+        },
+        {
+          title: "Power & Prototyping",
+          items: ["LTspice and PWM / converter / inverter analysis", "Oscilloscope, digital multimeter, and waveform analysis", "PCB, soldering, assembly, and system debugging"],
+        },
       ],
     },
     contact: {
       kicker: "Get in touch",
-      title: "A question worth exploring together?",
-      copy: "I welcome conversations about research collaboration, academic visits, and questions of shared interest.",
+      title: "Let’s discuss a good electronics problem",
+      copy: "You are welcome to reach me on GitHub to discuss IC design, digital hardware, power electronics, or embedded-system projects.",
     },
     footer: "© {year} Litao Liu. Published with GitHub Pages.",
   },
@@ -1501,12 +1625,12 @@ window.SITE_DATA = {
     $("#portrait").alt = content.profile.photoAlt;
 
     $("#hero-actions").innerHTML =
-      button(content.ui.researchCta, "#research", "primary") +
+      button(content.ui.researchCta, "#projects", "primary") +
       button(content.ui.cv, settings.cvUrl, "secondary", true);
 
     const facts = [
       ["⌖", content.profile.location],
-      ["✉", settings.email],
+      ["✉", settings.email || content.profile.emailPlaceholder],
     ].filter(([, value]) => value);
     $("#quick-facts").innerHTML = facts
       .map(([icon, value]) => `<div><dt aria-hidden="true">${icon}</dt><dd>${escapeHtml(value)}</dd></div>`)
@@ -1527,7 +1651,12 @@ window.SITE_DATA = {
     text("#projects-title", content.projects.title);
     text("#projects-intro", content.projects.intro);
     $("#project-grid").innerHTML = content.projects.items
-      .map((item) => `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><div class="tag-list">${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div></article>`)
+      .map((item) => {
+        const highlights = (item.highlights || [])
+          .map((highlight) => `<li>${escapeHtml(highlight)}</li>`)
+          .join("");
+        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="tag-list">${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div></article>`;
+      })
       .join("");
 
     text("#publications-kicker", content.publications.kicker);
@@ -1571,8 +1700,11 @@ window.SITE_DATA = {
     text("#contact-title", content.contact.title);
     text("#contact-copy", content.contact.copy);
     const emailUrl = settings.email ? `mailto:${settings.email}` : "";
+    const emailAction = emailUrl
+      ? button(content.ui.email, emailUrl, "primary")
+      : `<span class="button button-secondary button-placeholder" aria-disabled="true">${escapeHtml(content.ui.emailPlaceholder)}</span>`;
     $("#contact-actions").innerHTML =
-      button(content.ui.email, emailUrl, "primary") +
+      emailAction +
       button(content.ui.github, settings.githubUrl, "secondary", true) +
       button(content.ui.orcid, settings.orcidUrl, "secondary", true);
 
