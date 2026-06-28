@@ -1557,7 +1557,7 @@ window.SITE_DATA = {
   if (!data) return;
 
   const $ = (selector) => document.querySelector(selector);
-  const $ = (selector) => Array.from(document.querySelectorAll(selector));
+  const $$ = (selector) => Array.from(document.querySelectorAll(selector));
   const text = (selector, value) => {
     const node = $(selector);
     if (node) node.textContent = value ?? "";
@@ -1717,7 +1717,7 @@ window.SITE_DATA = {
   function observeReveals() {
     revealObserver?.disconnect();
     if (!("IntersectionObserver" in window)) {
-      $(".reveal").forEach((node) => node.classList.add("is-visible"));
+      $$(".reveal").forEach((node) => node.classList.add("is-visible"));
       return;
     }
     revealObserver = new IntersectionObserver(
@@ -1731,7 +1731,7 @@ window.SITE_DATA = {
       },
       { threshold: 0.12 }
     );
-    $(".reveal").forEach((node) => revealObserver.observe(node));
+    $$(".reveal").forEach((node) => revealObserver.observe(node));
   }
 
   const languageButton = $("#language-toggle");
@@ -1758,7 +1758,7 @@ window.SITE_DATA = {
     const open = nav.classList.toggle("is-open");
     menuButton.setAttribute("aria-expanded", String(open));
   });
-  $("#site-nav a").forEach((link) =>
+  $$("#site-nav a").forEach((link) =>
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");
       menuButton.setAttribute("aria-expanded", "false");
