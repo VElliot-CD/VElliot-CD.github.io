@@ -8,6 +8,15 @@
       content="Academic profile of Litao Liu: engineering focus, selected projects, technical reports, education, and contact information."
     />
     <meta name="theme-color" content="#f4f1e9" />
+    <meta property="og:title" content="Litao Liu | Academic Profile" />
+    <meta
+      property="og:description"
+      content="Engineering profile of Litao Liu: analog IC design, RTL verification, power electronics, and embedded hardware projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://velliot-cd.github.io/" />
+    <meta property="og:image" content="https://velliot-cd.github.io/data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9IiMxNzMyMkYiLz4KICA8Y2lyY2xlIGN4PSI2MzQiIGN5PSIxODgiIHI9IjE5NiIgZmlsbD0iI0IzNTEzMiIgZmlsbC1vcGFjaXR5PSIwLjc4Ii8+CiAgPGNpcmNsZSBjeD0iMTcxIiBjeT0iNzk5IiByPSIyNzIiIGZpbGw9IiNFN0M5QjciIGZpbGwtb3BhY2l0eT0iMC4xNyIvPgogIDxwYXRoIGQ9Ik0wIDY3MEMxMjkgNTU5IDI1MSA1MjYgMzY2IDU3MEM0ODYgNjE1IDU2MSA1ODcgODAwIDM5NVYxMDAwSDBWNjcwWiIgZmlsbD0iI0Y0RjFFOSIgZmlsbC1vcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSI1MTAiIGZpbGw9IiNGNEYxRTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNzYiIGxldHRlci1zcGFjaW5nPSItOCI+WU48L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI1OTAiIGZpbGw9IiNFN0M5QjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjgiPllPVVIgUEhPVE88L3RleHQ+Cjwvc3ZnPgo=" />
+    <meta name="twitter:card" content="summary" />
     <title>Litao Liu | Academic Profile</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
     <style>
@@ -437,6 +446,48 @@ img {
   margin-bottom: 4px;
 }
 
+.news-section {
+  padding-block: 104px 116px;
+}
+
+.news-list {
+  border-block: 1px solid var(--line);
+}
+
+.news-item {
+  display: grid;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 150px 1fr;
+  gap: 34px;
+}
+
+.news-item:last-child {
+  border-bottom: 0;
+}
+
+.news-item time {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.news-item h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.news-item p {
+  max-width: 720px;
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
 .research-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -480,9 +531,107 @@ img {
   font-size: 14px;
 }
 
+.focus-panel {
+  display: grid;
+  margin-top: 24px;
+  padding: 34px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent-soft) 78%, transparent), transparent 34%),
+    var(--surface);
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+  gap: 44px;
+}
+
+.focus-panel h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.focus-panel p {
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+}
+
+.focus-panel ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 14px;
+  list-style: none;
+}
+
+.focus-panel li {
+  position: relative;
+  padding: 14px 16px 14px 42px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.focus-panel li::before {
+  position: absolute;
+  top: 19px;
+  left: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
 .section-projects,
 .section-experience {
   background: var(--paper-deep);
+}
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -22px 0 30px;
+}
+
+.filter-button,
+.project-detail-button,
+.modal-close {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 760;
+  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.filter-button {
+  padding: 8px 13px;
+  border-radius: 999px;
+}
+
+.filter-button:hover,
+.filter-button:focus-visible,
+.project-detail-button:hover,
+.project-detail-button:focus-visible,
+.modal-close:hover,
+.modal-close:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.filter-button.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .project-grid {
@@ -558,6 +707,24 @@ img {
   padding-top: 28px;
 }
 
+.project-card-footer {
+  display: grid;
+  margin-top: auto;
+  padding-top: 28px;
+  gap: 18px;
+}
+
+.project-card-footer .tag-list {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.project-detail-button {
+  width: max-content;
+  padding: 9px 14px;
+  border-radius: 999px;
+}
+
 .tag {
   padding: 5px 10px;
   border: 1px solid var(--line);
@@ -577,6 +744,16 @@ img {
 .inline-link::after,
 .publication-link::after {
   content: " ↗";
+}
+
+.inline-placeholder {
+  cursor: default;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.inline-placeholder::after {
+  content: "";
 }
 
 .is-hidden {
@@ -777,6 +954,116 @@ img {
   color: color-mix(in srgb, var(--paper) 65%, transparent);
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: color-mix(in srgb, var(--ink) 48%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.project-modal {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: min(88vh, 900px);
+  overflow: auto;
+  padding: 42px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.modal-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  padding: 8px 13px;
+  border-radius: 999px;
+}
+
+.modal-meta {
+  max-width: calc(100% - 110px);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-modal h2 {
+  max-width: 760px;
+  margin: 22px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.modal-summary {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+}
+
+.modal-detail-grid {
+  display: grid;
+  margin-top: 34px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.modal-detail-grid section {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--paper) 48%, var(--surface));
+}
+
+.modal-detail-grid h3 {
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.modal-detail-grid p,
+.modal-detail-grid li {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.modal-detail-grid p,
+.modal-detail-grid ul {
+  margin: 0;
+}
+
+.modal-detail-grid ul {
+  padding-left: 18px;
+}
+
+.modal-detail-grid li + li {
+  margin-top: 8px;
+}
+
+.modal-detail-grid li::marker {
+  color: var(--accent);
+}
+
+.modal-tags {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
 .footer-inner {
   display: flex;
   min-height: 88px;
@@ -905,6 +1192,12 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .news-item,
+  .focus-panel,
+  .modal-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
   .research-card {
     min-height: 250px;
   }
@@ -919,6 +1212,10 @@ img {
     align-items: start;
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .project-filters {
+    margin-top: -8px;
   }
 
   .contact-actions {
@@ -956,6 +1253,26 @@ img {
     padding-block: 88px;
   }
 
+  .news-section {
+    padding-block: 80px 88px;
+  }
+
+  .news-item {
+    gap: 8px;
+  }
+
+  .focus-panel {
+    padding: 26px;
+  }
+
+  .project-filters {
+    margin-top: 0;
+  }
+
+  .filter-button {
+    flex: 1 1 auto;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
@@ -983,6 +1300,30 @@ img {
 
   .project-card h3 {
     max-width: 90%;
+  }
+
+  .project-detail-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .project-modal {
+    max-height: 92vh;
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .modal-close {
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .modal-meta {
+    max-width: none;
   }
 
   .publication-item {
@@ -1027,6 +1368,7 @@ img {
 
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="#about" data-nav="about">About</a>
+          <a href="#news" data-nav="news">News</a>
           <a href="#research" data-nav="research">Focus</a>
           <a href="#publications" data-nav="publications">Reports</a>
           <a href="#experience" data-nav="experience">Background</a>
@@ -1064,6 +1406,17 @@ img {
         <div class="shell stats-grid" id="stats-grid"></div>
       </section>
 
+      <section class="section shell news-section" id="news">
+        <div class="section-heading heading-row reveal">
+          <div>
+            <p class="section-kicker" id="news-kicker"></p>
+            <h2 id="news-title"></h2>
+          </div>
+          <p id="news-intro"></p>
+        </div>
+        <div class="news-list" id="news-list"></div>
+      </section>
+
       <section class="section shell" id="research">
         <div class="section-heading reveal">
           <p class="section-kicker" id="research-kicker"></p>
@@ -1071,6 +1424,14 @@ img {
           <p id="research-intro"></p>
         </div>
         <div class="research-grid" id="research-grid"></div>
+        <div class="focus-panel reveal" id="focus-panel">
+          <div>
+            <p class="section-kicker" id="focus-panel-kicker"></p>
+            <h3 id="focus-panel-title"></h3>
+            <p id="focus-panel-intro"></p>
+          </div>
+          <ul id="focus-panel-list"></ul>
+        </div>
       </section>
 
       <section class="section section-projects" id="projects">
@@ -1082,6 +1443,7 @@ img {
             </div>
             <p id="projects-intro"></p>
           </div>
+          <div class="project-filters reveal" id="project-filters" aria-label="Project filters"></div>
           <div class="project-grid" id="project-grid"></div>
         </div>
       </section>
@@ -1136,6 +1498,13 @@ img {
       </section>
     </main>
 
+    <div class="modal-backdrop is-hidden" id="project-modal" aria-hidden="true">
+      <section class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" type="button">Close</button>
+        <div id="modal-content"></div>
+      </section>
+    </div>
+
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p id="footer-copy"></p>
@@ -1151,7 +1520,9 @@ img {
 window.SITE_DATA = {
   settings: {
     defaultLanguage: "en",
+    siteUrl: "https://velliot-cd.github.io/",
     photo: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9IiMxNzMyMkYiLz4KICA8Y2lyY2xlIGN4PSI2MzQiIGN5PSIxODgiIHI9IjE5NiIgZmlsbD0iI0IzNTEzMiIgZmlsbC1vcGFjaXR5PSIwLjc4Ii8+CiAgPGNpcmNsZSBjeD0iMTcxIiBjeT0iNzk5IiByPSIyNzIiIGZpbGw9IiNFN0M5QjciIGZpbGwtb3BhY2l0eT0iMC4xNyIvPgogIDxwYXRoIGQ9Ik0wIDY3MEMxMjkgNTU5IDI1MSA1MjYgMzY2IDU3MEM0ODYgNjE1IDU2MSA1ODcgODAwIDM5NVYxMDAwSDBWNjcwWiIgZmlsbD0iI0Y0RjFFOSIgZmlsbC1vcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSI1MTAiIGZpbGw9IiNGNEYxRTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNzYiIGxldHRlci1zcGFjaW5nPSItOCI+WU48L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI1OTAiIGZpbGw9IiNFN0M5QjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjgiPllPVVIgUEhPVE88L3RleHQ+Cjwvc3ZnPgo=",
+    ogImage: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9IiMxNzMyMkYiLz4KICA8Y2lyY2xlIGN4PSI2MzQiIGN5PSIxODgiIHI9IjE5NiIgZmlsbD0iI0IzNTEzMiIgZmlsbC1vcGFjaXR5PSIwLjc4Ii8+CiAgPGNpcmNsZSBjeD0iMTcxIiBjeT0iNzk5IiByPSIyNzIiIGZpbGw9IiNFN0M5QjciIGZpbGwtb3BhY2l0eT0iMC4xNyIvPgogIDxwYXRoIGQ9Ik0wIDY3MEMxMjkgNTU5IDI1MSA1MjYgMzY2IDU3MEM0ODYgNjE1IDU2MSA1ODcgODAwIDM5NVYxMDAwSDBWNjcwWiIgZmlsbD0iI0Y0RjFFOSIgZmlsbC1vcGFjaXR5PSIwLjA4Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSI1MTAiIGZpbGw9IiNGNEYxRTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCBzZXJpZiIgZm9udC1zaXplPSIxNzYiIGxldHRlci1zcGFjaW5nPSItOCI+WU48L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI1OTAiIGZpbGw9IiNFN0M5QjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjgiPllPVVIgUEhPVE88L3RleHQ+Cjwvc3ZnPgo=",
     cvUrl: "",
     scholarUrl: "",
     githubUrl: "https://github.com/VElliot-CD",
@@ -1174,13 +1545,18 @@ window.SITE_DATA = {
       scholar: "查看 Google Scholar",
       email: "发送邮件",
       emailPlaceholder: "邮箱暂未公开",
+      scholarPlaceholder: "Google Scholar 暂未公开",
+      cvPlaceholder: "简历稍后提供",
       cv: "下载简历",
       researchCta: "查看项目",
+      details: "查看详情",
+      closeProject: "关闭",
       github: "GitHub",
       orcid: "ORCID",
     },
     nav: {
       about: "关于",
+      news: "动态",
       research: "方向",
       publications: "技术报告",
       experience: "经历",
@@ -1203,6 +1579,28 @@ window.SITE_DATA = {
       { value: "4", label: "核心工具链" },
       { value: "3", label: "设计层级" },
     ],
+    news: {
+      kicker: "News",
+      title: "近期动态",
+      intro: "用较短的时间线展示主页、项目和实验进展，让访问者快速判断资料是否仍在更新。",
+      items: [
+        {
+          date: "2026 年 8 月",
+          title: "个人学术主页发布并改为英文默认显示",
+          description: "主页通过 GitHub Pages 公开访问，保留中英文切换，并预留照片、邮箱和简历位置。",
+        },
+        {
+          date: "2026 年 6 月",
+          title: "完成两级 CMOS 运放版图后仿真验证",
+          description: "完成 Cadence Virtuoso / Spectre 全流程，并记录增益、UGBW、相位裕度、PSRR、CMRR 与工艺角结果。",
+        },
+        {
+          date: "2026 年 5 月",
+          title: "完成混合信号测温 IC 与功率电子实验组合",
+          description: "在团队项目中负责 VHDL 数字后端，同时完成 Boost、PWM、整流稳压与逆变器相关实验。",
+        },
+      ],
+    },
     research: {
       kicker: "Technical focus",
       title: "从芯片到系统的工程实践",
@@ -1221,11 +1619,36 @@ window.SITE_DATA = {
           description: "围绕 PWM、整流与 DC–DC/逆变电路开展仿真和实测，并参与 PCB、传感器、执行器及控制器的系统集成。",
         },
       ],
+      focusPanel: {
+        kicker: "Current focus",
+        title: "下一阶段希望继续深入的问题",
+        intro: "我目前更关注能把“仿真指标、物理实现、实验测量”连起来的问题，尤其是设计在真实工艺、真实负载和真实接口下是否可靠。",
+        items: [
+          "模拟 IC：补偿、版图寄生、PSRR / CMRR 与工艺角鲁棒性",
+          "数字接口：VHDL 模块化、testbench 覆盖和时序收敛",
+          "硬件系统：传感器、电源、PCB 与控制器之间的联合调试",
+        ],
+      },
     },
     projects: {
       kicker: "Selected work",
       title: "代表性项目",
       intro: "以下项目从 13 份实验与课程报告中筛选，重点呈现可核验的技术结果，以及我在个人或小组项目中的具体贡献。",
+      filters: [
+        { id: "all", label: "全部" },
+        { id: "ic", label: "IC 设计" },
+        { id: "rtl", label: "RTL / 数字" },
+        { id: "power", label: "功率电子" },
+        { id: "embedded", label: "嵌入式系统" },
+        { id: "individual", label: "个人项目" },
+        { id: "team", label: "小组项目" },
+      ],
+      detailLabels: {
+        overview: "项目背景",
+        contribution: "我的贡献",
+        method: "方法与工具",
+        evidence: "结果证据",
+      },
       items: [
         {
           period: "2026",
@@ -1238,6 +1661,24 @@ window.SITE_DATA = {
             "tt / ff / ss / sf / fs 五个工艺角均满足设计指标",
           ],
           tags: ["Cadence Virtuoso", "Spectre", "DRC / LVS", "Post-layout"],
+          categories: ["ic", "individual"],
+          details: {
+            overview: "该项目覆盖模拟 IC 从器件理解到物理实现的闭环流程，重点不是单点仿真结果，而是原理图、版图、寄生和工艺角之间的一致性。",
+            contribution: [
+              "独立完成 NMOS 器件表征、共源放大器验证、两级运放设计、版图绘制和后仿真。",
+              "将 DRC / LVS / extraction 纳入同一设计流程，用后仿真结果反向检查补偿和版图寄生影响。",
+            ],
+            methods: [
+              "Cadence Virtuoso / Spectre 原理图仿真与版图实现",
+              "CSMC 0.50 μm st02 工艺，DRC、LVS、寄生提取和 PVT 工艺角仿真",
+              "增益、UGBW、相位裕度、PSRR、CMRR 和功耗的指标化验证",
+            ],
+            evidence: [
+              "后仿真开环增益 82.93 dB，UGBW 22.48 MHz，相位裕度 52.4°。",
+              "功耗 1.195 mW，PSRR 76.73 dB，CMRR 86.95 dB。",
+              "tt / ff / ss / sf / fs 五个工艺角全部通过既定指标。",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1250,6 +1691,24 @@ window.SITE_DATA = {
             "五组物理输入码通过顶层 testbench；实现报告显示 WNS > 0、TNS = 0",
           ],
           tags: ["VHDL", "Xilinx Vivado", "RTL", "Mixed-signal"],
+          categories: ["ic", "rtl", "team"],
+          details: {
+            overview: "该项目面向工业室内温度监测，系统由模拟前端、SAR ADC、校准路径与数字后端组成，能够体现混合信号系统中数字接口的工程价值。",
+            contribution: [
+              "负责 Vivado 中的 VHDL 数字后端设计、模块划分、顶层集成和仿真验证。",
+              "把温度码、设备 ID、越界状态和串行输出逻辑整理成清晰的 RTL 数据路径。",
+            ],
+            methods: [
+              "VHDL 模块包括 range detector、LED controller、data packer、serializer 和 top-level",
+              "使用 testbench 覆盖五组物理输入码，检查边界状态、打包顺序和串行输出",
+              "通过综合、实现与 timing report 检查时序可靠性",
+            ],
+            evidence: [
+              "实现 12-bit 温度码、4-bit 设备 ID 和 16-bit LSB-first 串行输出。",
+              "五组输入测试全部通过顶层 testbench。",
+              "实现结果满足 WNS > 0、TNS = 0。",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1262,6 +1721,24 @@ window.SITE_DATA = {
             "协助排查并修正车辆左偏；最终完成核心功能，项目支出 2061 元，低于 2500 元预算",
           ],
           tags: ["PCB", "STM32", "24 GHz Radar", "System Integration"],
+          categories: ["embedded", "team"],
+          details: {
+            overview: "该项目要求把循迹、雷达避障、无线通信和电机控制放进同一辆四轮小车里，难点在于接口匹配、硬件可靠性和系统调试。",
+            contribution: [
+              "担任硬件子系统负责人，完成原理图、PCB 布局、焊接装配和机械制作相关工作。",
+              "在后期参与整车联调，协助定位车辆左偏等系统级问题。",
+            ],
+            methods: [
+              "STM32G431RBT6 控制器、HLK-LD2450 24 GHz 雷达、8 路红外阵列和双电机驱动",
+              "围绕传感器、电源、驱动和通信接口进行硬件集成",
+              "结合预算、进度、风险和调试记录推进工程交付",
+            ],
+            evidence: [
+              "核心循迹、通信和避障功能完成。",
+              "协助修正车辆左偏，提高整车可控性。",
+              "最终支出 2061 元，低于 2500 元预算上限。",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1274,6 +1751,24 @@ window.SITE_DATA = {
             "在 LTspice 中比较方波、双极性 PWM 与单极性 PWM，并完成傅里叶与 THD 分析",
           ],
           tags: ["LTspice", "PWM", "DC–DC", "Oscilloscope"],
+          categories: ["power", "individual"],
+          details: {
+            overview: "这组实验展示了从电路仿真到台架测量的功率电子基础能力，重点是用波形、纹波、频谱和 THD 数据解释电路行为。",
+            contribution: [
+              "独立完成四组连续实验的数据采集、波形分析、仿真对比和实验报告整理。",
+              "对 Boost 升压、滤波电容、PWM 调制和全桥逆变器频谱进行定量分析。",
+            ],
+            methods: [
+              "LTspice 仿真与实验台架测试结合",
+              "使用示波器、数字万用表和波形/频谱分析方法",
+              "比较方波、双极性 PWM、单极性 PWM 与不同滤波电容条件",
+            ],
+            evidence: [
+              "Boost 电路将 5 V 升至 10.0 V 和 20.0 V，纹波约 70 mV 和 72 mV。",
+              "滤波电容从 2.2 mF 增至 6.9 mF 后，实测纹波从 1.40 V 降至 0.74 V。",
+              "完成逆变器傅里叶和 THD 分析，用频谱结果比较调制方式。",
+            ],
+          },
         },
       ],
     },
@@ -1368,13 +1863,18 @@ window.SITE_DATA = {
       scholar: "Google Scholar",
       email: "Email me",
       emailPlaceholder: "Email available later",
+      scholarPlaceholder: "Google Scholar reserved",
+      cvPlaceholder: "CV available later",
       cv: "Download CV",
       researchCta: "View projects",
+      details: "View details",
+      closeProject: "Close",
       github: "GitHub",
       orcid: "ORCID",
     },
     nav: {
       about: "About",
+      news: "News",
       research: "Focus",
       publications: "Reports",
       experience: "Background",
@@ -1397,6 +1897,28 @@ window.SITE_DATA = {
       { value: "4", label: "Core toolchains" },
       { value: "3", label: "Design levels" },
     ],
+    news: {
+      kicker: "News",
+      title: "Recent updates",
+      intro: "A compact timeline keeps the profile alive and helps readers see which materials and projects are current.",
+      items: [
+        {
+          date: "Aug 2026",
+          title: "Personal academic homepage published with English as the default language",
+          description: "The site is publicly available through GitHub Pages, keeps the bilingual switch, and reserves space for a portrait, email, and CV.",
+        },
+        {
+          date: "Jun 2026",
+          title: "Completed post-layout verification for a two-stage CMOS operational amplifier",
+          description: "The full Cadence Virtuoso / Spectre flow records gain, UGBW, phase margin, PSRR, CMRR, and corner-simulation evidence.",
+        },
+        {
+          date: "May 2026",
+          title: "Completed mixed-signal temperature IC work and a power-electronics lab portfolio",
+          description: "I contributed the VHDL digital backend in a team project while completing Boost, PWM, rectification, and inverter experiments individually.",
+        },
+      ],
+    },
     research: {
       kicker: "Technical focus",
       title: "Engineering from silicon to systems",
@@ -1415,11 +1937,36 @@ window.SITE_DATA = {
           description: "Simulation and measurement of PWM, rectifiers, DC–DC converters, and inverters, alongside PCB, sensor, actuator, and controller integration.",
         },
       ],
+      focusPanel: {
+        kicker: "Current focus",
+        title: "Questions I want to keep working on",
+        intro: "I am especially interested in problems that connect simulated metrics, physical implementation, and measured behaviour under real process, load, and interface constraints.",
+        items: [
+          "Analog ICs: compensation, layout parasitics, PSRR / CMRR, and corner robustness",
+          "Digital interfaces: modular VHDL, testbench coverage, and timing closure",
+          "Hardware systems: joint debugging across sensors, power paths, PCBs, and controllers",
+        ],
+      },
     },
     projects: {
       kicker: "Selected work",
       title: "Featured projects",
       intro: "Selected from thirteen laboratory and course reports, these projects emphasize verifiable results and my specific contribution to individual and team work.",
+      filters: [
+        { id: "all", label: "All" },
+        { id: "ic", label: "IC Design" },
+        { id: "rtl", label: "RTL / Digital" },
+        { id: "power", label: "Power" },
+        { id: "embedded", label: "Embedded" },
+        { id: "individual", label: "Individual" },
+        { id: "team", label: "Team" },
+      ],
+      detailLabels: {
+        overview: "Context",
+        contribution: "My contribution",
+        method: "Methods & tools",
+        evidence: "Evidence",
+      },
       items: [
         {
           period: "2026",
@@ -1432,6 +1979,24 @@ window.SITE_DATA = {
             "All specifications passed across tt / ff / ss / sf / fs corners",
           ],
           tags: ["Cadence Virtuoso", "Spectre", "DRC / LVS", "Post-layout"],
+          categories: ["ic", "individual"],
+          details: {
+            overview: "This project demonstrates a closed analog-IC flow from device-level understanding to physical implementation. The emphasis is not a single simulation point, but consistency across schematic, layout, parasitics, and process corners.",
+            contribution: [
+              "Independently completed NMOS characterisation, common-source validation, two-stage op-amp design, layout, and post-layout simulation.",
+              "Integrated DRC, LVS, extraction, and post-layout checks into one verification loop to evaluate compensation and parasitic effects.",
+            ],
+            methods: [
+              "Cadence Virtuoso / Spectre schematic simulation and layout implementation",
+              "CSMC 0.50 μm st02 process with DRC, LVS, extraction, and PVT corner simulation",
+              "Metric-driven verification of gain, UGBW, phase margin, PSRR, CMRR, and power",
+            ],
+            evidence: [
+              "Post-layout gain reached 82.93 dB with 22.48 MHz UGBW and 52.4° phase margin.",
+              "Power was 1.195 mW, with 76.73 dB PSRR and 86.95 dB CMRR.",
+              "The design passed the target specifications across tt / ff / ss / sf / fs corners.",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1444,6 +2009,24 @@ window.SITE_DATA = {
             "Five physical input codes passed the top-level testbench; implementation achieved WNS > 0 and TNS = 0",
           ],
           tags: ["VHDL", "Xilinx Vivado", "RTL", "Mixed-signal"],
+          categories: ["ic", "rtl", "team"],
+          details: {
+            overview: "The project targets industrial indoor temperature monitoring and combines an analog front end, SAR ADC, calibration path, and digital backend. It shows how digital interfaces support a complete mixed-signal IC.",
+            contribution: [
+              "Owned the Vivado-based VHDL backend, including module partitioning, top-level integration, and simulation verification.",
+              "Organised temperature codes, device ID, range status, and serial output into a clear RTL data path.",
+            ],
+            methods: [
+              "VHDL modules: range detector, LED controller, data packer, serializer, and top-level",
+              "Top-level testbench covering five physical input codes, boundary states, packing order, and serial output",
+              "Synthesis, implementation, and timing-report checks for timing reliability",
+            ],
+            evidence: [
+              "Implemented 12-bit temperature codes, a 4-bit device ID, and 16-bit LSB-first serial output.",
+              "All five input tests passed the top-level testbench.",
+              "Implementation results reported WNS > 0 and TNS = 0.",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1456,6 +2039,24 @@ window.SITE_DATA = {
             "Helped diagnose and correct leftward drift; core functions were completed at RMB 2,061, below the RMB 2,500 cap",
           ],
           tags: ["PCB", "STM32", "24 GHz Radar", "System Integration"],
+          categories: ["embedded", "team"],
+          details: {
+            overview: "This project placed path following, radar obstacle avoidance, wireless communication, and motor control into one four-wheel vehicle. The main engineering challenge was interface matching, hardware reliability, and system-level debugging.",
+            contribution: [
+              "Led the hardware subsystem, including schematic design, PCB layout, soldering, circuit assembly, and mechanical fabrication tasks.",
+              "Joined late-stage vehicle integration and helped isolate system-level issues such as leftward drift.",
+            ],
+            methods: [
+              "STM32G431RBT6 controller, HLK-LD2450 24 GHz radar, 8-channel IR array, and dual motor drivers",
+              "Hardware integration across sensors, power paths, motor drive, and communication interfaces",
+              "Engineering delivery tracked through budget, schedule, risk, and debugging records",
+            ],
+            evidence: [
+              "Core path-following, communication, and obstacle-avoidance functions were completed.",
+              "Supported correction of vehicle leftward drift and improved controllability.",
+              "Final spending was RMB 2,061, below the RMB 2,500 budget cap.",
+            ],
+          },
         },
         {
           period: "2026",
@@ -1468,6 +2069,24 @@ window.SITE_DATA = {
             "Compared square-wave, bipolar PWM, and unipolar PWM in LTspice using Fourier and THD analysis",
           ],
           tags: ["LTspice", "PWM", "DC–DC", "Oscilloscope"],
+          categories: ["power", "individual"],
+          details: {
+            overview: "This lab portfolio demonstrates power-electronics fundamentals from circuit simulation to bench measurement, with waveform, ripple, spectrum, and THD data used to explain circuit behaviour.",
+            contribution: [
+              "Independently completed data collection, waveform analysis, simulation comparison, and report writing across four linked experiments.",
+              "Analysed Boost conversion, filter capacitance, PWM modulation, and full-bridge inverter spectra quantitatively.",
+            ],
+            methods: [
+              "Combined LTspice simulation with laboratory bench testing",
+              "Used oscilloscopes, digital multimeters, and waveform / spectrum analysis",
+              "Compared square-wave, bipolar PWM, unipolar PWM, and filter-capacitance conditions",
+            ],
+            evidence: [
+              "The Boost converter raised 5 V to 10.0 V and 20.0 V, with about 70 mV and 72 mV ripple.",
+              "Increasing capacitance from 2.2 mF to 6.9 mF reduced measured ripple from 1.40 V to 0.74 V.",
+              "Fourier and THD analysis was used to compare inverter modulation strategies.",
+            ],
+          },
         },
       ],
     },
@@ -1570,6 +2189,8 @@ window.SITE_DATA = {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
+  const listMarkup = (items = []) => items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+
   const getStored = (key, fallback) => {
     try {
       return localStorage.getItem(key) || fallback;
@@ -1586,13 +2207,137 @@ window.SITE_DATA = {
     }
   };
 
+  function setMeta(selector, attribute, value) {
+    const node = $(selector);
+    if (node && value) node.setAttribute(attribute, value);
+  }
+
   let language = data.settings.defaultLanguage || "en";
   if (!data[language]) language = "en";
+  let activeProjectFilter = "all";
+  let activeProjectIndex = null;
 
   function button(label, href, kind = "secondary", external = false) {
     if (!href) return "";
     const attributes = external ? ' target="_blank" rel="noreferrer"' : "";
     return `<a class="button button-${kind}" href="${escapeHtml(href)}"${attributes}>${escapeHtml(label)} <span aria-hidden="true">${external ? "↗" : "→"}</span></a>`;
+  }
+
+  function placeholderButton(label) {
+    return `<span class="button button-secondary button-placeholder" aria-disabled="true">${escapeHtml(label)}</span>`;
+  }
+
+  function renderNews(content) {
+    if (!content.news) return;
+    text("#news-kicker", content.news.kicker);
+    text("#news-title", content.news.title);
+    text("#news-intro", content.news.intro);
+    $("#news-list").innerHTML = (content.news.items || [])
+      .map(
+        (item) =>
+          `<article class="news-item reveal"><time>${escapeHtml(item.date)}</time><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div></article>`
+      )
+      .join("");
+  }
+
+  function renderFocusPanel(content) {
+    const panel = content.research.focusPanel;
+    const container = $("#focus-panel");
+    if (!panel) {
+      container?.classList.add("is-hidden");
+      return;
+    }
+    container?.classList.remove("is-hidden");
+    text("#focus-panel-kicker", panel.kicker);
+    text("#focus-panel-title", panel.title);
+    text("#focus-panel-intro", panel.intro);
+    $("#focus-panel-list").innerHTML = listMarkup(panel.items);
+  }
+
+  function renderProjectFilters(content) {
+    const filters = content.projects.filters || [{ id: "all", label: "All" }];
+    if (!filters.some((filter) => filter.id === activeProjectFilter)) activeProjectFilter = "all";
+    $("#project-filters").innerHTML = filters
+      .map(
+        (filter) =>
+          `<button class="filter-button${filter.id === activeProjectFilter ? " is-active" : ""}" type="button" data-project-filter="${escapeHtml(filter.id)}" aria-pressed="${filter.id === activeProjectFilter}">${escapeHtml(filter.label)}</button>`
+      )
+      .join("");
+    $$("[data-project-filter]").forEach((filterButton) => {
+      filterButton.addEventListener("click", () => {
+        activeProjectFilter = filterButton.dataset.projectFilter || "all";
+        render();
+        $("#projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  function renderProjects(content) {
+    const filteredItems = (content.projects.items || [])
+      .map((item, index) => ({ item, index }))
+      .filter(({ item }) => activeProjectFilter === "all" || (item.categories || []).includes(activeProjectFilter));
+
+    $("#project-grid").innerHTML = filteredItems
+      .map(({ item, index }) => {
+        const highlights = listMarkup(item.highlights);
+        const tags = (item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><button class="project-detail-button" type="button" data-project-index="${index}">${escapeHtml(content.ui.details)}</button></div></article>`;
+      })
+      .join("");
+
+    $$("[data-project-index]").forEach((buttonNode) => {
+      buttonNode.addEventListener("click", () => openProjectModal(Number(buttonNode.dataset.projectIndex)));
+    });
+  }
+
+  function renderProjectModal(index) {
+    const content = data[language];
+    const item = content.projects.items[index];
+    if (!item) return;
+    const labels = content.projects.detailLabels || {};
+    const details = item.details || {};
+    $("#modal-close").textContent = content.ui.closeProject;
+    $("#modal-content").innerHTML = `
+      <div class="modal-meta">${escapeHtml(item.period)} · ${escapeHtml(item.role)}</div>
+      <h2 id="modal-title">${escapeHtml(item.title)}</h2>
+      <p class="modal-summary">${escapeHtml(item.description)}</p>
+      <div class="modal-detail-grid">
+        <section>
+          <h3>${escapeHtml(labels.overview || "Context")}</h3>
+          <p>${escapeHtml(details.overview || "")}</p>
+        </section>
+        <section>
+          <h3>${escapeHtml(labels.contribution || "Contribution")}</h3>
+          <ul>${listMarkup(details.contribution)}</ul>
+        </section>
+        <section>
+          <h3>${escapeHtml(labels.method || "Methods")}</h3>
+          <ul>${listMarkup(details.methods)}</ul>
+        </section>
+        <section>
+          <h3>${escapeHtml(labels.evidence || "Evidence")}</h3>
+          <ul>${listMarkup(details.evidence)}</ul>
+        </section>
+      </div>
+      <div class="tag-list modal-tags">${(item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+    `;
+  }
+
+  function openProjectModal(index) {
+    if (!Number.isFinite(index)) return;
+    activeProjectIndex = index;
+    renderProjectModal(index);
+    $("#project-modal").classList.remove("is-hidden");
+    $("#project-modal").setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    $("#modal-close")?.focus();
+  }
+
+  function closeProjectModal() {
+    $("#project-modal").classList.add("is-hidden");
+    $("#project-modal").setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    activeProjectIndex = null;
   }
 
   function render() {
@@ -1602,7 +2347,11 @@ window.SITE_DATA = {
 
     document.documentElement.lang = isZh ? "zh-CN" : "en";
     document.title = content.meta.title;
-    $("meta[name='description']")?.setAttribute("content", content.meta.description);
+    setMeta("meta[name='description']", "content", content.meta.description);
+    setMeta("meta[property='og:title']", "content", content.meta.title);
+    setMeta("meta[property='og:description']", "content", content.meta.description);
+    setMeta("meta[property='og:url']", "content", settings.siteUrl);
+    setMeta("meta[property='og:image']", "content", settings.ogImage?.startsWith("http") ? settings.ogImage : `${settings.siteUrl}${settings.ogImage || "assets/profile-placeholder.svg"}`);
 
     text("#skip-link", content.ui.skip);
     text("#wordmark", content.profile.name);
@@ -1624,9 +2373,8 @@ window.SITE_DATA = {
     $("#portrait").src = settings.photo || "assets/profile-placeholder.svg";
     $("#portrait").alt = content.profile.photoAlt;
 
-    $("#hero-actions").innerHTML =
-      button(content.ui.researchCta, "#projects", "primary") +
-      button(content.ui.cv, settings.cvUrl, "secondary", true);
+    const cvAction = settings.cvUrl ? button(content.ui.cv, settings.cvUrl, "secondary", true) : placeholderButton(content.ui.cvPlaceholder);
+    $("#hero-actions").innerHTML = button(content.ui.researchCta, "#projects", "primary") + cvAction;
 
     const facts = [
       ["⌖", content.profile.location],
@@ -1640,24 +2388,21 @@ window.SITE_DATA = {
       .map((item) => `<div class="stat"><strong class="stat-value">${escapeHtml(item.value)}</strong><span class="stat-label">${escapeHtml(item.label)}</span></div>`)
       .join("");
 
+    renderNews(content);
+
     text("#research-kicker", content.research.kicker);
     text("#research-title", content.research.title);
     text("#research-intro", content.research.intro);
     $("#research-grid").innerHTML = content.research.items
       .map((item, index) => `<article class="research-card reveal"><span class="card-number">0${index + 1}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></article>`)
       .join("");
+    renderFocusPanel(content);
 
     text("#projects-kicker", content.projects.kicker);
     text("#projects-title", content.projects.title);
     text("#projects-intro", content.projects.intro);
-    $("#project-grid").innerHTML = content.projects.items
-      .map((item) => {
-        const highlights = (item.highlights || [])
-          .map((highlight) => `<li>${escapeHtml(highlight)}</li>`)
-          .join("");
-        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="tag-list">${item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div></article>`;
-      })
-      .join("");
+    renderProjectFilters(content);
+    renderProjects(content);
 
     text("#publications-kicker", content.publications.kicker);
     text("#publications-title", content.publications.title);
@@ -1665,9 +2410,18 @@ window.SITE_DATA = {
     if (settings.scholarUrl) {
       scholar.href = settings.scholarUrl;
       scholar.textContent = content.ui.scholar;
-      scholar.classList.remove("is-hidden");
+      scholar.removeAttribute("aria-disabled");
+      scholar.setAttribute("target", "_blank");
+      scholar.setAttribute("rel", "noreferrer");
+      scholar.classList.remove("is-hidden", "inline-placeholder");
     } else {
-      scholar.classList.add("is-hidden");
+      scholar.removeAttribute("href");
+      scholar.removeAttribute("target");
+      scholar.removeAttribute("rel");
+      scholar.textContent = content.ui.scholarPlaceholder;
+      scholar.setAttribute("aria-disabled", "true");
+      scholar.classList.remove("is-hidden");
+      scholar.classList.add("inline-placeholder");
     }
     $("#publication-list").innerHTML = content.publications.items
       .map((item) => {
@@ -1700,15 +2454,14 @@ window.SITE_DATA = {
     text("#contact-title", content.contact.title);
     text("#contact-copy", content.contact.copy);
     const emailUrl = settings.email ? `mailto:${settings.email}` : "";
-    const emailAction = emailUrl
-      ? button(content.ui.email, emailUrl, "primary")
-      : `<span class="button button-secondary button-placeholder" aria-disabled="true">${escapeHtml(content.ui.emailPlaceholder)}</span>`;
+    const emailAction = emailUrl ? button(content.ui.email, emailUrl, "primary") : placeholderButton(content.ui.emailPlaceholder);
     $("#contact-actions").innerHTML =
       emailAction +
       button(content.ui.github, settings.githubUrl, "secondary", true) +
       button(content.ui.orcid, settings.orcidUrl, "secondary", true);
 
     text("#footer-copy", content.footer.replace("{year}", new Date().getFullYear()));
+    if (activeProjectIndex !== null && !$("#project-modal").classList.contains("is-hidden")) renderProjectModal(activeProjectIndex);
     observeReveals();
   }
 
@@ -1744,7 +2497,7 @@ window.SITE_DATA = {
   document.documentElement.dataset.theme = storedTheme;
   text(".theme-icon", storedTheme === "dark" ? "☀" : "☾");
 
-  $("#theme-toggle").addEventListener("click", () => {
+  $("#theme-toggle")?.addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     text(".theme-icon", next === "dark" ? "☀" : "☾");
@@ -1753,7 +2506,7 @@ window.SITE_DATA = {
 
   const menuButton = $("#menu-button");
   const nav = $("#site-nav");
-  menuButton.addEventListener("click", () => {
+  menuButton?.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     menuButton.setAttribute("aria-expanded", String(open));
   });
@@ -1764,9 +2517,21 @@ window.SITE_DATA = {
     })
   );
 
-  window.addEventListener("scroll", () => {
-    $(".site-header").classList.toggle("is-scrolled", window.scrollY > 8);
-  }, { passive: true });
+  $("#modal-close")?.addEventListener("click", closeProjectModal);
+  $("#project-modal")?.addEventListener("click", (event) => {
+    if (event.target === $("#project-modal")) closeProjectModal();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !$("#project-modal").classList.contains("is-hidden")) closeProjectModal();
+  });
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      $(".site-header").classList.toggle("is-scrolled", window.scrollY > 8);
+    },
+    { passive: true }
+  );
 
   render();
 })();
