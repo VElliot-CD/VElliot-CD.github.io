@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>All projects | Litao Liu</title>
+  <meta name="description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems." />
+  <meta name="theme-color" content="#f4f1e9" />
+  <link rel="canonical" href="https://velliot-cd.github.io/projects/index.html" />
+  <link rel="alternate" hreflang="en" href="https://velliot-cd.github.io/projects/index.html" />
+  <link rel="alternate" hreflang="zh-CN" href="https://velliot-cd.github.io/projects/index.zh.html" />
+  <link rel="alternate" hreflang="x-default" href="https://velliot-cd.github.io/projects/index.html" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="All projects | Litao Liu" />
+  <meta property="og:description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems." />
+  <meta property="og:url" content="https://velliot-cd.github.io/projects/index.html" />
+  <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="All projects | Litao Liu" />
+  <meta name="twitter:description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems." />
+  <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"All projects","description":"Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems.","url":"https://velliot-cd.github.io/projects/index.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f4f1e9;
+  --paper-deep: #ebe6da;
+  --surface: #fffdf8;
+  --ink: #17322f;
+  --ink-soft: #526663;
+  --accent: #b04f30;
+  --accent-soft: #f1d8cb;
+  --line: #d9d4c8;
+  --shadow: 0 24px 60px rgba(25, 45, 42, 0.12);
+  --radius: 22px;
+  --shell: min(1120px, calc(100% - 48px));
+  --serif: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #101b1a;
+  --paper-deep: #172422;
+  --surface: #1d2d2a;
+  --ink: #edf1ea;
+  --ink-soft: #afbfba;
+  --accent: #e1845f;
+  --accent-soft: #4c2e24;
+  --line: #344743;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.shell {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  padding: 10px 14px;
+  transform: translateY(-150%);
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  border-bottom: 1px solid transparent;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(16px);
+  transition: border-color 180ms ease;
+}
+
+.site-header.is-scrolled {
+  border-color: var(--line);
+}
+
+.header-inner {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  gap: 22px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.wordmark-mark {
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 650;
+  transition: color 150ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--accent);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.text-button,
+.icon-button,
+.menu-button {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.text-button,
+.icon-button {
+  display: grid;
+  height: 38px;
+  min-width: 38px;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.icon-button {
+  font-size: 17px;
+}
+
+.menu-button {
+  display: none;
+}
+
+.hero {
+  display: grid;
+  min-height: 680px;
+  padding-block: 86px 100px;
+  align-items: center;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: clamp(60px, 10vw, 130px);
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 720px;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(54px, 8vw, 94px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.hero-role {
+  margin: 28px 0 0;
+  color: var(--ink);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+}
+
+.hero-summary {
+  max-width: 670px;
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+  font-size: 17px;
+}
+
+.hero-actions,
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 750;
+  transition: transform 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
+.button-placeholder,
+.button-placeholder:hover {
+  cursor: default;
+  opacity: 0.62;
+  transform: none;
+}
+
+.quick-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin: 34px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.quick-facts div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.quick-facts dt {
+  color: var(--accent);
+}
+
+.quick-facts dd {
+  margin: 0;
+}
+
+.portrait-wrap {
+  position: relative;
+  width: min(100%, 360px);
+  justify-self: center;
+}
+
+.portrait-backdrop {
+  position: absolute;
+  inset: -18px 18px 18px -18px;
+  border: 1px solid var(--accent);
+  border-radius: 45% 45% 18px 18px;
+  transform: rotate(-3deg);
+}
+
+.portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 45% 45% 18px 18px;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+.availability {
+  position: absolute;
+  right: -22px;
+  bottom: 28px;
+  display: flex;
+  max-width: 220px;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px rgba(22, 43, 40, 0.14);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.availability::before {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #4f9a6b;
+  box-shadow: 0 0 0 4px rgba(79, 154, 107, 0.15);
+  content: "";
+}
+
+.stats-band {
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stat {
+  padding: 32px 28px;
+  border-right: 1px solid var(--line);
+}
+
+.stat:first-child {
+  padding-left: 0;
+}
+
+.stat:last-child {
+  border-right: 0;
+}
+
+.stat-value {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--serif);
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.stat-label {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.section {
+  padding-block: 118px;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 52px;
+}
+
+.section-heading h2,
+.contact-inner h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.section-heading > p:last-child,
+.heading-row > p,
+.contact-inner p {
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+}
+
+.heading-row {
+  display: grid;
+  max-width: none;
+  align-items: end;
+  grid-template-columns: 1fr minmax(260px, 0.55fr);
+  gap: 60px;
+}
+
+.heading-row > p {
+  margin-bottom: 4px;
+}
+
+.news-section {
+  padding-block: 104px 116px;
+}
+
+.news-list {
+  border-block: 1px solid var(--line);
+}
+
+.news-item {
+  display: grid;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 150px 1fr;
+  gap: 34px;
+}
+
+.news-item:last-child {
+  border-bottom: 0;
+}
+
+.news-item time {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.news-item h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.news-item p {
+  max-width: 720px;
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.research-card {
+  min-height: 300px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.research-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.card-number {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 16px;
+}
+
+.research-card h3,
+.project-card h3,
+.standalone-catalogue .project-card h2 {
+  margin: 58px 0 12px;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.research-card p,
+.project-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.focus-panel {
+  display: grid;
+  margin-top: 24px;
+  padding: 34px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent-soft) 78%, transparent), transparent 34%),
+    var(--surface);
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+  gap: 44px;
+}
+
+.focus-panel h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.focus-panel p {
+  margin: 14px 0 0;
+  color: var(--ink-soft);
+}
+
+.focus-panel ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 14px;
+  list-style: none;
+}
+
+.focus-panel li {
+  position: relative;
+  padding: 14px 16px 14px 42px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.focus-panel li::before {
+  position: absolute;
+  top: 19px;
+  left: 18px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+.section-projects,
+.section-experience {
+  background: var(--paper-deep);
+}
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -22px 0 30px;
+}
+
+.filter-button,
+.project-detail-button,
+.modal-close {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 760;
+  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.filter-button {
+  padding: 8px 13px;
+  border-radius: 999px;
+}
+
+.modal-toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+#modal-close {
+  margin-left: auto;
+}
+
+#modal-content {
+  min-height: 0;
+  padding: 30px 42px 42px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.share-status,
+.project-grid-footer p {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.project-grid-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+[hidden],
+html:not(.js-ready) .requires-js,
+.js-ready .no-js-only {
+  display: none !important;
+}
+
+.standalone-project {
+  width: min(920px, calc(100% - 40px));
+  margin: 40px auto;
+}
+
+.standalone-project > nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.standalone-project a:focus-visible,
+.project-detail-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.standalone-header {
+  padding-block: 24px;
+}
+
+.standalone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+.standalone-catalogue .project-card {
+  min-width: 0;
+}
+
+.filter-button:hover,
+.filter-button:focus-visible,
+.project-detail-button:hover,
+.project-detail-button:focus-visible,
+.modal-close:hover,
+.modal-close:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.filter-button.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  min-height: 440px;
+  padding: 34px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.project-card::after {
+  position: absolute;
+  top: -125px;
+  right: -105px;
+  width: 210px;
+  height: 210px;
+  border: 1px solid var(--accent-soft);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px var(--accent-soft);
+  content: "";
+  opacity: 0.48;
+}
+
+.project-card h3,
+.standalone-catalogue .project-card h2 {
+  max-width: 94%;
+  margin-top: 30px;
+}
+
+.project-highlights {
+  display: grid;
+  margin: 22px 0 0;
+  padding-left: 18px;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.project-highlights li::marker {
+  color: var(--accent);
+}
+
+.project-meta,
+.tag-list,
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-meta {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tag-list {
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.project-card-footer {
+  display: grid;
+  margin-top: auto;
+  padding-top: 28px;
+  gap: 18px;
+}
+
+.project-card-footer .tag-list {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.project-detail-button {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  width: max-content;
+  padding: 9px 14px;
+  border-radius: 999px;
+}
+
+.tag {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.inline-link,
+.publication-link {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.inline-link::after,
+.publication-link::after {
+  content: " ↗";
+}
+
+.inline-placeholder {
+  cursor: default;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.inline-placeholder::after {
+  content: "";
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.publication-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: publications;
+}
+
+.publication-item {
+  display: grid;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+  counter-increment: publications;
+  grid-template-columns: 52px 1fr auto;
+  gap: 20px;
+}
+
+.publication-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.publication-item::before {
+  color: var(--accent);
+  content: "0" counter(publications);
+  font-family: var(--serif);
+  font-size: 15px;
+}
+
+.publication-item h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.publication-authors,
+.publication-venue {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.publication-venue {
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.publication-note {
+  max-width: 760px;
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.publication-links {
+  align-content: start;
+  justify-content: flex-end;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 90px;
+}
+
+.experience-column {
+  display: grid;
+  align-content: start;
+  gap: 56px;
+}
+
+.subsection-title {
+  margin: 0 0 28px;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 38px 28px;
+  border-left: 1px solid var(--line);
+}
+
+.timeline-item::before {
+  position: absolute;
+  top: 8px;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item h4,
+.award-item h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.timeline-item p,
+.award-item p {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.timeline-date {
+  color: var(--accent) !important;
+  font-weight: 750;
+}
+
+.award-list {
+  border-top: 1px solid var(--line);
+}
+
+.award-item {
+  display: grid;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+}
+
+.award-year {
+  color: var(--accent) !important;
+  font-family: var(--serif);
+}
+
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.skill-group {
+  padding-top: 22px;
+  border-top: 2px solid var(--ink);
+}
+
+.skill-group h3 {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.skill-group ul {
+  margin: 0;
+  padding: 0;
+  color: var(--ink-soft);
+  list-style: none;
+}
+
+.skill-group li + li {
+  margin-top: 7px;
+}
+
+.contact-section {
+  padding-block: 100px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-inner {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 70px;
+}
+
+.contact-inner p {
+  color: color-mix(in srgb, var(--paper) 75%, transparent);
+}
+
+.contact-inner .section-kicker {
+  color: var(--accent);
+}
+
+.contact-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.contact-actions .button {
+  border-color: var(--paper);
+}
+
+.contact-actions .button-primary {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.contact-actions .button-secondary {
+  color: var(--paper);
+}
+
+.site-footer {
+  background: var(--ink);
+  color: color-mix(in srgb, var(--paper) 65%, transparent);
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 300;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: color-mix(in srgb, var(--ink) 48%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.project-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(920px, 100%);
+  max-height: min(88vh, 900px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.modal-close {
+  flex-shrink: 0;
+  padding: 8px 13px;
+  border-radius: 999px;
+}
+
+.modal-meta {
+  max-width: 100%;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-modal h2,
+.standalone-project h1 {
+  max-width: 760px;
+  margin: 22px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.modal-summary {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: var(--ink-soft);
+}
+
+.modal-evidence {
+  margin: 30px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+}
+
+.modal-evidence img {
+  width: 100%;
+  height: min(54vh, 520px);
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.modal-evidence-media {
+  position: relative;
+  display: block;
+}
+
+.modal-evidence-open {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.modal-evidence figcaption {
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.modal-detail-grid {
+  display: grid;
+  margin-top: 34px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.modal-detail-grid section {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--paper) 48%, var(--surface));
+}
+
+.modal-detail-grid h3 {
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.modal-detail-grid p,
+.modal-detail-grid li {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.modal-detail-grid p,
+.modal-detail-grid ul {
+  margin: 0;
+}
+
+.modal-detail-grid ul {
+  padding-left: 18px;
+}
+
+.modal-detail-grid li + li {
+  margin-top: 8px;
+}
+
+.modal-detail-grid li::marker {
+  color: var(--accent);
+}
+
+.modal-tags {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  font-size: 12px;
+}
+
+.footer-inner a {
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.js-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js-ready .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --shell: min(100% - 36px, 720px);
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .menu-button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    place-content: center;
+    gap: 4px;
+    border-radius: 50%;
+  }
+
+  .menu-button span:not(.sr-only) {
+    width: 17px;
+    height: 1.5px;
+    background: currentColor;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 66px;
+    right: 18px;
+    left: 18px;
+    display: none;
+    padding: 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  html:not(.js-ready) .header-inner {
+    flex-wrap: wrap;
+    padding-block: 16px;
+  }
+
+  html:not(.js-ready) .site-nav {
+    position: static;
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .site-nav a {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .header-actions {
+    order: 2;
+  }
+
+  .menu-button {
+    order: 3;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-block: 72px 86px;
+    grid-template-columns: 1fr;
+    gap: 82px;
+  }
+
+  .portrait-wrap {
+    width: min(82%, 360px);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat:nth-child(2) {
+    border-right: 0;
+  }
+
+  .stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .research-grid,
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .news-item,
+  .focus-panel,
+  .modal-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-card {
+    min-height: 250px;
+  }
+
+  .project-grid,
+  .experience-grid,
+  .contact-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .heading-row {
+    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .project-filters {
+    margin-top: -8px;
+  }
+
+  .contact-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --shell: calc(100% - 28px);
+  }
+
+  .wordmark-mark {
+    display: none;
+  }
+
+  .wordmark {
+    font-size: 17px;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 17vw, 72px);
+  }
+
+  .hero-actions .button,
+  .contact-actions .button {
+    width: 100%;
+  }
+
+  .availability {
+    right: -8px;
+  }
+
+  .section {
+    padding-block: 88px;
+  }
+
+  .news-section {
+    padding-block: 80px 88px;
+  }
+
+  .news-item {
+    gap: 8px;
+  }
+
+  .focus-panel {
+    padding: 26px;
+  }
+
+  .project-filters {
+    margin-top: 0;
+  }
+
+  .filter-button {
+    flex: 1 1 auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat,
+  .stat:first-child,
+  .stat:nth-child(3) {
+    padding: 22px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:last-child {
+    border-bottom: 0;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-height: 0;
+    padding: 26px;
+  }
+
+  .project-card h3 {
+    max-width: 90%;
+  }
+
+  .project-detail-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .project-modal {
+    max-height: 92vh;
+    border-radius: 22px;
+  }
+
+  #modal-content {
+    padding: 24px 20px;
+  }
+
+  .modal-toolbar {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .share-status {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .share-status:empty {
+    display: none;
+  }
+
+  .modal-meta {
+    max-width: none;
+  }
+
+  .publication-item {
+    grid-template-columns: 34px 1fr;
+  }
+
+  .publication-links {
+    padding-left: 54px;
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  .experience-grid {
+    gap: 66px;
+  }
+
+  .footer-inner {
+    padding-block: 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="projects/index.html#main-content">Skip to main content</a>
+  <header class="standalone-header shell">
+    <nav class="standalone-actions" aria-label="Page navigation">
+      <a class="inline-link" href="./?lang=en#projects">← Back to homepage</a>
+
+      <a class="inline-link" href="projects/index.zh.html" lang="zh-CN" hreflang="zh-CN">中文</a>
+      <a class="inline-link" href="assets/Litao_Liu_Academic_CV.pdf">CV (PDF)</a>
+    </nav>
+  </header>
+  <main id="main-content" class="shell standalone-project standalone-catalogue">
+    <header class="section-heading"><p class="section-kicker">Project archive</p><h1>All projects</h1><p>Four selected projects in processor design, analog ICs, VLSI cells and RTL verification. Browse all projects or filter by topic to explore further.</p></header>
+<div class="project-grid"><article class="project-card"><div class="project-meta"><span>Jul 2026 — Present</span><span>·</span><span>Undergraduate thesis · RTL design and verification</span></div><h2>Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</h2><p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p><ul class="project-highlights"><li>10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz</li><li>INT32 accumulators and INT8 outputs matched reference results across ten images</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.html">View details <span class="sr-only">— Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</span></a></div></article><article class="project-card"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h2>CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</h2><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h2>Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h2><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html">View details <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>Individual coursework extension · Schematic simulation</span></div><h2>Supply rejection in a two-stage CMOS amplifier</h2><p>Studied supply-disturbance coupling in a Miller-compensated SMIC18MMRF two-stage amplifier.</p><ul class="project-highlights"><li>85.96 dB low-frequency gain in nominal schematic simulation</li><li>−79.54 dB supply-to-output transfer under the report’s convention</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.html">View details <span class="sr-only">— Supply rejection in a two-stage CMOS amplifier</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h2>VHDL digital backend for PT100 temperature measurement</h2><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article><article class="project-card"><div class="project-meta"><span>Dec 2023 — Dec 2024</span><span>·</span><span>Team project · Exploratory device simulation</span></div><h2>Exploratory graphene FET modeling for biosensing</h2><p>Explored GFET biosensing through literature review and two- and three-dimensional Silvaco device models.</p><ul class="project-highlights"><li>Bias sweeps examined output, transfer and electric-field characteristics</li><li>Contributed modeling results and limitations to a 13-page team report</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Silvaco</span><span class="tag">TCAD</span><span class="tag">GFET</span></div><a class="project-detail-button" href="projects/gfet-device.html">View details <span class="sr-only">— Exploratory graphene FET modeling for biosensing</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — Jun 2026</span><span>·</span><span>Team · Hardware subsystem lead</span></div><h2>Autonomous Path-Following Vehicle with 24 GHz Radar</h2><p>Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.</p><ul class="project-highlights"><li>Built and integrated the STM32-based PCB, radar, IR array and motor drivers</li><li>Helped resolve leftward drift; core functions completed within the RMB 2,500 budget</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.html">View details <span class="sr-only">— Autonomous Path-Following Vehicle with 24 GHz Radar</span></a></div></article><article class="project-card"><div class="project-meta"><span>May — Jul 2026</span><span>·</span><span>Three-member team · Motion programming &amp; synchronization</span></div><h2>Synchronized performance by two 18-DOF hexapods</h2><p>Programmed and debugged coordinated motion sequences for two 18-DOF Libot hexapods.</p><ul class="project-highlights"><li>Completed a 3 min 12 s synchronized team performance</li><li>Team Second Prize at the National Finals and Sichuan Regional Competition</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.html">View details <span class="sr-only">— Synchronized performance by two 18-DOF hexapods</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — May 2026</span><span>·</span><span>Individual · Simulation and bench testing</span></div><h2>Power Conversion &amp; Control Laboratory Portfolio</h2><p>Investigated PWM, rectification, boost conversion and inverter modulation through simulation and bench experiments.</p><ul class="project-highlights"><li>Measured boost outputs of 10.0 V and 20.0 V from a 5 V supply</li><li>Larger filter capacitance reduced measured ripple from 1.40 V to 0.74 V</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">LTspice</span><span class="tag">PWM</span><span class="tag">DC–DC</span></div><a class="project-detail-button" href="projects/power-conversion.html">View details <span class="sr-only">— Power Conversion &amp; Control Laboratory Portfolio</span></a></div></article></div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="mailto:litaoliu_2026@163.com">litaoliu_2026@163.com</a></div></footer>
+</body>
+</html>

@@ -1,34 +1,24 @@
 <!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems."
-    />
-    <meta name="theme-color" content="#f4f1e9" />
-    <meta property="og:title" content="Litao Liu | IC Design &amp; RISC-V" />
-    <meta
-      property="og:description"
-      content="RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://velliot-cd.github.io/" />
-    <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Litao Liu — Integrated Circuit Design and RISC-V" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Litao Liu | IC Design &amp; RISC-V" />
-    <meta
-      name="twitter:description"
-      content="RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems."
-    />
-    <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-    <link rel="canonical" href="https://velliot-cd.github.io/" />
+<html lang="en" data-theme="light" class=""><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems.">
+    <meta name="theme-color" content="#f4f1e9">
+    <meta property="og:title" content="Litao Liu | IC Design &amp; RISC-V">
+    <meta property="og:description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://velliot-cd.github.io/">
+    <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Litao Liu — Integrated Circuit Design and RISC-V">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Litao Liu | IC Design &amp; RISC-V">
+    <meta name="twitter:description" content="Litao Liu, a microelectronics undergraduate at Glasgow College, UESTC, working on RISC-V and INT8 inference, CMOS circuits, VLSI cell design, RTL verification and embedded systems.">
+    <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png">
+    <link rel="canonical" href="https://velliot-cd.github.io/">
     <title>Litao Liu | IC Design &amp; RISC-V</title>
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml">
     <style>
 :root {
   color-scheme: light;
@@ -525,7 +515,8 @@ img {
 }
 
 .research-card h3,
-.project-card h3 {
+.project-card h3,
+.standalone-catalogue .project-card h2 {
   margin: 58px 0 12px;
   font-family: var(--serif);
   font-size: 26px;
@@ -628,6 +619,82 @@ img {
   border-radius: 999px;
 }
 
+.modal-toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+#modal-close {
+  margin-left: auto;
+}
+
+#modal-content {
+  min-height: 0;
+  padding: 30px 42px 42px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.share-status,
+.project-grid-footer p {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.project-grid-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+[hidden],
+html:not(.js-ready) .requires-js,
+.js-ready .no-js-only {
+  display: none !important;
+}
+
+.standalone-project {
+  width: min(920px, calc(100% - 40px));
+  margin: 40px auto;
+}
+
+.standalone-project > nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.standalone-project a:focus-visible,
+.project-detail-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.standalone-header {
+  padding-block: 24px;
+}
+
+.standalone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+.standalone-catalogue .project-card {
+  min-width: 0;
+}
+
 .filter-button:hover,
 .filter-button:focus-visible,
 .project-detail-button:hover,
@@ -653,7 +720,7 @@ img {
 .project-card {
   position: relative;
   display: flex;
-  min-height: 590px;
+  min-height: 440px;
   padding: 34px;
   flex-direction: column;
   overflow: hidden;
@@ -664,10 +731,10 @@ img {
 
 .project-card::after {
   position: absolute;
-  top: -90px;
-  right: -70px;
-  width: 230px;
-  height: 230px;
+  top: -125px;
+  right: -105px;
+  width: 210px;
+  height: 210px;
   border: 1px solid var(--accent-soft);
   border-radius: 50%;
   box-shadow: 0 0 0 34px var(--accent-soft);
@@ -675,9 +742,10 @@ img {
   opacity: 0.48;
 }
 
-.project-card h3 {
-  max-width: 78%;
-  margin-top: 72px;
+.project-card h3,
+.standalone-catalogue .project-card h2 {
+  max-width: 94%;
+  margin-top: 30px;
 }
 
 .project-highlights {
@@ -730,6 +798,9 @@ img {
 }
 
 .project-detail-button {
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
   width: max-content;
   padding: 9px 14px;
   border-radius: 999px;
@@ -994,10 +1065,11 @@ img {
 
 .project-modal {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: min(920px, 100%);
   max-height: min(88vh, 900px);
-  overflow: auto;
-  padding: 42px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 30px;
   background: var(--surface);
@@ -1005,15 +1077,13 @@ img {
 }
 
 .modal-close {
-  position: absolute;
-  top: 22px;
-  right: 22px;
+  flex-shrink: 0;
   padding: 8px 13px;
   border-radius: 999px;
 }
 
 .modal-meta {
-  max-width: calc(100% - 110px);
+  max-width: 100%;
   color: var(--accent);
   font-size: 12px;
   font-weight: 800;
@@ -1021,7 +1091,8 @@ img {
   text-transform: uppercase;
 }
 
-.project-modal h2 {
+.project-modal h2,
+.standalone-project h1 {
   max-width: 760px;
   margin: 22px 0 0;
   font-family: var(--serif);
@@ -1140,13 +1211,13 @@ img {
   font-weight: 700;
 }
 
-.reveal {
+.js-ready .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 650ms ease, transform 650ms ease;
 }
 
-.reveal.is-visible {
+.js-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1154,6 +1225,11 @@ img {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .js-ready .reveal {
+    opacity: 1;
+    transform: none;
   }
 
   *,
@@ -1207,6 +1283,23 @@ img {
 
   .site-nav.is-open {
     display: flex;
+  }
+
+  html:not(.js-ready) .header-inner {
+    flex-wrap: wrap;
+    padding-block: 16px;
+  }
+
+  html:not(.js-ready) .site-nav {
+    position: static;
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
   }
 
   .site-nav a {
@@ -1375,13 +1468,25 @@ img {
 
   .project-modal {
     max-height: 92vh;
-    padding: 28px 20px;
     border-radius: 22px;
   }
 
-  .modal-close {
-    position: static;
-    margin-bottom: 20px;
+  #modal-content {
+    padding: 24px 20px;
+  }
+
+  .modal-toolbar {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .share-status {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .share-status:empty {
+    display: none;
   }
 
   .modal-meta {
@@ -1445,24 +1550,24 @@ img {
           <span id="wordmark">Litao Liu</span>
         </a>
 
-        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <button class="menu-button requires-js" id="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
           <span></span><span></span><span></span>
           <span class="sr-only">Open navigation</span>
         </button>
 
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="#about" data-nav="about">About</a>
-          <a href="#news" data-nav="news">News</a>
           <a href="#research" data-nav="research">Focus</a>
-          <a href="#projects" data-nav="projects">Projects</a>
           <a href="#publications" data-nav="publications">Publication</a>
+          <a href="#projects" data-nav="projects">Projects</a>
+          <a href="#news" data-nav="news">News</a>
           <a href="#experience" data-nav="experience">Experience</a>
           <a href="#contact" data-nav="contact">Contact</a>
         </nav>
 
-        <div class="header-actions">
+        <div class="header-actions requires-js">
           <button class="text-button" id="language-toggle" type="button" aria-label="Switch to Chinese">中文</button>
-          <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle colour theme">
             <span class="theme-icon" aria-hidden="true">☾</span>
           </button>
         </div>
@@ -1474,96 +1579,101 @@ img {
         <div class="hero-copy reveal">
           <p class="eyebrow" id="hero-eyebrow">Hello, I’m</p>
           <h1 id="hero-name">Litao Liu</h1>
-          <p class="hero-role" id="hero-role">Undergraduate Engineering Student · Glasgow College, UESTC</p>
-          <p class="hero-summary" id="hero-summary"></p>
-          <div class="hero-actions" id="hero-actions"></div>
-          <dl class="quick-facts" id="quick-facts"></dl>
+          <p class="hero-role" id="hero-role">Final-year Microelectronics Undergraduate · Glasgow College, UESTC</p>
+          <p class="hero-summary" id="hero-summary">I work on digital and analog IC design, with current final-year research on RISC-V instruction support for INT8 inference. My projects span processor RTL, CMOS circuit and layout verification, and embedded hardware integration.</p>
+          <div class="hero-actions" id="hero-actions"><a class="button button-primary" href="#projects">View projects <span aria-hidden="true">→</span></a><a class="button button-secondary" href="assets/Litao_Liu_Academic_CV.pdf" target="_blank" rel="noreferrer">CV (PDF) <span aria-hidden="true">↗</span></a></div>
+          <dl class="quick-facts" id="quick-facts"><div><dt aria-hidden="true">⌖</dt><dd>Chengdu, China</dd></div><div><dt aria-hidden="true">✉</dt><dd>litaoliu_2026@163.com</dd></div></dl>
         </div>
 
         <div class="portrait-wrap reveal" aria-label="Portrait">
           <div class="portrait-backdrop" aria-hidden="true"></div>
-          <img class="portrait" id="portrait" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPkxpdGFvIExpdSBtb25vZ3JhbTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPkVkaXRvcmlhbCBtb25vZ3JhbSBwb3J0cmFpdCB3aXRoIGFuIGFic3RyYWN0IG1peGVkLXNpZ25hbCBjaXJjdWl0IG1vdGlmLjwvZGVzYz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTczMjJmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzI3NGI0NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjAuNzgiIGN5PSIwLjE4IiByPSIwLjcyIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAuNDIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHBhdGggZD0iTTU2IDBIMFY1NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU5IiBzdHJva2Utb3BhY2l0eT0iMC4wNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dyaWQpIi8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDg4NzYyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTS00MCA3MjJIOTJjMjggMCAzMS0xMDYgNjEtMTA2czM0IDE5OCA2NiAxOTggMzQtMjg5IDcyLTI4OSAzOSAxNDQgNzUgMTQ0aDEyMCIgc3Ryb2tlLXdpZHRoPSI5IiBvcGFjaXR5PSIwLjkiLz4KICAgIDxwYXRoIGQ9Ik01MjIgMjA2aDEwMm0tNTEtNTF2MTAybTUxLTUxaDg4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNzIiLz4KICAgIDxjaXJjbGUgY3g9IjcxMyIgY3k9IjIwNiIgcj0iOCIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgICA8cGF0aCBkPSJNNjI0IDMzMmg4OXY5NmgtODltLTM4LTQ4aDM4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNTgiLz4KICAgIDxjaXJjbGUgY3g9IjU4NiIgY3k9IjM4MCIgcj0iNyIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgPC9nPgogIDxnIGZpbGw9IiNmNGYxZTkiPgogICAgPHRleHQgeD0iMTE4IiB5PSIxNTQiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjciPklDIERFU0lHTiAvIFJJU0MtVjwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc2IiB5PSI2MDAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMwIiBmb250LXdlaWdodD0iNDAwIiBsZXR0ZXItc3BhY2luZz0iLTM4Ij5MTDwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5MDIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjUiPkxJVEFPIExJVTwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5NDQiIGZpbGw9IiNkNmRmZGMiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgbGV0dGVyLXNwYWNpbmc9IjIiPk1JQ1JPRUxFQ1RST05JQ1MgwrcgVUVTVEM8L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="Litao Liu monogram portrait" />
-          <div class="availability" id="availability"></div>
+          <img class="portrait" id="portrait" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPkxpdGFvIExpdSBtb25vZ3JhbTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPkVkaXRvcmlhbCBtb25vZ3JhbSBwb3J0cmFpdCB3aXRoIGFuIGFic3RyYWN0IG1peGVkLXNpZ25hbCBjaXJjdWl0IG1vdGlmLjwvZGVzYz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTczMjJmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzI3NGI0NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjAuNzgiIGN5PSIwLjE4IiByPSIwLjcyIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAuNDIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHBhdGggZD0iTTU2IDBIMFY1NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU5IiBzdHJva2Utb3BhY2l0eT0iMC4wNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dyaWQpIi8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDg4NzYyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTS00MCA3MjJIOTJjMjggMCAzMS0xMDYgNjEtMTA2czM0IDE5OCA2NiAxOTggMzQtMjg5IDcyLTI4OSAzOSAxNDQgNzUgMTQ0aDEyMCIgc3Ryb2tlLXdpZHRoPSI5IiBvcGFjaXR5PSIwLjkiLz4KICAgIDxwYXRoIGQ9Ik01MjIgMjA2aDEwMm0tNTEtNTF2MTAybTUxLTUxaDg4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNzIiLz4KICAgIDxjaXJjbGUgY3g9IjcxMyIgY3k9IjIwNiIgcj0iOCIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgICA8cGF0aCBkPSJNNjI0IDMzMmg4OXY5NmgtODltLTM4LTQ4aDM4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNTgiLz4KICAgIDxjaXJjbGUgY3g9IjU4NiIgY3k9IjM4MCIgcj0iNyIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgPC9nPgogIDxnIGZpbGw9IiNmNGYxZTkiPgogICAgPHRleHQgeD0iMTE4IiB5PSIxNTQiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjciPklDIERFU0lHTiAvIFJJU0MtVjwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc2IiB5PSI2MDAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMwIiBmb250LXdlaWdodD0iNDAwIiBsZXR0ZXItc3BhY2luZz0iLTM4Ij5MTDwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5MDIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjUiPkxJVEFPIExJVTwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5NDQiIGZpbGw9IiNkNmRmZGMiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgbGV0dGVyLXNwYWNpbmc9IjIiPk1JQ1JPRUxFQ1RST05JQ1MgwrcgVUVTVEM8L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="LL monogram for Litao Liu">
+          <div class="availability" id="availability">Open to research opportunities in IC design and computer architecture</div>
         </div>
       </section>
 
       <section class="stats-band" aria-label="Academic highlights">
-        <div class="shell stats-grid" id="stats-grid"></div>
-      </section>
-
-      <section class="section shell news-section" id="news">
-        <div class="section-heading heading-row reveal">
-          <div>
-            <p class="section-kicker" id="news-kicker"></p>
-            <h2 id="news-title"></h2>
-          </div>
-          <p id="news-intro"></p>
-        </div>
-        <div class="news-list" id="news-list"></div>
+        <div class="shell stats-grid" id="stats-grid"><div class="stat"><strong class="stat-value">3.55</strong><span class="stat-label">GPA / 4.00</span></div><div class="stat"><strong class="stat-value">83.38</strong><span class="stat-label">Weighted average / 100</span></div><div class="stat"><strong class="stat-value">1</strong><span class="stat-label">Peer-reviewed paper · Third author</span></div><div class="stat"><strong class="stat-value">2027</strong><span class="stat-label">Expected graduation</span></div></div>
       </section>
 
       <section class="section shell" id="research">
         <div class="section-heading reveal">
-          <p class="section-kicker" id="research-kicker"></p>
-          <h2 id="research-title"></h2>
-          <p id="research-intro"></p>
+          <p class="section-kicker" id="research-kicker">Technical focus</p>
+          <h2 id="research-title">From processor RTL to CMOS circuits</h2>
+          <p id="research-intro">I connect architecture, transistor-level design and hardware systems through reproducible checks, distinguishing simulation, implementation reports and bench measurements.</p>
         </div>
-        <div class="research-grid" id="research-grid"></div>
+        <div class="research-grid" id="research-grid"><article class="research-card reveal"><span class="card-number">01</span><h3>RISC-V &amp; digital design</h3><p>Three-source operand collection with a two-read-port register file, fused INT8 dot-product accumulation, pipeline control, result checking and timing analysis.</p></article><article class="research-card reveal"><span class="card-number">02</span><h3>CMOS circuits &amp; physical verification</h3><p>Biasing, Miller compensation and supply coupling, alongside analog parasitic extraction and digital-cell layout checks to understand physical implementation effects.</p></article><article class="research-card reveal"><span class="card-number">03</span><h3>Devices &amp; embedded systems</h3><p>Silvaco device exploration, STM32 interfaces, PCB design and hardware debugging, connecting device characteristics to sensing, control and robotics.</p></article></div>
         <div class="focus-panel reveal" id="focus-panel">
           <div>
-            <p class="section-kicker" id="focus-panel-kicker"></p>
-            <h3 id="focus-panel-title"></h3>
-            <p id="focus-panel-intro"></p>
+            <p class="section-kicker" id="focus-panel-kicker">Current research</p>
+            <h3 id="focus-panel-title">INT8 accumulation on a two-read-port RISC-V core</h3>
+            <p id="focus-panel-intro">My final-year project studies operand collection and pipeline control for a three-source DOT4ACC instruction while retaining a two-read-port register file.</p>
           </div>
-          <ul id="focus-panel-list"></ul>
-        </div>
-      </section>
-
-      <section class="section section-projects" id="projects">
-        <div class="shell">
-          <div class="section-heading heading-row reveal">
-            <div>
-              <p class="section-kicker" id="projects-kicker"></p>
-              <h2 id="projects-title"></h2>
-            </div>
-            <p id="projects-intro"></p>
-          </div>
-          <div class="project-filters reveal" id="project-filters" aria-label="Project filters"></div>
-          <div class="project-grid" id="project-grid"></div>
+          <ul id="focus-panel-list"><li>Completed: RTL checks, a resident-layer workload comparison and OOC implementation timing checks</li><li>Current evidence: 10 image inputs, one convolution layer, compared with an existing DOT4+ADD baseline</li><li>Next: end-to-end model evaluation and validation on physical hardware</li></ul>
         </div>
       </section>
 
       <section class="section shell" id="publications">
         <div class="section-heading heading-row reveal">
           <div>
-            <p class="section-kicker" id="publications-kicker"></p>
-            <h2 id="publications-title"></h2>
+            <p class="section-kicker" id="publications-kicker">Peer-reviewed work</p>
+            <h2 id="publications-title">Research publication</h2>
           </div>
-          <a class="inline-link is-hidden" id="scholar-link" href="#" target="_blank" rel="noreferrer"></a>
+          <a class="inline-link is-hidden" id="scholar-link"></a>
         </div>
-        <ol class="publication-list" id="publication-list"></ol>
+        <ol class="publication-list" id="publication-list"><li class="publication-item reveal"><div><h3>Find the Limitation of LLMs in Supercomputing Center Infrastructure Operation and Maintenance</h3><p class="publication-authors">Chengxu Sun, Liyuan Ren, Litao Liu, Bo Sun, Ying Li, Zhiliang Liu</p><p class="publication-venue">2025 Global Reliability and Prognostics and Health Management Conference (PHM-Xi’an)</p><p class="publication-note">Third of six authors. My contribution was primarily literature review, with limited participation in model setup. RAG, semantic-retrieval and Cross-Encoder evaluation results are team-level work.</p></div><div class="publication-links"><a class="publication-link" href="https://doi.org/10.1109/PHM-Xian66756.2025.11427414" target="_blank" rel="noreferrer">DOI</a><a class="publication-link" href="https://ieeexplore.ieee.org/document/11427414/" target="_blank" rel="noreferrer">IEEE Xplore</a></div></li></ol>
+      </section>
+
+      <section class="section section-projects" id="projects">
+        <div class="shell">
+          <div class="section-heading heading-row reveal">
+            <div>
+              <p class="section-kicker" id="projects-kicker">Selected work</p>
+              <h2 id="projects-title" tabindex="-1">Featured projects</h2>
+            </div>
+            <p id="projects-intro">Four selected projects in processor design, analog ICs, VLSI cells and RTL verification. Browse all projects or filter by topic to explore further.</p>
+          </div>
+          <div class="project-filters reveal requires-js" id="project-filters" aria-label="Project filters"><button class="filter-button is-active" type="button" data-project-filter="featured" aria-pressed="true">Selected</button><button class="filter-button" type="button" data-project-filter="all" aria-pressed="false">All</button><button class="filter-button" type="button" data-project-filter="ic" aria-pressed="false">IC Design</button><button class="filter-button" type="button" data-project-filter="rtl" aria-pressed="false">RTL / Digital</button><button class="filter-button" type="button" data-project-filter="devices" aria-pressed="false">Device simulation</button><button class="filter-button" type="button" data-project-filter="power" aria-pressed="false">Power</button><button class="filter-button" type="button" data-project-filter="embedded" aria-pressed="false">Embedded</button><button class="filter-button" type="button" data-project-filter="individual" aria-pressed="false">Individual</button><button class="filter-button" type="button" data-project-filter="team" aria-pressed="false">Team</button></div>
+          <div class="project-grid" id="project-grid"><article class="project-card reveal"><div class="project-meta"><span>Jul 2026 — Present</span><span>·</span><span>Undergraduate thesis · RTL design and verification</span></div><h3>Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</h3><p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p><ul class="project-highlights"><li>10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz</li><li>INT32 accumulators and INT8 outputs matched reference results across ten images</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.html" data-project-index="0">View details <span class="sr-only">— Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h3>Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h3><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html" data-project-index="2">View details <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h3>CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</h3><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html" data-project-index="1">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h3>VHDL digital backend for PT100 temperature measurement</h3><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html" data-project-index="4">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article></div>
+          <div class="project-grid-footer">
+            <p id="project-count" role="status" aria-live="polite">4 of 9 projects</p>
+            <button class="project-detail-button requires-js" id="more-projects" type="button">Show all 9 projects</button>
+            <a class="project-detail-button no-js-only" id="all-projects-link" href="projects/index.html">Show all 9 projects</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell news-section" id="news">
+        <div class="section-heading heading-row reveal">
+          <div>
+            <p class="section-kicker" id="news-kicker">News</p>
+            <h2 id="news-title">Recent updates</h2>
+          </div>
+          <p id="news-intro">Recent academic, competition, and engineering milestones.</p>
+        </div>
+        <div class="news-list" id="news-list"><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Evaluated the RISC-V INT8 project on a resident convolution layer</h3><p>Compared DOT4ACC with DOT4+ADD across 10 image inputs, reducing cycles by approximately 10.26% on one convolution layer. End-to-end inference and board-level evaluation remain future work.</p></div></article><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Completed CMOS logic-cell and full-adder VLSI labs</h3><p>Designed NOR2, OR2 and a 28-transistor full adder in Electric, checking layout and logic with IRSIM and xsim verification.</p></div></article><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>Joined the UWE Bristol Telerobotics Summer School</h3><p>Contributed Python debugging, input-device integration and pose-feedback investigation to a manipulator project at Bristol Robotics Laboratory; the team completed an object-transfer demonstration.</p></div></article><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>National Second Prize for a synchronized hexapod performance</h3><p>The two-robot dance project received Second Prize at the 28th China Robotics and Artificial Intelligence Competition National Finals, following a Sichuan Regional Second Prize in June.</p></div></article><article class="news-item reveal"><time datetime="2025">2025</time><div><h3>Third-author paper at PHM-Xi’an 2025</h3><p>Studied the limits of LLMs in supercomputing infrastructure operations. My contribution was primarily literature review, with limited participation in model setup.</p></div></article></div>
       </section>
 
       <section class="section section-experience" id="experience">
         <div class="shell">
           <div class="section-heading reveal">
-            <p class="section-kicker" id="experience-kicker"></p>
-            <h2 id="experience-title"></h2>
+            <p class="section-kicker" id="experience-kicker">Background</p>
+            <h2 id="experience-title">Education, experience &amp; recognition</h2>
           </div>
           <div class="experience-grid">
             <div class="experience-column">
               <div class="experience-column-section">
-                <h3 class="subsection-title" id="education-title"></h3>
-                <div class="timeline" id="education-list"></div>
+                <h3 class="subsection-title" id="education-title">Education</h3>
+                <div class="timeline" id="education-list"><article class="timeline-item reveal"><p class="timeline-date">Aug 2023 — Expected Jun 2027</p><h4>B.Eng. in Microelectronic Science and Engineering</h4><p>Glasgow College, University of Electronic Science and Technology of China</p><p>First six semesters: GPA 3.55/4.00; weighted average 83.38/100. Selected courses: Electronic Devices 99, Design of Integrated Circuits 95, Microelectronic Packaging Technology 90 (out of 100).</p></article></div>
               </div>
               <div class="experience-column-section">
-                <h3 class="subsection-title" id="positions-title"></h3>
-                <div class="timeline" id="positions-list"></div>
+                <h3 class="subsection-title" id="positions-title">Industry &amp; academic programmes</h3>
+                <div class="timeline" id="positions-list"><article class="timeline-item reveal"><p class="timeline-date">20 — 31 Jul 2026</p><h4>Telerobotics Summer School · Team practicum</h4><p>UWE Bristol · Bristol Robotics Laboratory</p><p>Worked on a manipulator under Giacinto Barresi, contributing Python debugging and hardware–software integration. Integrated Leap Motion and gamepad inputs, investigated latency and pose feedback, and helped the team complete an object-transfer demonstration.</p></article><article class="timeline-item reveal"><p class="timeline-date">Jun — Aug 2025</p><h4>Embedded Software Intern · R&amp;D Department</h4><p>Chengdu Kelichuang Intelligent Technology Co., Ltd.</p><p>Supported STM32 radar-module drivers, control and communication interface debugging, hardware–software integration and interface tests; assisted with communication-latency diagnosis.</p></article><article class="timeline-item reveal"><p class="timeline-date">5 — 16 Aug 2024</p><h4>AI Internship Programme · Team project</h4><p>NTU Business AI Lab · Singapore</p><p>Contributed CT-image preprocessing, training-workflow setup and result visualization for CNN, ResNet and Vision Transformer comparisons. The pneumonia-classification project received a Distinction.</p></article></div>
               </div>
             </div>
             <div>
-              <h3 class="subsection-title" id="awards-title"></h3>
-              <div class="award-list" id="award-list"></div>
+              <h3 class="subsection-title" id="awards-title">Honours &amp; activities</h3>
+              <div class="award-list" id="award-list"><article class="award-item reveal"><div><h4>National Finals Second Prize · 28th China Robotics and Artificial Intelligence Competition</h4><p>Multi-legged robot group dance · Team award</p></div><p class="award-year">2026</p></article><article class="award-item reveal"><div><h4>Sichuan Regional Second Prize · 28th China Robotics and Artificial Intelligence Competition</h4><p>Synchronized hexapod performance · Team award</p></div><p class="award-year">2026</p></article><article class="award-item reveal"><div><h4>Mathematical Contest in Modeling · Honorable Mention</h4><p>COMAP MCM · Problem C · Three-member team</p></div><p class="award-year">2025</p></article><article class="award-item reveal"><div><h4>Third-Class Academic Scholarship</h4><p>Glasgow College, UESTC</p></div><p class="award-year">2025</p></article></div>
             </div>
           </div>
         </div>
@@ -1571,46 +1681,50 @@ img {
 
       <section class="section shell" id="skills">
         <div class="section-heading reveal">
-          <p class="section-kicker" id="skills-kicker"></p>
-          <h2 id="skills-title"></h2>
+          <p class="section-kicker" id="skills-kicker">Capabilities</p>
+          <h2 id="skills-title">Engineering toolkit</h2>
         </div>
-        <div class="skill-groups" id="skill-groups"></div>
+        <div class="skill-groups" id="skill-groups"><article class="skill-group reveal"><h3>Digital IC &amp; architecture</h3><ul><li>VHDL / SystemVerilog · Vivado / xsim</li><li>RISC-V datapaths, pipeline control and RTL verification</li><li>Synthesis, XDC constraints, implementation and timing analysis</li></ul></article><article class="skill-group reveal"><h3>Analog &amp; VLSI verification</h3><ul><li>Cadence Virtuoso / Spectre / ADE</li><li>Biasing, transistor sizing, Miller compensation and extraction</li><li>Electric · DRC / NCC / ERC · IRSIM</li></ul></article><article class="skill-group reveal"><h3>Devices &amp; circuit labs</h3><ul><li>Silvaco DeckBuild / TonyPlot / TonyPlot3D</li><li>LTspice · PWM, converters and Fourier analysis</li><li>Oscilloscope, digital multimeter and function generator</li></ul></article><article class="skill-group reveal"><h3>Embedded systems &amp; robotics</h3><ul><li>STM32 · EasyEDA · PCB design and assembly</li><li>Sensor, motor and LoRa interface integration</li><li>Motion programming, synchronization and fault diagnosis</li></ul></article><article class="skill-group reveal"><h3>Programming &amp; data analysis</h3><ul><li>Python · C/C++ · MATLAB</li><li>CT-image preprocessing and classifier comparisons</li><li>Literature research, experiment visualization and technical reporting</li></ul></article></div>
       </section>
 
       <section class="contact-section" id="contact">
         <div class="shell contact-inner reveal">
           <div>
-            <p class="section-kicker" id="contact-kicker"></p>
-            <h2 id="contact-title"></h2>
-            <p id="contact-copy"></p>
+            <p class="section-kicker" id="contact-kicker">Get in touch</p>
+            <h2 id="contact-title">Let’s discuss chip design and research</h2>
+            <p id="contact-copy">Reach me by email or GitHub to discuss digital and analog ICs, RISC-V, VLSI verification and research opportunities. I expect to graduate in June 2027.</p>
           </div>
-          <div class="contact-actions" id="contact-actions"></div>
+          <div class="contact-actions" id="contact-actions"><a class="button button-primary" href="mailto:litaoliu_2026@163.com">Email me <span aria-hidden="true">→</span></a><a class="button button-secondary" href="https://github.com/VElliot-CD" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="assets/Litao_Liu_Academic_CV.pdf" target="_blank" rel="noreferrer">CV (PDF) <span aria-hidden="true">↗</span></a></div>
         </div>
       </section>
     </main>
 
     <div class="modal-backdrop is-hidden" id="project-modal" aria-hidden="true">
       <section class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-summary">
-        <button class="modal-close" id="modal-close" type="button">Close</button>
-        <div id="modal-content"></div>
+        <div class="modal-toolbar">
+          <button class="modal-close" id="modal-share" type="button">Copy project link</button>
+          <span class="share-status" id="share-status" role="status" aria-live="polite"></span>
+          <button class="modal-close" id="modal-close" type="button">Close</button>
+        </div>
+        <div id="modal-content" tabindex="0"></div>
       </section>
     </div>
 
     <footer class="site-footer">
       <div class="shell footer-inner">
-        <p id="footer-copy"></p>
+        <p id="footer-copy">© 2026 Litao Liu. Content updated September 2026 · GitHub Pages.</p>
         <a href="#top" id="back-to-top">Back to top ↑</a>
       </div>
     </footer>
-    <script>
-/* Homepage content for Litao Liu. Updated from supplied materials, September 2026. */
+<script>
+/* Homepage content for Litao Liu. Updated 3 October 2026 from supplied materials. */
 window.SITE_DATA = {
   "settings": {
     "defaultLanguage": "en",
     "siteUrl": "https://velliot-cd.github.io/",
     "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMTAwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgogIDx0aXRsZSBpZD0idGl0bGUiPkxpdGFvIExpdSBtb25vZ3JhbTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MiPkVkaXRvcmlhbCBtb25vZ3JhbSBwb3J0cmFpdCB3aXRoIGFuIGFic3RyYWN0IG1peGVkLXNpZ25hbCBjaXJjdWl0IG1vdGlmLjwvZGVzYz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTczMjJmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzI3NGI0NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjAuNzgiIGN5PSIwLjE4IiByPSIwLjcyIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAuNDIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZDg4NzYyIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHBhdGggZD0iTTU2IDBIMFY1NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRmMWU5IiBzdHJva2Utb3BhY2l0eT0iMC4wNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjEwMDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+CiAgPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSJ1cmwoI2dyaWQpIi8+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDg4NzYyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTS00MCA3MjJIOTJjMjggMCAzMS0xMDYgNjEtMTA2czM0IDE5OCA2NiAxOTggMzQtMjg5IDcyLTI4OSAzOSAxNDQgNzUgMTQ0aDEyMCIgc3Ryb2tlLXdpZHRoPSI5IiBvcGFjaXR5PSIwLjkiLz4KICAgIDxwYXRoIGQ9Ik01MjIgMjA2aDEwMm0tNTEtNTF2MTAybTUxLTUxaDg4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNzIiLz4KICAgIDxjaXJjbGUgY3g9IjcxMyIgY3k9IjIwNiIgcj0iOCIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgICA8cGF0aCBkPSJNNjI0IDMzMmg4OXY5NmgtODltLTM4LTQ4aDM4IiBzdHJva2Utd2lkdGg9IjQiIG9wYWNpdHk9IjAuNTgiLz4KICAgIDxjaXJjbGUgY3g9IjU4NiIgY3k9IjM4MCIgcj0iNyIgZmlsbD0iI2Q4ODc2MiIgc3Ryb2tlPSJub25lIi8+CiAgPC9nPgogIDxnIGZpbGw9IiNmNGYxZTkiPgogICAgPHRleHQgeD0iMTE4IiB5PSIxNTQiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjciPklDIERFU0lHTiAvIFJJU0MtVjwvdGV4dD4KICAgIDx0ZXh0IHg9Ijc2IiB5PSI2MDAiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMwIiBmb250LXdlaWdodD0iNDAwIiBsZXR0ZXItc3BhY2luZz0iLTM4Ij5MTDwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5MDIiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9IjcwMCIgbGV0dGVyLXNwYWNpbmc9IjUiPkxJVEFPIExJVTwvdGV4dD4KICAgIDx0ZXh0IHg9IjgyIiB5PSI5NDQiIGZpbGw9IiNkNmRmZGMiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgbGV0dGVyLXNwYWNpbmc9IjIiPk1JQ1JPRUxFQ1RST05JQ1MgwrcgVUVTVEM8L3RleHQ+CiAgPC9nPgo8L3N2Zz4K",
     "ogImage": "https://velliot-cd.github.io/assets/og-card.png",
-    "cvUrl": "",
+    "cvUrl": "assets/Litao_Liu_Academic_CV.pdf",
     "scholarUrl": "",
     "githubUrl": "https://github.com/VElliot-CD",
     "orcidUrl": "",
@@ -1630,12 +1744,17 @@ window.SITE_DATA = {
       "backToTop": "返回顶部 ↑",
       "scholar": "查看 Google Scholar",
       "email": "发送邮件",
-      "cv": "下载简历",
+      "cv": "简历（PDF）",
       "researchCta": "查看项目",
       "details": "查看详情",
       "closeProject": "关闭",
       "github": "GitHub",
-      "orcid": "ORCID"
+      "orcid": "ORCID",
+      "shareProject": "复制项目链接",
+      "copied": "链接已复制",
+      "copyFailed": "请复制浏览器地址",
+      "moreProjects": "查看全部 {count} 个项目",
+      "projectCount": "已显示 {shown} / {total} 个项目"
     },
     "nav": {
       "about": "关于",
@@ -1743,8 +1862,12 @@ window.SITE_DATA = {
     "projects": {
       "kicker": "Selected work",
       "title": "代表性项目",
-      "intro": "研究与课程项目涵盖处理器、CMOS 电路、VLSI 单元和硬件系统。每项均说明本人贡献、验证条件与当前结果。",
+      "intro": "精选四项处理器、模拟 IC、VLSI 单元与 RTL 验证项目；可查看全部项目或按方向筛选。",
       "filters": [
+        {
+          "id": "featured",
+          "label": "精选"
+        },
         {
           "id": "all",
           "label": "全部"
@@ -1824,7 +1947,15 @@ window.SITE_DATA = {
               "B 的平均层能量估算为 4.141 mJ，相对 A 降低 9.917%；这是 50 MHz、25°C、典型工艺下基于功能 SAIF 的 Vivado 估算，部分存储器活动由工具传播，并非实测功耗或能量。",
               "独立的 4 KiB 空间块实验中，精确再量化及循环展开使 B 的平均周期降低 39.893%；该软件结果不与完整层架构收益合并。当前验证不代表整网推理、分类准确率或板级实测。"
             ]
-          }
+          },
+          "id": "riscv-int8",
+          "featured": true,
+          "featuredOrder": 1,
+          "cardSummary": "在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。",
+          "cardHighlights": [
+            "50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%",
+            "10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果"
+          ]
         },
         {
           "period": "2026 年 9 月",
@@ -1869,7 +2000,15 @@ window.SITE_DATA = {
               "全加器在 16 次采样中全部通过，覆盖全部 8 组输入；OR2 在 13 次采样中全部通过，覆盖 4 组输入及 12 种有向状态转移。",
               "上述结果来自课程实验中的仿真与检查，未进行芯片流片或实测。全加器尚未完成传播延迟、功耗与噪声裕量表征；OR2 的 RC 延迟估计存在提取警告，因此不作为实测性能指标。"
             ]
-          }
+          },
+          "id": "vlsi-cmos",
+          "featured": true,
+          "featuredOrder": 3,
+          "cardSummary": "完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。",
+          "cardHighlights": [
+            "全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC",
+            "IRSIM 全加器检查覆盖全部 8 组输入组合"
+          ]
         },
         {
           "period": "2026.03 — 05",
@@ -1910,7 +2049,15 @@ window.SITE_DATA = {
               "五个工艺角下：增益 82.37–83.13 dB，UGBW 20.37–22.48 MHz，功耗 1.146–1.249 mW。",
               "提取视图与原理图 LVS 匹配；DRC 间距违规仍在，不能视为可制造性签核完成。"
             ]
-          }
+          },
+          "id": "cmos-opamp",
+          "featured": true,
+          "featuredOrder": 2,
+          "cardSummary": "在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。",
+          "cardHighlights": [
+            "版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz",
+            "LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核"
+          ]
         },
         {
           "period": "2026",
@@ -1948,7 +2095,13 @@ window.SITE_DATA = {
               "在该频点供电到输出传递约 −79.54 dB，对应报告约定下 79.54 dB 的抑制。",
               "结果仅来自标称前仿真；未据此宣称完成版图、寄生提取、PVT 验证或硅片测量。"
             ]
-          }
+          },
+          "id": "supply-rejection",
+          "cardSummary": "研究 SMIC18MMRF 两级运放在米勒补偿下的供电扰动耦合。",
+          "cardHighlights": [
+            "标称原理图仿真低频增益 85.96 dB",
+            "按报告约定，供电到输出传递为 −79.54 dB"
+          ]
         },
         {
           "period": "2026.04 — 06",
@@ -1990,7 +2143,15 @@ window.SITE_DATA = {
               "综合与实现报告在 1 kHz 设计约束下记录 WNS > 0、TNS = 0；不是处理器最高频率指标。",
               "成果为联合开发的 RTL 与系统仿真，未宣称完成混合信号芯片流片。"
             ]
-          }
+          },
+          "id": "pt100-rtl",
+          "featured": true,
+          "featuredOrder": 4,
+          "cardSummary": "在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。",
+          "cardHighlights": [
+            "5 个设计单元，16 周期串行帧与 12-count 迟滞",
+            "通过模块及集成测试；1 kHz 约束下 WNS > 0、TNS = 0"
+          ]
         },
         {
           "period": "2023.12 — 2024.12",
@@ -2026,7 +2187,13 @@ window.SITE_DATA = {
               "完成探索性模型与结果分析，形成团队报告。",
               "报告讨论模型适用性及热效应；未宣称制备芯片或完成临床/生物样本验证。"
             ]
-          }
+          },
+          "id": "gfet-device",
+          "cardSummary": "结合文献研究与 Silvaco 二维、三维器件建模，探索 GFET 生物传感。",
+          "cardHighlights": [
+            "通过偏置扫描分析输出、转移特性及电场分布",
+            "为 13 页团队报告贡献建模结果与模型限制分析"
+          ]
         },
         {
           "period": "2026.03 — 06",
@@ -2064,7 +2231,13 @@ window.SITE_DATA = {
               "协助修正车辆左偏，提高整车可控性。",
               "最终支出 2061 元，低于 2500 元预算上限。"
             ]
-          }
+          },
+          "id": "radar-robot",
+          "cardSummary": "负责循迹智能车的硬件开发，集成雷达避障与 LoRa 通信。",
+          "cardHighlights": [
+            "完成 STM32 PCB、电路装配及雷达、红外阵列和电机驱动集成",
+            "协助修正车辆左偏，核心功能在 2500 元预算内完成"
+          ]
         },
         {
           "period": "2026.05 — 07",
@@ -2102,7 +2275,13 @@ window.SITE_DATA = {
               "2026 年 7 月获全国总决赛二等奖；2026 年 6 月获四川赛区二等奖。",
               "奖项属于团队成果，本人贡献为动作编程、同步和调试。"
             ]
-          }
+          },
+          "id": "hexapod-dance",
+          "cardSummary": "参与两台 18 自由度 Libot 六足机器人的同步动作编程与调试。",
+          "cardHighlights": [
+            "团队完成 3 分 12 秒同步表演",
+            "团队获国赛与四川赛区二等奖"
+          ]
         },
         {
           "period": "2026.04 — 05",
@@ -2143,7 +2322,13 @@ window.SITE_DATA = {
               "滤波电容从 2.2 mF 增至 6.9 mF 后，实测纹波从 1.40 V 降至 0.74 V。",
               "完成逆变器傅里叶和 THD 分析，用频谱结果比较调制方式。"
             ]
-          }
+          },
+          "id": "power-conversion",
+          "cardSummary": "通过仿真与台架实验研究 PWM、整流滤波、Boost 变换及逆变调制。",
+          "cardHighlights": [
+            "5 V 输入下实测 Boost 输出 10.0 V 与 20.0 V",
+            "增大滤波电容后，实测纹波由 1.40 V 降至 0.74 V"
+          ]
         }
       ]
     },
@@ -2293,12 +2478,17 @@ window.SITE_DATA = {
       "backToTop": "Back to top ↑",
       "scholar": "Google Scholar",
       "email": "Email me",
-      "cv": "Download CV",
+      "cv": "CV (PDF)",
       "researchCta": "View projects",
       "details": "View details",
       "closeProject": "Close",
       "github": "GitHub",
-      "orcid": "ORCID"
+      "orcid": "ORCID",
+      "shareProject": "Copy project link",
+      "copied": "Link copied",
+      "copyFailed": "Copy this page URL",
+      "moreProjects": "Show all {count} projects",
+      "projectCount": "{shown} of {total} projects"
     },
     "nav": {
       "about": "About",
@@ -2406,8 +2596,12 @@ window.SITE_DATA = {
     "projects": {
       "kicker": "Selected work",
       "title": "Featured projects",
-      "intro": "Research and coursework across processors, CMOS circuits, VLSI cells and hardware systems, with individual contributions, validation conditions and results.",
+      "intro": "Four selected projects in processor design, analog ICs, VLSI cells and RTL verification. Browse all projects or filter by topic to explore further.",
       "filters": [
+        {
+          "id": "featured",
+          "label": "Selected"
+        },
         {
           "id": "all",
           "label": "All"
@@ -2487,7 +2681,15 @@ window.SITE_DATA = {
               "B's estimated mean layer energy was 4.141 mJ, 9.917% below A. These are Vivado estimates from functional SAIF at 50 MHz, 25°C, and typical process, with some memory activity propagated by the tool; power and energy were not physically measured.",
               "In a separate 4 KiB spatial-block experiment, exact requantization and unrolling reduced B's mean cycles by 39.893%. This software result is not combined with the full-layer architectural gain. The results do not establish whole-network inference, classification accuracy, or board-level measurements."
             ]
-          }
+          },
+          "id": "riscv-int8",
+          "featured": true,
+          "featuredOrder": 1,
+          "cardSummary": "Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.",
+          "cardHighlights": [
+            "10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz",
+            "INT32 accumulators and INT8 outputs matched reference results across ten images"
+          ]
         },
         {
           "period": "Sep 2026",
@@ -2532,7 +2734,15 @@ window.SITE_DATA = {
               "All 16 full-adder samples passed, covering all eight input combinations. All 13 OR2 samples passed, covering four combinations and all 12 directed state transitions.",
               "Results are from coursework simulation and verification, with no fabrication or silicon measurements. Full-adder delay, power and noise margins remain uncharacterized; OR2 RC delay estimates carried extraction warnings and are not presented as measured device performance."
             ]
-          }
+          },
+          "id": "vlsi-cmos",
+          "featured": true,
+          "featuredOrder": 3,
+          "cardSummary": "Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.",
+          "cardHighlights": [
+            "Full adder passed DRC, well / antenna ERC and exact-size NCC",
+            "IRSIM full-adder checks covered all eight input combinations"
+          ]
         },
         {
           "period": "Mar — May 2026",
@@ -2573,7 +2783,15 @@ window.SITE_DATA = {
               "Across five process corners: 82.37–83.13 dB gain, 20.37–22.48 MHz UGBW and 1.146–1.249 mW power.",
               "LVS matched the extracted view to the schematic; remaining DRC spacing violations prevent a claim of completed physical signoff."
             ]
-          }
+          },
+          "id": "cmos-opamp",
+          "featured": true,
+          "featuredOrder": 2,
+          "cardSummary": "Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.",
+          "cardHighlights": [
+            "Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load",
+            "LVS matched; remaining DRC spacing violations prevent full physical signoff"
+          ]
         },
         {
           "period": "2026",
@@ -2611,7 +2829,13 @@ window.SITE_DATA = {
               "Approximately −79.54 dB supply-to-output transfer at that frequency, equivalent to 79.54 dB rejection under the report’s convention.",
               "Nominal pre-layout simulation only; no claim of layout, extraction, PVT closure or silicon measurement."
             ]
-          }
+          },
+          "id": "supply-rejection",
+          "cardSummary": "Studied supply-disturbance coupling in a Miller-compensated SMIC18MMRF two-stage amplifier.",
+          "cardHighlights": [
+            "85.96 dB low-frequency gain in nominal schematic simulation",
+            "−79.54 dB supply-to-output transfer under the report’s convention"
+          ]
         },
         {
           "period": "Apr — Jun 2026",
@@ -2653,7 +2877,15 @@ window.SITE_DATA = {
               "Synthesis and implementation reports recorded WNS > 0 and TNS = 0 under a 1 kHz design constraint, not a processor maximum-frequency result.",
               "Joint RTL development and system simulation; no claim of a fabricated mixed-signal chip."
             ]
-          }
+          },
+          "id": "pt100-rtl",
+          "featured": true,
+          "featuredOrder": 4,
+          "cardSummary": "Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.",
+          "cardHighlights": [
+            "Five design units, with 16-cycle serial frames and 12-count hysteresis",
+            "Module and integration tests passed; WNS > 0 and TNS = 0 at a 1 kHz constraint"
+          ]
         },
         {
           "period": "Dec 2023 — Dec 2024",
@@ -2689,7 +2921,13 @@ window.SITE_DATA = {
               "Completed exploratory models and analysis documented in the team report.",
               "Discussed model applicability and thermal effects; no claim of chip fabrication or clinical/biological testing."
             ]
-          }
+          },
+          "id": "gfet-device",
+          "cardSummary": "Explored GFET biosensing through literature review and two- and three-dimensional Silvaco device models.",
+          "cardHighlights": [
+            "Bias sweeps examined output, transfer and electric-field characteristics",
+            "Contributed modeling results and limitations to a 13-page team report"
+          ]
         },
         {
           "period": "Mar — Jun 2026",
@@ -2727,7 +2965,13 @@ window.SITE_DATA = {
               "Supported correction of vehicle leftward drift and improved controllability.",
               "Final spending was RMB 2,061, below the RMB 2,500 budget cap."
             ]
-          }
+          },
+          "id": "radar-robot",
+          "cardSummary": "Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.",
+          "cardHighlights": [
+            "Built and integrated the STM32-based PCB, radar, IR array and motor drivers",
+            "Helped resolve leftward drift; core functions completed within the RMB 2,500 budget"
+          ]
         },
         {
           "period": "May — Jul 2026",
@@ -2765,7 +3009,13 @@ window.SITE_DATA = {
               "National Finals Second Prize in July 2026; Sichuan Regional Second Prize in June 2026.",
               "Awards recognize the team; my role was motion programming, synchronization and debugging."
             ]
-          }
+          },
+          "id": "hexapod-dance",
+          "cardSummary": "Programmed and debugged coordinated motion sequences for two 18-DOF Libot hexapods.",
+          "cardHighlights": [
+            "Completed a 3 min 12 s synchronized team performance",
+            "Team Second Prize at the National Finals and Sichuan Regional Competition"
+          ]
         },
         {
           "period": "Apr — May 2026",
@@ -2806,7 +3056,13 @@ window.SITE_DATA = {
               "Increasing capacitance from 2.2 mF to 6.9 mF reduced measured ripple from 1.40 V to 0.74 V.",
               "Fourier and THD analysis was used to compare inverter modulation strategies."
             ]
-          }
+          },
+          "id": "power-conversion",
+          "cardSummary": "Investigated PWM, rectification, boost conversion and inverter modulation through simulation and bench experiments.",
+          "cardHighlights": [
+            "Measured boost outputs of 10.0 V and 20.0 V from a 5 V supply",
+            "Larger filter capacitance reduced measured ripple from 1.40 V to 0.74 V"
+          ]
         }
       ]
     },
@@ -2945,7 +3201,7 @@ window.SITE_DATA = {
 };
 
 </script>
-    <script>
+<script>
 (function () {
   "use strict";
 
@@ -2989,10 +3245,37 @@ window.SITE_DATA = {
     if (node && value) node.setAttribute(attribute, value);
   }
 
-  let language = data.settings.defaultLanguage || "en";
-  if (!data[language]) language = "en";
-  let activeProjectFilter = "all";
+  const initialParams = new URLSearchParams(window.location.search);
+  let language = initialParams.get("lang") || getStored("academic-site-language", data.settings.defaultLanguage || "en");
+  if (!["en", "zh"].includes(language)) language = "en";
+  const validFilter = (value) => data[language].projects.filters.some((filter) => filter.id === value);
+  const preferredFilter = initialParams.get("filter") || getStored("academic-site-filter", "featured");
+  let activeProjectFilter = validFilter(preferredFilter) ? preferredFilter : "featured";
   let activeProjectIndex = null;
+
+  function updatePageUrl(projectId, push = false) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", language);
+    if (activeProjectFilter === "featured") url.searchParams.delete("filter");
+    else url.searchParams.set("filter", activeProjectFilter);
+    if (projectId) url.searchParams.set("project", projectId);
+    else url.searchParams.delete("project");
+    const state = { ...history.state, academicFilter: activeProjectFilter, academicLanguage: language, projectEntry: Boolean(projectId && (push || history.state?.projectEntry)) };
+    history[push ? "pushState" : "replaceState"](state, "", url);
+  }
+
+  function selectProjectFilter(filter) {
+    activeProjectFilter = validFilter(filter) ? filter : "featured";
+    setStored("academic-site-filter", activeProjectFilter);
+    updatePageUrl(null);
+    $$("[data-project-filter]").forEach((node) => {
+      const selected = node.dataset.projectFilter === activeProjectFilter;
+      node.classList.toggle("is-active", selected);
+      node.setAttribute("aria-pressed", String(selected));
+    });
+    renderProjects(data[language]);
+    observeReveals();
+  }
 
   function button(label, href, kind = "secondary", external = false) {
     if (!href) return "";
@@ -3029,7 +3312,7 @@ window.SITE_DATA = {
 
   function renderProjectFilters(content) {
     const filters = content.projects.filters || [{ id: "all", label: "All" }];
-    if (!filters.some((filter) => filter.id === activeProjectFilter)) activeProjectFilter = "all";
+    if (!filters.some((filter) => filter.id === activeProjectFilter)) activeProjectFilter = "featured";
     $("#project-filters").innerHTML = filters
       .map(
         (filter) =>
@@ -3038,9 +3321,7 @@ window.SITE_DATA = {
       .join("");
     $$("[data-project-filter]").forEach((filterButton) => {
       filterButton.addEventListener("click", () => {
-        activeProjectFilter = filterButton.dataset.projectFilter || "all";
-        render();
-        $("#projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        selectProjectFilter(filterButton.dataset.projectFilter);
       });
     });
   }
@@ -3048,19 +3329,32 @@ window.SITE_DATA = {
   function renderProjects(content) {
     const filteredItems = (content.projects.items || [])
       .map((item, index) => ({ item, index }))
-      .filter(({ item }) => activeProjectFilter === "all" || (item.categories || []).includes(activeProjectFilter));
+      .filter(({ item }) => activeProjectFilter === "all" || (activeProjectFilter === "featured" ? item.featured : (item.categories || []).includes(activeProjectFilter)))
+      .sort((a, b) => activeProjectFilter === "featured" ? a.item.featuredOrder - b.item.featuredOrder : a.index - b.index);
 
     $("#project-grid").innerHTML = filteredItems
       .map(({ item, index }) => {
-        const highlights = listMarkup(item.highlights);
-        const tags = (item.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
-        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><button class="project-detail-button" type="button" data-project-index="${index}">${escapeHtml(content.ui.details)}</button></div></article>`;
+        const highlights = listMarkup(item.cardHighlights || item.highlights);
+        const tags = (item.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+        const href = `projects/${item.id}${language === "zh" ? ".zh" : ""}.html`;
+        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.cardSummary || item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><a class="project-detail-button" href="${escapeHtml(href)}" data-project-index="${index}">${escapeHtml(content.ui.details)} <span class="sr-only">— ${escapeHtml(item.title)}</span></a></div></article>`;
       })
       .join("");
 
     $$("[data-project-index]").forEach((buttonNode) => {
-      buttonNode.addEventListener("click", () => openProjectModal(Number(buttonNode.dataset.projectIndex)));
+      buttonNode.addEventListener("click", (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        openProjectModal(Number(buttonNode.dataset.projectIndex));
+      });
     });
+    const total = content.projects.items.length;
+    text("#project-count", content.ui.projectCount.replace("{shown}", filteredItems.length).replace("{total}", total));
+    text("#more-projects", content.ui.moreProjects.replace("{count}", total));
+    $("#more-projects").hidden = activeProjectFilter === "all";
+    const fallbackLink = $("#all-projects-link");
+    fallbackLink.textContent = content.ui.moreProjects.replace("{count}", total);
+    fallbackLink.href = `projects/index${language === "zh" ? ".zh" : ""}.html`;
   }
 
   function renderProjectModal(index) {
@@ -3073,6 +3367,8 @@ window.SITE_DATA = {
       ? `<figure class="modal-evidence"><a class="modal-evidence-media" href="${escapeHtml(item.evidenceImage)}" target="_blank" rel="noreferrer"><img src="${escapeHtml(item.evidenceImage)}" alt="${escapeHtml(item.evidenceAlt || "")}" /><span class="modal-evidence-open">${escapeHtml(labels.openEvidence || "Open full-size evidence")} <span aria-hidden="true">↗</span></span></a>${item.evidenceCaption ? `<figcaption>${escapeHtml(item.evidenceCaption)}</figcaption>` : ""}</figure>`
       : "";
     $("#modal-close").textContent = content.ui.closeProject;
+    $("#modal-share").textContent = content.ui.shareProject;
+    text("#share-status", "");
     $("#modal-content").innerHTML = `
       <div class="modal-meta">${escapeHtml(item.period)} · ${escapeHtml(item.role)}</div>
       <h2 id="modal-title">${escapeHtml(item.title)}</h2>
@@ -3110,19 +3406,31 @@ window.SITE_DATA = {
     });
   }
 
-  function openProjectModal(index) {
-    if (!Number.isFinite(index)) return;
-    modalReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  function openProjectModal(index, pushHistory = true) {
+    const item = data[language].projects.items[index];
+    if (!item) return;
+    if (activeProjectIndex === null) modalReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    closeMenu();
     activeProjectIndex = index;
     renderProjectModal(index);
     $("#project-modal").classList.remove("is-hidden");
     $("#project-modal").setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
+    $("#modal-content").scrollTop = 0;
+    if (pushHistory) {
+      updatePageUrl(null);
+      updatePageUrl(item.id, true);
+    }
     setPageInert(true);
     $("#modal-close")?.focus();
   }
 
-  function closeProjectModal() {
+  function closeProjectModal(syncHistory = true) {
+    if (activeProjectIndex === null) return;
+    if (syncHistory && history.state?.projectEntry) {
+      history.back();
+      return;
+    }
     const returnFocus = modalReturnFocus;
     $("#project-modal").classList.add("is-hidden");
     $("#project-modal").setAttribute("aria-hidden", "true");
@@ -3130,7 +3438,28 @@ window.SITE_DATA = {
     setPageInert(false);
     activeProjectIndex = null;
     modalReturnFocus = null;
-    requestAnimationFrame(() => returnFocus?.focus());
+    if (syncHistory) updatePageUrl(null);
+    requestAnimationFrame(() => {
+      if (returnFocus?.isConnected && returnFocus !== document.body) returnFocus.focus({ preventScroll: true });
+      else $("#projects-title")?.focus({ preventScroll: true });
+    });
+  }
+
+  function restoreUrlState() {
+    const previousLanguage = language;
+    const previousFilter = activeProjectFilter;
+    const params = new URLSearchParams(window.location.search);
+    const nextLanguage = params.get("lang") || history.state?.academicLanguage || getStored("academic-site-language", "en");
+    if (["en", "zh"].includes(nextLanguage)) language = nextLanguage;
+    const nextFilter = params.get("filter") || history.state?.academicFilter || getStored("academic-site-filter", "featured");
+    activeProjectFilter = validFilter(nextFilter) ? nextFilter : "featured";
+    setStored("academic-site-language", language);
+    setStored("academic-site-filter", activeProjectFilter);
+    const projectId = params.get("project");
+    const index = data[language].projects.items.findIndex((item) => item.id === projectId);
+    if (index < 0) closeProjectModal(false);
+    if (previousLanguage !== language || previousFilter !== activeProjectFilter) render();
+    if (index >= 0) openProjectModal(index, false);
   }
 
   function trapModalFocus(event) {
@@ -3276,7 +3605,7 @@ window.SITE_DATA = {
     $("#contact-actions").innerHTML =
       emailAction +
       button(content.ui.github, settings.githubUrl, "secondary", true) +
-      button(content.ui.orcid, settings.orcidUrl, "secondary", true);
+      button(content.ui.orcid, settings.orcidUrl, "secondary", true) + cvAction;
 
     text("#footer-copy", content.footer.replace("{year}", new Date().getFullYear()));
     if (activeProjectIndex !== null && !$("#project-modal").classList.contains("is-hidden")) renderProjectModal(activeProjectIndex);
@@ -3307,6 +3636,8 @@ window.SITE_DATA = {
   const languageButton = $("#language-toggle");
   languageButton?.addEventListener("click", () => {
     language = language === "en" ? "zh" : "en";
+    setStored("academic-site-language", language);
+    updatePageUrl(activeProjectIndex === null ? null : data[language].projects.items[activeProjectIndex].id);
     render();
   });
 
@@ -3324,18 +3655,41 @@ window.SITE_DATA = {
 
   const menuButton = $("#menu-button");
   const nav = $("#site-nav");
+  function closeMenu(restoreFocus = false) {
+    nav.classList.remove("is-open");
+    menuButton.setAttribute("aria-expanded", "false");
+    if (restoreFocus) menuButton.focus();
+  }
   menuButton?.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     menuButton.setAttribute("aria-expanded", String(open));
   });
   $$("#site-nav a").forEach((link) =>
     link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      menuButton.setAttribute("aria-expanded", "false");
+      closeMenu();
     })
   );
 
-  $("#modal-close")?.addEventListener("click", closeProjectModal);
+  $("#more-projects")?.addEventListener("click", () => {
+    selectProjectFilter("all");
+    $("[data-project-filter='all']")?.focus({ preventScroll: true });
+  });
+  $("#modal-close")?.addEventListener("click", () => closeProjectModal());
+  $("#modal-share")?.addEventListener("click", async () => {
+    const content = data[language];
+    const item = content.projects.items[activeProjectIndex];
+    if (!item) return;
+    const url = new URL(data.settings.siteUrl);
+    url.searchParams.set("lang", language);
+    url.searchParams.set("project", item.id);
+    try {
+      await navigator.clipboard.writeText(url.href);
+      text("#share-status", content.ui.copied);
+    } catch {
+      text("#share-status", content.ui.copyFailed);
+    }
+  });
+  window.addEventListener("popstate", restoreUrlState);
   $("#project-modal")?.addEventListener("click", (event) => {
     if (event.target === $("#project-modal")) closeProjectModal();
   });
@@ -3344,6 +3698,10 @@ window.SITE_DATA = {
       event.preventDefault();
       closeProjectModal();
       return;
+    }
+    if (event.key === "Escape" && nav.classList.contains("is-open")) {
+      event.preventDefault();
+      closeMenu(true);
     }
     trapModalFocus(event);
   });
@@ -3357,8 +3715,13 @@ window.SITE_DATA = {
   );
 
   render();
+  document.documentElement.classList.add("js-ready");
+  setStored("academic-site-language", language);
+  const initialProject = data[language].projects.items.findIndex((item) => item.id === initialParams.get("project"));
+  if (initialProject >= 0) openProjectModal(initialProject, false);
 })();
 
 </script>
-  </body>
-</html>
+
+
+</body></html>
