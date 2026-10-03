@@ -1,27 +1,12 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <base href="../" />
-  <title>双读端口 RISC-V 的融合 INT8 点积累加扩展 | 刘力滔</title>
-  <meta name="description" content="在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。" />
+  <title>Page not found / 页面未找到 | Litao Liu</title>
+  <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#f4f1e9" />
-  <link rel="canonical" href="https://velliot-cd.github.io/projects/riscv-int8.zh.html" />
-  <link rel="alternate" hreflang="en" href="https://velliot-cd.github.io/projects/riscv-int8.html" />
-  <link rel="alternate" hreflang="zh-CN" href="https://velliot-cd.github.io/projects/riscv-int8.zh.html" />
-  <link rel="alternate" hreflang="x-default" href="https://velliot-cd.github.io/projects/riscv-int8.html" />
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="双读端口 RISC-V 的融合 INT8 点积累加扩展 | 刘力滔" />
-  <meta property="og:description" content="在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。" />
-  <meta property="og:url" content="https://velliot-cd.github.io/projects/riscv-int8.zh.html" />
-  <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="双读端口 RISC-V 的融合 INT8 点积累加扩展 | 刘力滔" />
-  <meta name="twitter:description" content="在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。" />
-  <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"双读端口 RISC-V 的融合 INT8 点积累加扩展","description":"在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。","url":"https://velliot-cd.github.io/projects/riscv-int8.zh.html","inLanguage":"zh-CN","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
   <style>
 :root {
   color-scheme: light;
@@ -1725,55 +1710,29 @@ html:not(.js-ready) .requires-js,
 </style>
 </head>
 <body>
-  <a class="skip-link" href="projects/riscv-int8.zh.html#main-content">跳到主要内容</a>
+  <a class="skip-link" href="#main-content">Skip to main content / 跳到主要内容</a>
   <header class="standalone-header shell">
-    <nav class="standalone-actions" aria-label="页面导航">
-      <a class="inline-link" href="zh.html#projects">← 返回主页</a>
-      <a class="inline-link" href="projects/index.zh.html">全部项目</a>
-      <a class="inline-link" href="projects/riscv-int8.html" lang="en" hreflang="en">English</a>
-      <a class="inline-link" href="assets/Litao_Liu_Academic_CV.pdf">简历（PDF）</a>
+    <nav class="standalone-actions" aria-label="Site navigation / 网站导航">
+      <a class="inline-link" href="https://velliot-cd.github.io/">Litao Liu / <span lang="zh-CN">刘力滔</span></a>
+      <a class="inline-link" href="https://velliot-cd.github.io/assets/Litao_Liu_Academic_CV.pdf">CV (PDF)</a>
     </nav>
   </header>
-  <main id="main-content" class="shell standalone-project">
-
-      <div class="modal-meta">2026.07 — 至今 · 本科毕业设计 · RTL 设计与验证</div>
-      <h1 id="modal-title">双读端口 RISC-V 的融合 INT8 点积累加扩展</h1>
-      <p class="modal-summary" id="modal-summary">在五级 SiMPLE RV32I 处理器中集成四路有符号 INT8 点积累加指令，通过两步操作数收集复用双读端口，并以 MobileNet Visual Wake Words 的完整逐点卷积层验证流水线与软硬件协同效果。</p>
-
-      <div class="modal-detail-grid">
-        <section>
-          <h2>项目背景</h2>
-          <p>毕业设计研究三操作数融合指令在双读端口寄存器堆中的集成。以双端口 DOT4+ADD（A）、双端口融合累加（B）和三端口融合累加（C）作受控比较，保留相同的五级流水线、无前递依赖策略、运算单元、内存容量和软件。当前结果覆盖一个完整模型算子，尚未展示板级部署。</p>
-        </section>
-        <section>
-          <h2>我的贡献</h2>
-          <ul><li>实现两步操作数收集及指令集成：严格译码、第三源 RAW 检查、暂停与气泡控制、寄存器别名和 x0 语义、复位取消及 MEM/WB 写回。</li><li>建立 A/B/C 对照实验，将指令级验证扩展至公开 INT8 MobileNet VWW 模型 op8 的完整逐点卷积层，包含 CPU 输入/输出拷贝、偏置、精确再量化和 ReLU。</li><li>实现精确软件再量化与四步循环展开，并在固定硬件的独立空间块实验中评估软件收益。</li></ul>
-        </section>
-        <section>
-          <h2>方法与工具</h2>
-          <ul><li>Vivado 2022.2 / XSim；Artix-7 xc7a35tfgg484-2 的 OOC 综合、布局布线和 50 MHz 时序检查；A/B/C 均采用分布式寄存器堆映射与 32 KiB 数据 RAM。</li><li>固定模型和 10 个 COCO 图像输入，对 144 个空间位置、294,912 次标量 MAC 的 INT32 与 INT8 结果逐项核验，并检查拷贝、打包、存储及故意损坏的参考结果。</li><li>保留固件、源码快照、波形、活动文件和报告；以布局布线后功能仿真的 SAIF 进行匹配区间功耗估算。</li></ul>
-        </section>
-        <section>
-          <h2>结果证据</h2>
-          <ul><li>每种架构在 RTL 与所选映射后功能仿真中均匹配 92,160 个 INT32 和 92,160 个 INT8 值；所有架构均满足规定的 50 MHz 时序约束。</li><li>A/B/C 平均完整层时间分别为 43.1202 / 38.6966 / 37.2220 ms；B 相对 A 周期降低 10.259%，加速比 1.1143×。该基线已具备四路 INT8 点积硬件。</li><li>B 的平均层能量估算为 4.141 mJ，相对 A 降低 9.917%；这是 50 MHz、25°C、典型工艺下基于功能 SAIF 的 Vivado 估算，部分存储器活动由工具传播，并非实测功耗或能量。</li><li>独立的 4 KiB 空间块实验中，精确再量化及循环展开使 B 的平均周期降低 39.893%；该软件结果不与完整层架构收益合并。当前验证不代表整网推理、分类准确率或板级实测。</li></ul>
-        </section>
-      </div>
-      <div class="tag-list modal-tags"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span><span class="tag">INT8</span></div>
-
-<nav class="related-projects" aria-labelledby="related-projects-title">
-      <h2 id="related-projects-title">相关项目</h2>
-      <div class="related-project-grid">
-        <a class="related-project-card" href="projects/vlsi-cmos.zh.html">
-          <h3>CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</h3>
-          <p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p>
-        </a>
-        <a class="related-project-card" href="projects/pt100-rtl.zh.html">
-          <h3>PT100 测温系统的 VHDL 数字后端</h3>
-          <p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p>
-        </a>
-      </div>
+  <main id="main-content" class="shell standalone-project not-found-page">
+    <p class="section-kicker not-found-code">404</p>
+    <h1>Page not found<br /><span lang="zh-CN">页面未找到</span></h1>
+    <div class="not-found-copy">
+      <p>This address may have changed, or the link may be incomplete. Continue to the homepage or browse the project archive.</p>
+      <p lang="zh-CN">这个页面的地址可能已变更，或者链接不完整。你可以返回主页，或浏览全部项目。</p>
+    </div>
+    <nav class="not-found-actions" aria-label="Homepage languages / 主页语言">
+      <a class="button button-primary" href="https://velliot-cd.github.io/?lang=en" lang="en" hreflang="en">English homepage</a>
+      <a class="button button-secondary" href="https://velliot-cd.github.io/zh.html" lang="zh-CN" hreflang="zh-CN">中文主页</a>
+    </nav>
+    <nav class="standalone-actions not-found-catalogues" aria-label="Project archives / 项目目录">
+      <a class="inline-link" href="https://velliot-cd.github.io/projects/index.html" lang="en" hreflang="en">All projects</a>
+      <a class="inline-link" href="https://velliot-cd.github.io/projects/index.zh.html" lang="zh-CN" hreflang="zh-CN">全部项目</a>
     </nav>
   </main>
-  <footer class="site-footer"><div class="shell footer-inner"><p>刘力滔 · 学术与工程项目</p><a class="inline-link" href="mailto:litaoliu_2026@163.com">litaoliu_2026@163.com</a></div></footer>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · <span lang="zh-CN">刘力滔</span></p><a class="inline-link" href="mailto:litaoliu_2026@163.com">litaoliu_2026@163.com</a></div></footer>
 </body>
 </html>

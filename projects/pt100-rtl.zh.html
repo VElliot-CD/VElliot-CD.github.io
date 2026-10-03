@@ -30,7 +30,7 @@
   --surface: #fffdf8;
   --ink: #17322f;
   --ink-soft: #526663;
-  --accent: #b04f30;
+  --accent: #a4482b;
   --accent-soft: #f1d8cb;
   --line: #d9d4c8;
   --shadow: 0 24px 60px rgba(25, 45, 42, 0.12);
@@ -697,6 +697,44 @@ html:not(.js-ready) .requires-js,
   min-width: 0;
 }
 
+.related-projects {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.related-projects > h2 {
+  margin: 0 0 20px;
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.related-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.related-project-card {
+  display: block;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.related-project-card:hover { border-color: var(--accent); }
+.related-project-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.related-project-card h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1.3; }
+.related-project-card p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+
+.not-found-page { max-width: 820px; padding-block: 48px 80px; }
+.not-found-code { margin: 0; color: var(--accent); font-size: 16px; font-weight: 750; letter-spacing: 0.15em; }
+.not-found-page h1 { margin: 16px 0 24px; font-family: var(--serif); font-size: clamp(36px, 7vw, 64px); font-weight: 500; line-height: 1.15; }
+.not-found-copy { max-width: 650px; color: var(--ink-soft); }
+.not-found-actions, .not-found-catalogues { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }
+
 .filter-button:hover,
 .filter-button:focus-visible,
 .project-detail-button:hover,
@@ -1103,7 +1141,7 @@ html:not(.js-ready) .requires-js,
 }
 
 .contact-inner .section-kicker {
-  color: var(--accent);
+  color: var(--paper);
 }
 
 .contact-actions {
@@ -1311,14 +1349,16 @@ html:not(.js-ready) .requires-js,
 }
 
 .js-ready .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 650ms ease, transform 650ms ease;
+  opacity: 1;
 }
 
 .js-ready .reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  animation: enter-view 350ms ease both;
+}
+
+@keyframes enter-view {
+  from { opacity: 0.8; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1329,6 +1369,7 @@ html:not(.js-ready) .requires-js,
   .js-ready .reveal {
     opacity: 1;
     transform: none;
+    animation: none;
   }
 
   *,
@@ -1464,7 +1505,8 @@ html:not(.js-ready) .requires-js,
 
   .project-grid,
   .experience-grid,
-  .contact-inner {
+  .contact-inner,
+  .related-project-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1503,6 +1545,16 @@ html:not(.js-ready) .requires-js,
     font-size: clamp(48px, 17vw, 72px);
   }
 
+  .hero {
+    padding-block: 52px 64px;
+    gap: 48px;
+  }
+
+  .portrait-wrap { width: min(76%, 260px); }
+  .research-card { min-height: 0; }
+  .research-card h3 { margin-top: 28px; }
+  .section-heading { margin-bottom: 36px; }
+
   .hero-actions .button,
   .contact-actions .button {
     width: 100%;
@@ -1513,11 +1565,11 @@ html:not(.js-ready) .requires-js,
   }
 
   .section {
-    padding-block: 88px;
+    padding-block: 64px;
   }
 
   .news-section {
-    padding-block: 80px 88px;
+    padding-block: 64px;
   }
 
   .news-item {
@@ -1537,20 +1589,20 @@ html:not(.js-ready) .requires-js,
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .stat,
   .stat:first-child,
   .stat:nth-child(3) {
-    padding: 22px 0;
+    padding: 20px 12px;
     border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .stat:last-child {
     border-bottom: 0;
   }
+
+  .stat:nth-child(odd) { padding-left: 0; border-right: 1px solid var(--line); }
+  .stat:nth-child(even) { padding-left: 18px; }
+  .stat:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
 
   .project-grid {
     grid-template-columns: 1fr;
@@ -1638,8 +1690,8 @@ html:not(.js-ready) .requires-js,
   .portrait-wrap, .project-filters, .project-grid-footer,
   .project-detail-button, .copy-button, .copy-result,
   .contact-actions, .modal-toolbar, .modal-evidence-open,
-  #back-to-top, .no-js-only { display: none !important; }
-  .js-ready .reveal { opacity: 1; transform: none; }
+  #back-to-top, .no-js-only, .related-projects { display: none !important; }
+  .js-ready .reveal { opacity: 1; transform: none; animation: none; }
   .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
   .hero, .research-grid, .project-grid, .experience-grid,
   .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
@@ -1687,7 +1739,7 @@ html:not(.js-ready) .requires-js,
       <div class="modal-meta">2026.04 — 06 · 两人数字子组 · 六人系统团队</div>
       <h1 id="modal-title">PT100 测温系统的 VHDL 数字后端</h1>
       <p class="modal-summary" id="modal-summary">在六人混合信号系统团队中，与一名同学共同开发测温系统的数字后端，完成模块划分、RTL 集成和仿真验证。</p>
-      <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/pt100-rtl-verification.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/pt100-rtl-verification.png" alt="PT100 温度传感器 IC 的 RTL 模块与测试结果"><span class="modal-evidence-open">打开原图 <span aria-hidden="true">↗</span></span></a><figcaption>报告节选：数字后端模块划分、测试输入与仿真波形分析。</figcaption></figure>
+      <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/pt100-rtl-verification.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/pt100-rtl-verification.png" alt="PT100 温度传感器 IC 的 RTL 模块与测试结果" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">打开原图 <span aria-hidden="true">↗</span></span></a><figcaption>报告节选：数字后端模块划分、测试输入与仿真波形分析。</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
           <h2>项目背景</h2>
@@ -1708,6 +1760,19 @@ html:not(.js-ready) .requires-js,
       </div>
       <div class="tag-list modal-tags"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span><span class="tag">Mixed-signal</span></div>
 
+<nav class="related-projects" aria-labelledby="related-projects-title">
+      <h2 id="related-projects-title">相关项目</h2>
+      <div class="related-project-grid">
+        <a class="related-project-card" href="projects/vlsi-cmos.zh.html">
+          <h3>CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</h3>
+          <p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p>
+        </a>
+        <a class="related-project-card" href="projects/riscv-int8.zh.html">
+          <h3>双读端口 RISC-V 的融合 INT8 点积累加扩展</h3>
+          <p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p>
+        </a>
+      </div>
+    </nav>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>刘力滔 · 学术与工程项目</p><a class="inline-link" href="mailto:litaoliu_2026@163.com">litaoliu_2026@163.com</a></div></footer>
 </body>
