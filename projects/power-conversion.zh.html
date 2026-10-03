@@ -643,7 +643,6 @@ img {
   overscroll-behavior: contain;
 }
 
-.share-status,
 .project-grid-footer p {
   color: var(--ink-soft);
   font-size: 13px;
@@ -901,6 +900,85 @@ html:not(.js-ready) .requires-js,
 .publication-links {
   align-content: start;
   justify-content: flex-end;
+  align-items: center;
+  max-width: 170px;
+  gap: 12px;
+}
+
+.publication-link[download]::after {
+  content: " ↓";
+}
+
+.copy-button {
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.copy-button:focus-visible,
+.text-button:focus-visible,
+.quick-facts a:focus-visible,
+.contact-email a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.copy-result {
+  margin-top: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.copy-result:empty {
+  display: none;
+}
+
+.copy-result label {
+  display: grid;
+  gap: 8px;
+}
+
+.copy-result textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-height: 160px;
+  resize: vertical;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.modal-copy-result {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.modal-copy-result textarea {
+  max-height: 80px;
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .experience-grid {
@@ -1046,6 +1124,23 @@ html:not(.js-ready) .requires-js,
   color: var(--paper);
 }
 
+.contact-email {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-inner > div {
+  min-width: 0;
+}
+
+#email-copy-status { text-align: right; }
+
 .site-footer {
   background: var(--ink);
   color: color-mix(in srgb, var(--paper) 65%, transparent);
@@ -1164,7 +1259,8 @@ html:not(.js-ready) .requires-js,
   background: color-mix(in srgb, var(--paper) 48%, var(--surface));
 }
 
-.modal-detail-grid h3 {
+.modal-detail-grid h3,
+.standalone-project .modal-detail-grid h2 {
   margin: 0 0 12px;
   font-family: var(--serif);
   font-size: 22px;
@@ -1282,6 +1378,10 @@ html:not(.js-ready) .requires-js,
     border-radius: 18px;
     background: var(--surface);
     box-shadow: var(--shadow);
+    max-height: calc(100vh - 84px);
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .site-nav.is-open {
@@ -1303,6 +1403,8 @@ html:not(.js-ready) .requires-js,
     border: 0;
     background: none;
     box-shadow: none;
+    max-height: none;
+    overflow: visible;
   }
 
   .site-nav a {
@@ -1376,9 +1478,12 @@ html:not(.js-ready) .requires-js,
     margin-top: -8px;
   }
 
-  .contact-actions {
+  .contact-actions,
+  .contact-email {
     justify-content: flex-start;
   }
+
+  #email-copy-status { text-align: left; }
 }
 
 @media (max-width: 560px) {
@@ -1483,15 +1588,6 @@ html:not(.js-ready) .requires-js,
     gap: 8px;
   }
 
-  .share-status {
-    order: 3;
-    flex-basis: 100%;
-  }
-
-  .share-status:empty {
-    display: none;
-  }
-
   .modal-meta {
     max-width: none;
   }
@@ -1504,6 +1600,7 @@ html:not(.js-ready) .requires-js,
     padding-left: 54px;
     grid-column: 1 / -1;
     justify-content: flex-start;
+    max-width: none;
   }
 
   .experience-grid {
@@ -1519,13 +1616,67 @@ html:not(.js-ready) .requires-js,
   }
 }
 
+@media print {
+  @page { margin: 15mm; }
+
+  html, html[data-theme="dark"] { color-scheme: light; background: #fff; }
+
+  :root,
+  html[data-theme="dark"] {
+    --paper: #fff;
+    --paper-deep: #fff;
+    --surface: #fff;
+    --ink: #111;
+    --ink-soft: #333;
+    --accent: #333;
+    --line: #ccc;
+  }
+
+  body { overflow: visible; font-size: 10pt; line-height: 1.45; }
+  .shell, .standalone-project { width: 100%; margin: 0; }
+  .site-header, .standalone-header, .skip-link, .hero-actions,
+  .portrait-wrap, .project-filters, .project-grid-footer,
+  .project-detail-button, .copy-button, .copy-result,
+  .contact-actions, .modal-toolbar, .modal-evidence-open,
+  #back-to-top, .no-js-only { display: none !important; }
+  .js-ready .reveal { opacity: 1; transform: none; }
+  .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
+  .hero, .research-grid, .project-grid, .experience-grid,
+  .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
+  .hero h1, .standalone-project h1, .project-modal h2 { margin-top: 0; font-size: 24pt; }
+  .section-heading { margin-bottom: 16pt; }
+  .section-heading h2 { font-size: 20pt; }
+  .hero-role, .hero-summary { font-size: 11pt; }
+  .project-card, .research-card, .timeline-item, .award-item,
+  .publication-item, .modal-detail-grid section, .skill-group {
+    min-height: 0; break-inside: avoid; margin: 12pt 0; padding: 12pt;
+    box-shadow: none;
+  }
+  .project-card::after { display: none; }
+  .project-card h3, .standalone-catalogue .project-card h2 { margin-top: 8pt; font-size: 16pt; }
+  .modal-detail-grid h3, .standalone-project .modal-detail-grid h2 { font-size: 16pt; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  .modal-evidence { break-inside: avoid; }
+  .modal-evidence img { height: auto; max-height: 70mm; object-fit: contain; }
+  .contact-section, .site-footer { background: #fff; color: #111; }
+  .footer-inner a { color: #111; }
+  .contact-inner p { color: #333; }
+  .modal-backdrop { display: none; }
+  body.modal-open > main, body.modal-open > .site-footer { display: none; }
+  body.modal-open .modal-backdrop:not(.is-hidden) {
+    display: block; position: static; padding: 0; background: none; backdrop-filter: none;
+  }
+  .project-modal { width: 100%; max-height: none; overflow: visible; border: 0; border-radius: 0; box-shadow: none; }
+  #modal-content { padding: 0; overflow: visible; }
+}
+
 </style>
 </head>
 <body>
   <a class="skip-link" href="projects/power-conversion.zh.html#main-content">跳到主要内容</a>
   <header class="standalone-header shell">
     <nav class="standalone-actions" aria-label="页面导航">
-      <a class="inline-link" href="./?lang=zh#projects">← 返回主页</a>
+      <a class="inline-link" href="zh.html#projects">← 返回主页</a>
       <a class="inline-link" href="projects/index.zh.html">全部项目</a>
       <a class="inline-link" href="projects/power-conversion.html" lang="en" hreflang="en">English</a>
       <a class="inline-link" href="assets/Litao_Liu_Academic_CV.pdf">简历（PDF）</a>
@@ -1539,19 +1690,19 @@ html:not(.js-ready) .requires-js,
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/boost-bench-results.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/boost-bench-results.png" alt="Boost 变换器的万用表与示波器实测结果"><span class="modal-evidence-open">打开原图 <span aria-hidden="true">↗</span></span></a><figcaption>报告节选：10 V / 20 V 升压输出与纹波实测。</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
-          <h3>项目背景</h3>
+          <h2>项目背景</h2>
           <p>这组实验展示了从电路仿真到台架测量的功率电子基础能力，重点是用波形、纹波、频谱和 THD 数据解释电路行为。</p>
         </section>
         <section>
-          <h3>我的贡献</h3>
+          <h2>我的贡献</h2>
           <ul><li>独立完成四组连续实验的数据采集、波形分析、仿真对比和实验报告整理。</li><li>对 Boost 升压、滤波电容、PWM 调制和全桥逆变器频谱进行定量分析。</li></ul>
         </section>
         <section>
-          <h3>方法与工具</h3>
+          <h2>方法与工具</h2>
           <ul><li>LTspice 仿真与实验台架测试结合</li><li>使用示波器、数字万用表和波形/频谱分析方法</li><li>比较方波、双极性 PWM、单极性 PWM 与不同滤波电容条件</li></ul>
         </section>
         <section>
-          <h3>结果证据</h3>
+          <h2>结果证据</h2>
           <ul><li>Boost 电路将 5 V 升至 10.0 V 和 20.0 V，纹波约 70 mV 和 72 mV。</li><li>滤波电容从 2.2 mF 增至 6.9 mF 后，实测纹波从 1.40 V 降至 0.74 V。</li><li>完成逆变器傅里叶和 THD 分析，用频谱结果比较调制方式。</li></ul>
         </section>
       </div>

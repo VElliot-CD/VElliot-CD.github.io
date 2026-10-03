@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://velliot-cd.github.io/</loc></url>
+  <url><loc>https://velliot-cd.github.io/zh.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/index.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/riscv-int8.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/vlsi-cmos.html</loc></url>

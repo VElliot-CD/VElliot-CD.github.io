@@ -643,7 +643,6 @@ img {
   overscroll-behavior: contain;
 }
 
-.share-status,
 .project-grid-footer p {
   color: var(--ink-soft);
   font-size: 13px;
@@ -901,6 +900,85 @@ html:not(.js-ready) .requires-js,
 .publication-links {
   align-content: start;
   justify-content: flex-end;
+  align-items: center;
+  max-width: 170px;
+  gap: 12px;
+}
+
+.publication-link[download]::after {
+  content: " ↓";
+}
+
+.copy-button {
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.copy-button:focus-visible,
+.text-button:focus-visible,
+.quick-facts a:focus-visible,
+.contact-email a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.copy-result {
+  margin-top: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.copy-result:empty {
+  display: none;
+}
+
+.copy-result label {
+  display: grid;
+  gap: 8px;
+}
+
+.copy-result textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-height: 160px;
+  resize: vertical;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.modal-copy-result {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.modal-copy-result textarea {
+  max-height: 80px;
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .experience-grid {
@@ -1046,6 +1124,23 @@ html:not(.js-ready) .requires-js,
   color: var(--paper);
 }
 
+.contact-email {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-inner > div {
+  min-width: 0;
+}
+
+#email-copy-status { text-align: right; }
+
 .site-footer {
   background: var(--ink);
   color: color-mix(in srgb, var(--paper) 65%, transparent);
@@ -1164,7 +1259,8 @@ html:not(.js-ready) .requires-js,
   background: color-mix(in srgb, var(--paper) 48%, var(--surface));
 }
 
-.modal-detail-grid h3 {
+.modal-detail-grid h3,
+.standalone-project .modal-detail-grid h2 {
   margin: 0 0 12px;
   font-family: var(--serif);
   font-size: 22px;
@@ -1282,6 +1378,10 @@ html:not(.js-ready) .requires-js,
     border-radius: 18px;
     background: var(--surface);
     box-shadow: var(--shadow);
+    max-height: calc(100vh - 84px);
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .site-nav.is-open {
@@ -1303,6 +1403,8 @@ html:not(.js-ready) .requires-js,
     border: 0;
     background: none;
     box-shadow: none;
+    max-height: none;
+    overflow: visible;
   }
 
   .site-nav a {
@@ -1376,9 +1478,12 @@ html:not(.js-ready) .requires-js,
     margin-top: -8px;
   }
 
-  .contact-actions {
+  .contact-actions,
+  .contact-email {
     justify-content: flex-start;
   }
+
+  #email-copy-status { text-align: left; }
 }
 
 @media (max-width: 560px) {
@@ -1483,15 +1588,6 @@ html:not(.js-ready) .requires-js,
     gap: 8px;
   }
 
-  .share-status {
-    order: 3;
-    flex-basis: 100%;
-  }
-
-  .share-status:empty {
-    display: none;
-  }
-
   .modal-meta {
     max-width: none;
   }
@@ -1504,6 +1600,7 @@ html:not(.js-ready) .requires-js,
     padding-left: 54px;
     grid-column: 1 / -1;
     justify-content: flex-start;
+    max-width: none;
   }
 
   .experience-grid {
@@ -1519,13 +1616,67 @@ html:not(.js-ready) .requires-js,
   }
 }
 
+@media print {
+  @page { margin: 15mm; }
+
+  html, html[data-theme="dark"] { color-scheme: light; background: #fff; }
+
+  :root,
+  html[data-theme="dark"] {
+    --paper: #fff;
+    --paper-deep: #fff;
+    --surface: #fff;
+    --ink: #111;
+    --ink-soft: #333;
+    --accent: #333;
+    --line: #ccc;
+  }
+
+  body { overflow: visible; font-size: 10pt; line-height: 1.45; }
+  .shell, .standalone-project { width: 100%; margin: 0; }
+  .site-header, .standalone-header, .skip-link, .hero-actions,
+  .portrait-wrap, .project-filters, .project-grid-footer,
+  .project-detail-button, .copy-button, .copy-result,
+  .contact-actions, .modal-toolbar, .modal-evidence-open,
+  #back-to-top, .no-js-only { display: none !important; }
+  .js-ready .reveal { opacity: 1; transform: none; }
+  .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
+  .hero, .research-grid, .project-grid, .experience-grid,
+  .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
+  .hero h1, .standalone-project h1, .project-modal h2 { margin-top: 0; font-size: 24pt; }
+  .section-heading { margin-bottom: 16pt; }
+  .section-heading h2 { font-size: 20pt; }
+  .hero-role, .hero-summary { font-size: 11pt; }
+  .project-card, .research-card, .timeline-item, .award-item,
+  .publication-item, .modal-detail-grid section, .skill-group {
+    min-height: 0; break-inside: avoid; margin: 12pt 0; padding: 12pt;
+    box-shadow: none;
+  }
+  .project-card::after { display: none; }
+  .project-card h3, .standalone-catalogue .project-card h2 { margin-top: 8pt; font-size: 16pt; }
+  .modal-detail-grid h3, .standalone-project .modal-detail-grid h2 { font-size: 16pt; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  .modal-evidence { break-inside: avoid; }
+  .modal-evidence img { height: auto; max-height: 70mm; object-fit: contain; }
+  .contact-section, .site-footer { background: #fff; color: #111; }
+  .footer-inner a { color: #111; }
+  .contact-inner p { color: #333; }
+  .modal-backdrop { display: none; }
+  body.modal-open > main, body.modal-open > .site-footer { display: none; }
+  body.modal-open .modal-backdrop:not(.is-hidden) {
+    display: block; position: static; padding: 0; background: none; backdrop-filter: none;
+  }
+  .project-modal { width: 100%; max-height: none; overflow: visible; border: 0; border-radius: 0; box-shadow: none; }
+  #modal-content { padding: 0; overflow: visible; }
+}
+
 </style>
 </head>
 <body>
   <a class="skip-link" href="projects/vlsi-cmos.zh.html#main-content">跳到主要内容</a>
   <header class="standalone-header shell">
     <nav class="standalone-actions" aria-label="页面导航">
-      <a class="inline-link" href="./?lang=zh#projects">← 返回主页</a>
+      <a class="inline-link" href="zh.html#projects">← 返回主页</a>
       <a class="inline-link" href="projects/index.zh.html">全部项目</a>
       <a class="inline-link" href="projects/vlsi-cmos.html" lang="en" hreflang="en">English</a>
       <a class="inline-link" href="assets/Litao_Liu_Academic_CV.pdf">简历（PDF）</a>
@@ -1539,19 +1690,19 @@ html:not(.js-ready) .requires-js,
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/vlsi-fulladder-layout.jpg" target="_blank" rel="noreferrer"><img src="assets/project-evidence/vlsi-fulladder-layout.jpg" alt="Electric 中的 28 晶体管 CMOS 全加器版图，标注信号端口与晶体管编号"><span class="modal-evidence-open">打开原图 <span aria-hidden="true">↗</span></span></a><figcaption>VLSI Lab 2 报告图 2：全加器版图；物理层边界为 206 × 84 λ，λ = 0.3 μm。</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
-          <h3>项目背景</h3>
+          <h2>项目背景</h2>
           <p>两次 VLSI 课程实验从基本逻辑门推进到完整 CMOS 全加器。依据课程给定电路完成晶体管级原理图、版图与验证，分别检查几何规则、电气连接、原理图—版图一致性和给定输入序列下的逻辑功能。</p>
         </section>
         <section>
-          <h3>我的贡献</h3>
+          <h2>我的贡献</h2>
           <ul><li>实现 NOR2 与 NOR2 + INV 层次化 OR2，并完成 28 晶体管全加器的平坦原理图与版图。</li><li>通过共享扩散区、交错栅极接触和 Metal 1 / Metal 2 布线组织全加器版图，同时保留进位引脚向外连接空间和 5 条备用布线通道。</li><li>对保存并重新载入的全加器单元运行验证，核对 IRSIM 输出；另为 OR2 编写并运行 SystemVerilog 行为级自检 testbench。</li></ul>
         </section>
         <section>
-          <h3>方法与工具</h3>
+          <h2>方法与工具</h2>
           <ul><li>Electric 9.07 / mocmos；λ = 0.3 μm，绘制栅长 L = 2 λ = 0.6 μm。</li><li>DRC、well ERC、antenna ERC（全加器）与包含晶体管 W/L 的 NCC 检查。</li><li>Electric IRSIM 使用 RC 模型与 scmos0.3.prm 仿真版图提取网表；OR2 行为级模型在 Vivado xsim 2022.2 中单独验证。</li></ul>
         </section>
         <section>
-          <h3>结果证据</h3>
+          <h2>结果证据</h2>
           <ul><li>全加器含 14 个 pMOS 和 14 个 nMOS；物理层边界为 206 × 84 λ（17,304 λ² / 1,557.36 μm²），与包含额外边界的 Electric Cell bounds 区分记录。</li><li>全加器 DRC、well ERC 和 antenna ERC 均为 0 errors / 0 warnings；NCC 确认端口、拓扑与全部 28 个晶体管的精确 W/L 匹配。</li><li>全加器在 16 次采样中全部通过，覆盖全部 8 组输入；OR2 在 13 次采样中全部通过，覆盖 4 组输入及 12 种有向状态转移。</li><li>上述结果来自课程实验中的仿真与检查，未进行芯片流片或实测。全加器尚未完成传播延迟、功耗与噪声裕量表征；OR2 的 RC 延迟估计存在提取警告，因此不作为实测性能指标。</li></ul>
         </section>
       </div>

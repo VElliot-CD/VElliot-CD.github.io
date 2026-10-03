@@ -643,7 +643,6 @@ img {
   overscroll-behavior: contain;
 }
 
-.share-status,
 .project-grid-footer p {
   color: var(--ink-soft);
   font-size: 13px;
@@ -901,6 +900,85 @@ html:not(.js-ready) .requires-js,
 .publication-links {
   align-content: start;
   justify-content: flex-end;
+  align-items: center;
+  max-width: 170px;
+  gap: 12px;
+}
+
+.publication-link[download]::after {
+  content: " ↓";
+}
+
+.copy-button {
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.copy-button:focus-visible,
+.text-button:focus-visible,
+.quick-facts a:focus-visible,
+.contact-email a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.copy-result {
+  margin-top: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.copy-result:empty {
+  display: none;
+}
+
+.copy-result label {
+  display: grid;
+  gap: 8px;
+}
+
+.copy-result textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-height: 160px;
+  resize: vertical;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.modal-copy-result {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.modal-copy-result textarea {
+  max-height: 80px;
+}
+
+.news-link {
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .experience-grid {
@@ -1046,6 +1124,23 @@ html:not(.js-ready) .requires-js,
   color: var(--paper);
 }
 
+.contact-email {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-inner > div {
+  min-width: 0;
+}
+
+#email-copy-status { text-align: right; }
+
 .site-footer {
   background: var(--ink);
   color: color-mix(in srgb, var(--paper) 65%, transparent);
@@ -1164,7 +1259,8 @@ html:not(.js-ready) .requires-js,
   background: color-mix(in srgb, var(--paper) 48%, var(--surface));
 }
 
-.modal-detail-grid h3 {
+.modal-detail-grid h3,
+.standalone-project .modal-detail-grid h2 {
   margin: 0 0 12px;
   font-family: var(--serif);
   font-size: 22px;
@@ -1282,6 +1378,10 @@ html:not(.js-ready) .requires-js,
     border-radius: 18px;
     background: var(--surface);
     box-shadow: var(--shadow);
+    max-height: calc(100vh - 84px);
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .site-nav.is-open {
@@ -1303,6 +1403,8 @@ html:not(.js-ready) .requires-js,
     border: 0;
     background: none;
     box-shadow: none;
+    max-height: none;
+    overflow: visible;
   }
 
   .site-nav a {
@@ -1376,9 +1478,12 @@ html:not(.js-ready) .requires-js,
     margin-top: -8px;
   }
 
-  .contact-actions {
+  .contact-actions,
+  .contact-email {
     justify-content: flex-start;
   }
+
+  #email-copy-status { text-align: left; }
 }
 
 @media (max-width: 560px) {
@@ -1483,15 +1588,6 @@ html:not(.js-ready) .requires-js,
     gap: 8px;
   }
 
-  .share-status {
-    order: 3;
-    flex-basis: 100%;
-  }
-
-  .share-status:empty {
-    display: none;
-  }
-
   .modal-meta {
     max-width: none;
   }
@@ -1504,6 +1600,7 @@ html:not(.js-ready) .requires-js,
     padding-left: 54px;
     grid-column: 1 / -1;
     justify-content: flex-start;
+    max-width: none;
   }
 
   .experience-grid {
@@ -1519,6 +1616,60 @@ html:not(.js-ready) .requires-js,
   }
 }
 
+@media print {
+  @page { margin: 15mm; }
+
+  html, html[data-theme="dark"] { color-scheme: light; background: #fff; }
+
+  :root,
+  html[data-theme="dark"] {
+    --paper: #fff;
+    --paper-deep: #fff;
+    --surface: #fff;
+    --ink: #111;
+    --ink-soft: #333;
+    --accent: #333;
+    --line: #ccc;
+  }
+
+  body { overflow: visible; font-size: 10pt; line-height: 1.45; }
+  .shell, .standalone-project { width: 100%; margin: 0; }
+  .site-header, .standalone-header, .skip-link, .hero-actions,
+  .portrait-wrap, .project-filters, .project-grid-footer,
+  .project-detail-button, .copy-button, .copy-result,
+  .contact-actions, .modal-toolbar, .modal-evidence-open,
+  #back-to-top, .no-js-only { display: none !important; }
+  .js-ready .reveal { opacity: 1; transform: none; }
+  .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
+  .hero, .research-grid, .project-grid, .experience-grid,
+  .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
+  .hero h1, .standalone-project h1, .project-modal h2 { margin-top: 0; font-size: 24pt; }
+  .section-heading { margin-bottom: 16pt; }
+  .section-heading h2 { font-size: 20pt; }
+  .hero-role, .hero-summary { font-size: 11pt; }
+  .project-card, .research-card, .timeline-item, .award-item,
+  .publication-item, .modal-detail-grid section, .skill-group {
+    min-height: 0; break-inside: avoid; margin: 12pt 0; padding: 12pt;
+    box-shadow: none;
+  }
+  .project-card::after { display: none; }
+  .project-card h3, .standalone-catalogue .project-card h2 { margin-top: 8pt; font-size: 16pt; }
+  .modal-detail-grid h3, .standalone-project .modal-detail-grid h2 { font-size: 16pt; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  .modal-evidence { break-inside: avoid; }
+  .modal-evidence img { height: auto; max-height: 70mm; object-fit: contain; }
+  .contact-section, .site-footer { background: #fff; color: #111; }
+  .footer-inner a { color: #111; }
+  .contact-inner p { color: #333; }
+  .modal-backdrop { display: none; }
+  body.modal-open > main, body.modal-open > .site-footer { display: none; }
+  body.modal-open .modal-backdrop:not(.is-hidden) {
+    display: block; position: static; padding: 0; background: none; backdrop-filter: none;
+  }
+  .project-modal { width: 100%; max-height: none; overflow: visible; border: 0; border-radius: 0; box-shadow: none; }
+  #modal-content { padding: 0; overflow: visible; }
+}
+
 </style>
 </head>
 <body>
@@ -1532,7 +1683,7 @@ html:not(.js-ready) .requires-js,
     </nav>
   </header>
   <main id="main-content" class="shell standalone-project standalone-catalogue">
-    <header class="section-heading"><p class="section-kicker">Project archive</p><h1>All projects</h1><p>Four selected projects in processor design, analog ICs, VLSI cells and RTL verification. Browse all projects or filter by topic to explore further.</p></header>
+    <header class="section-heading"><p class="section-kicker">Project archive</p><h1>All projects</h1><p>Browse all 9 academic and engineering projects. Open a project for methods, personal contributions, and supporting evidence.</p></header>
 <div class="project-grid"><article class="project-card"><div class="project-meta"><span>Jul 2026 — Present</span><span>·</span><span>Undergraduate thesis · RTL design and verification</span></div><h2>Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</h2><p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p><ul class="project-highlights"><li>10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz</li><li>INT32 accumulators and INT8 outputs matched reference results across ten images</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.html">View details <span class="sr-only">— Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</span></a></div></article><article class="project-card"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h2>CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</h2><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h2>Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h2><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html">View details <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>Individual coursework extension · Schematic simulation</span></div><h2>Supply rejection in a two-stage CMOS amplifier</h2><p>Studied supply-disturbance coupling in a Miller-compensated SMIC18MMRF two-stage amplifier.</p><ul class="project-highlights"><li>85.96 dB low-frequency gain in nominal schematic simulation</li><li>−79.54 dB supply-to-output transfer under the report’s convention</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.html">View details <span class="sr-only">— Supply rejection in a two-stage CMOS amplifier</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h2>VHDL digital backend for PT100 temperature measurement</h2><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article><article class="project-card"><div class="project-meta"><span>Dec 2023 — Dec 2024</span><span>·</span><span>Team project · Exploratory device simulation</span></div><h2>Exploratory graphene FET modeling for biosensing</h2><p>Explored GFET biosensing through literature review and two- and three-dimensional Silvaco device models.</p><ul class="project-highlights"><li>Bias sweeps examined output, transfer and electric-field characteristics</li><li>Contributed modeling results and limitations to a 13-page team report</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Silvaco</span><span class="tag">TCAD</span><span class="tag">GFET</span></div><a class="project-detail-button" href="projects/gfet-device.html">View details <span class="sr-only">— Exploratory graphene FET modeling for biosensing</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — Jun 2026</span><span>·</span><span>Team · Hardware subsystem lead</span></div><h2>Autonomous Path-Following Vehicle with 24 GHz Radar</h2><p>Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.</p><ul class="project-highlights"><li>Built and integrated the STM32-based PCB, radar, IR array and motor drivers</li><li>Helped resolve leftward drift; core functions completed within the RMB 2,500 budget</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.html">View details <span class="sr-only">— Autonomous Path-Following Vehicle with 24 GHz Radar</span></a></div></article><article class="project-card"><div class="project-meta"><span>May — Jul 2026</span><span>·</span><span>Three-member team · Motion programming &amp; synchronization</span></div><h2>Synchronized performance by two 18-DOF hexapods</h2><p>Programmed and debugged coordinated motion sequences for two 18-DOF Libot hexapods.</p><ul class="project-highlights"><li>Completed a 3 min 12 s synchronized team performance</li><li>Team Second Prize at the National Finals and Sichuan Regional Competition</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.html">View details <span class="sr-only">— Synchronized performance by two 18-DOF hexapods</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — May 2026</span><span>·</span><span>Individual · Simulation and bench testing</span></div><h2>Power Conversion &amp; Control Laboratory Portfolio</h2><p>Investigated PWM, rectification, boost conversion and inverter modulation through simulation and bench experiments.</p><ul class="project-highlights"><li>Measured boost outputs of 10.0 V and 20.0 V from a 5 V supply</li><li>Larger filter capacitance reduced measured ripple from 1.40 V to 0.74 V</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">LTspice</span><span class="tag">PWM</span><span class="tag">DC–DC</span></div><a class="project-detail-button" href="projects/power-conversion.html">View details <span class="sr-only">— Power Conversion &amp; Control Laboratory Portfolio</span></a></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="mailto:litaoliu_2026@163.com">litaoliu_2026@163.com</a></div></footer>
