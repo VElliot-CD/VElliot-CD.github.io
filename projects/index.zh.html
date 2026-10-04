@@ -1985,6 +1985,76 @@ html:not(.js-ready) .requires-js,
   .modal-evidence-media img { width: auto; height: auto; max-height: 70mm; }
 }
 
+.research-card { display: flex; flex-direction: column; }
+.research-project-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: auto; padding-top: 20px; }
+.research-project-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.research-project-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+#focus-panel-action { margin-top: 18px; }
+.project-evidence-summary { margin-top: 20px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-deep); }
+.evidence-labels { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 0; list-style: none; }
+.evidence-labels li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 12px; font-weight: 650; line-height: 1.5; }
+.project-evidence-summary .evidence-note { margin: 10px 0 0; color: var(--ink-soft); font-size: 13px; line-height: 1.65; }
+.project-evidence-summary.is-compact { margin-top: 14px; padding: 0; border: 0; background: none; }
+.category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
+.category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
+.category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+@media print {
+  .research-project-links, #focus-panel-action, .category-links { display: none; }
+  .project-evidence-summary { break-inside: avoid; background: none; }
+}
+
+.site-nav a.is-current-section {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+.current-section-indicator { display: none; }
+
+@media (max-width: 900px) {
+  .wordmark.section-navigation-ready {
+    display: grid;
+    min-width: 0;
+    column-gap: 10px;
+    row-gap: 3px;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .section-navigation-ready .wordmark-mark { grid-row: 1 / 3; }
+  .section-navigation-ready #wordmark { grid-column: 2; }
+
+  .current-section-indicator {
+    display: block;
+    overflow: hidden;
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-nav a.is-current-section {
+    border-radius: 8px;
+    background: var(--paper-deep);
+  }
+}
+
+@media (max-width: 560px) {
+  .wordmark.section-navigation-ready { grid-template-columns: minmax(0, 1fr); }
+  .section-navigation-ready #wordmark,
+  .current-section-indicator { grid-column: 1; }
+}
+
+@media print {
+  .current-section-indicator { display: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -2000,7 +2070,8 @@ html:not(.js-ready) .requires-js,
   </header>
   <main id="main-content" class="shell standalone-project standalone-catalogue">
     <header class="section-heading"><p class="section-kicker">项目档案</p><h1>全部项目</h1><p>浏览全部 9 个学术与工程项目。项目详情包含方法、个人贡献与支持证据。</p></header>
-<div class="project-grid"><article class="project-card"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h2>RISC-V INT8 点积累加扩展</h2><p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html">查看详情 <span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h2>两级 CMOS 运算放大器</h2><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>个人课程拓展 · 原理图仿真</span></div><h2>CMOS 运放供电抑制研究</h2><p>研究 SMIC18MMRF 两级运放在米勒补偿下的供电扰动耦合。</p><ul class="project-highlights"><li>标称原理图仿真低频增益 85.96 dB</li><li>按报告约定，供电到输出传递为 −79.54 dB</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运放的供电抑制研究</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article><article class="project-card"><div class="project-meta"><span>2023.12 — 2024.12</span><span>·</span><span>团队项目 · 探索性器件仿真</span></div><h2>石墨烯 FET 生物传感探索</h2><p>结合文献研究与 Silvaco 二维、三维器件建模，探索 GFET 生物传感。</p><ul class="project-highlights"><li>通过偏置扫描分析输出、转移特性及电场分布</li><li>为 13 页团队报告贡献建模结果与模型限制分析</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Silvaco</span><span class="tag">TCAD</span><span class="tag">GFET</span></div><a class="project-detail-button" href="projects/gfet-device.zh.html">查看详情 <span class="sr-only">— 面向生物传感的石墨烯 FET 器件探索</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 06</span><span>·</span><span>小组项目 · 硬件子系统负责人</span></div><h2>雷达辅助循迹智能车</h2><p>负责循迹智能车的硬件开发，集成雷达避障与 LoRa 通信。</p><ul class="project-highlights"><li>完成 STM32 PCB、电路装配及雷达、红外阵列和电机驱动集成</li><li>协助修正车辆左偏，核心功能在 2500 元预算内完成</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.zh.html">查看详情 <span class="sr-only">— 24 GHz 雷达辅助的自主循迹智能车</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.05 — 07</span><span>·</span><span>三人团队 · 动作编程与同步</span></div><h2>六足机器人同步表演</h2><p>参与两台 18 自由度 Libot 六足机器人的同步动作编程与调试。</p><ul class="project-highlights"><li>团队完成 3 分 12 秒同步表演</li><li>团队获国赛与四川赛区二等奖</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.zh.html">查看详情 <span class="sr-only">— 双 18 自由度六足机器人的同步表演</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 05</span><span>·</span><span>个人实验 · 仿真与硬件测试</span></div><h2>功率变换与控制</h2><p>通过仿真与台架实验研究 PWM、整流滤波、Boost 变换及逆变调制。</p><ul class="project-highlights"><li>5 V 输入下实测 Boost 输出 10.0 V 与 20.0 V</li><li>增大滤波电容后，实测纹波由 1.40 V 降至 0.74 V</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">LTspice</span><span class="tag">PWM</span><span class="tag">DC–DC</span></div><a class="project-detail-button" href="projects/power-conversion.zh.html">查看详情 <span class="sr-only">— 功率变换与控制实验组合</span></a></div></article></div>
+<nav class="category-links" aria-label="项目方向"><a href="projects/category-rtl.zh.html">RTL / 数字</a><a href="projects/category-ic.zh.html">IC 设计</a><a href="projects/category-devices.zh.html">器件仿真</a><a href="projects/category-embedded.zh.html">嵌入式系统</a></nav>
+<div class="project-grid"><article class="project-card"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h2>RISC-V INT8 点积累加扩展</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>进行中</li><li>RTL 仿真</li></ul></div><p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html">查看详情 <span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图检查</li><li>提取网表仿真</li></ul></div><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h2>两级 CMOS 运算放大器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图后仿真</li><li>LVS 匹配</li></ul></div><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>个人课程拓展 · 原理图仿真</span></div><h2>CMOS 运放供电抑制研究</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>原理图仿真</li><li>DC / AC 分析</li></ul></div><p>研究 SMIC18MMRF 两级运放在米勒补偿下的供电扰动耦合。</p><ul class="project-highlights"><li>标称原理图仿真低频增益 85.96 dB</li><li>按报告约定，供电到输出传递为 −79.54 dB</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运放的供电抑制研究</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>RTL 仿真</li><li>实现时序检查</li></ul></div><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article><article class="project-card"><div class="project-meta"><span>2023.12 — 2024.12</span><span>·</span><span>团队项目 · 探索性器件仿真</span></div><h2>石墨烯 FET 生物传感探索</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>器件仿真</li><li>探索性建模</li></ul></div><p>结合文献研究与 Silvaco 二维、三维器件建模，探索 GFET 生物传感。</p><ul class="project-highlights"><li>通过偏置扫描分析输出、转移特性及电场分布</li><li>为 13 页团队报告贡献建模结果与模型限制分析</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Silvaco</span><span class="tag">TCAD</span><span class="tag">GFET</span></div><a class="project-detail-button" href="projects/gfet-device.zh.html">查看详情 <span class="sr-only">— 面向生物传感的石墨烯 FET 器件探索</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 06</span><span>·</span><span>小组项目 · 硬件子系统负责人</span></div><h2>雷达辅助循迹智能车</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>硬件原型</li><li>整车联调</li></ul></div><p>负责循迹智能车的硬件开发，集成雷达避障与 LoRa 通信。</p><ul class="project-highlights"><li>完成 STM32 PCB、电路装配及雷达、红外阵列和电机驱动集成</li><li>协助修正车辆左偏，核心功能在 2500 元预算内完成</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.zh.html">查看详情 <span class="sr-only">— 24 GHz 雷达辅助的自主循迹智能车</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.05 — 07</span><span>·</span><span>三人团队 · 动作编程与同步</span></div><h2>六足机器人同步表演</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>实机演示</li><li>团队项目</li></ul></div><p>参与两台 18 自由度 Libot 六足机器人的同步动作编程与调试。</p><ul class="project-highlights"><li>团队完成 3 分 12 秒同步表演</li><li>团队获国赛与四川赛区二等奖</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.zh.html">查看详情 <span class="sr-only">— 双 18 自由度六足机器人的同步表演</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 05</span><span>·</span><span>个人实验 · 仿真与硬件测试</span></div><h2>功率变换与控制</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>电路仿真</li><li>台架实测</li></ul></div><p>通过仿真与台架实验研究 PWM、整流滤波、Boost 变换及逆变调制。</p><ul class="project-highlights"><li>5 V 输入下实测 Boost 输出 10.0 V 与 20.0 V</li><li>增大滤波电容后，实测纹波由 1.40 V 降至 0.74 V</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">LTspice</span><span class="tag">PWM</span><span class="tag">DC–DC</span></div><a class="project-detail-button" href="projects/power-conversion.zh.html">查看详情 <span class="sr-only">— 功率变换与控制实验组合</span></a></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>刘力滔 · 学术与工程项目</p><a class="inline-link" href="zh.html#contact">联系</a></div></footer>
   <script>

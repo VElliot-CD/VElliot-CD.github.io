@@ -1985,6 +1985,76 @@ html:not(.js-ready) .requires-js,
   .modal-evidence-media img { width: auto; height: auto; max-height: 70mm; }
 }
 
+.research-card { display: flex; flex-direction: column; }
+.research-project-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: auto; padding-top: 20px; }
+.research-project-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.research-project-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+#focus-panel-action { margin-top: 18px; }
+.project-evidence-summary { margin-top: 20px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-deep); }
+.evidence-labels { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 0; list-style: none; }
+.evidence-labels li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 12px; font-weight: 650; line-height: 1.5; }
+.project-evidence-summary .evidence-note { margin: 10px 0 0; color: var(--ink-soft); font-size: 13px; line-height: 1.65; }
+.project-evidence-summary.is-compact { margin-top: 14px; padding: 0; border: 0; background: none; }
+.category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
+.category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
+.category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+@media print {
+  .research-project-links, #focus-panel-action, .category-links { display: none; }
+  .project-evidence-summary { break-inside: avoid; background: none; }
+}
+
+.site-nav a.is-current-section {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+.current-section-indicator { display: none; }
+
+@media (max-width: 900px) {
+  .wordmark.section-navigation-ready {
+    display: grid;
+    min-width: 0;
+    column-gap: 10px;
+    row-gap: 3px;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .section-navigation-ready .wordmark-mark { grid-row: 1 / 3; }
+  .section-navigation-ready #wordmark { grid-column: 2; }
+
+  .current-section-indicator {
+    display: block;
+    overflow: hidden;
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-nav a.is-current-section {
+    border-radius: 8px;
+    background: var(--paper-deep);
+  }
+}
+
+@media (max-width: 560px) {
+  .wordmark.section-navigation-ready { grid-template-columns: minmax(0, 1fr); }
+  .section-navigation-ready #wordmark,
+  .current-section-indicator { grid-column: 1; }
+}
+
+@media print {
+  .current-section-indicator { display: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -2002,6 +2072,7 @@ html:not(.js-ready) .requires-js,
 
       <div class="modal-meta">Sep 2026 · Individual coursework · Transistor-level design and verification</div>
       <h1 id="modal-title">CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</h1>
+      <div class="project-evidence-summary" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Layout checks</li><li>Extracted-netlist simulation</li></ul><p class="evidence-note">Coursework cell-level verification; no silicon measurements, with full-adder delay, power and noise margins uncharacterized.</p></div>
       <p class="modal-summary" id="modal-summary">Implemented NOR2, OR2 and a 28-transistor full adder in Electric 9.07 using mocmos technology, combining physical checks, schematic-to-layout comparison and IRSIM simulation of extracted layout netlists.</p>
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/vlsi-fulladder-layout.jpg" target="_blank" rel="noreferrer"><img src="assets/project-evidence/vlsi-fulladder-layout.jpg" alt="28-transistor CMOS full-adder layout in Electric with labeled signal ports and transistor identifiers" width="1379" height="689" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>VLSI Lab 2, Figure 2: full-adder layout with physical-layer bounds of 206 × 84 λ, where λ = 0.3 μm.</figcaption></figure>
       <div class="modal-detail-grid">

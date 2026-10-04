@@ -3,6 +3,10 @@
   <url><loc>https://velliot-cd.github.io/</loc></url>
   <url><loc>https://velliot-cd.github.io/zh.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/index.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-rtl.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-ic.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-devices.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-embedded.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/riscv-int8.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/vlsi-cmos.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/cmos-opamp.html</loc></url>
@@ -13,6 +17,10 @@
   <url><loc>https://velliot-cd.github.io/projects/hexapod-dance.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/power-conversion.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/index.zh.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-rtl.zh.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-ic.zh.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-devices.zh.html</loc></url>
+  <url><loc>https://velliot-cd.github.io/projects/category-embedded.zh.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/riscv-int8.zh.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/vlsi-cmos.zh.html</loc></url>
   <url><loc>https://velliot-cd.github.io/projects/cmos-opamp.zh.html</loc></url>
