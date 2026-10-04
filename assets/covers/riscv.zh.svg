@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">双读端口，融合 INT8 点积累加</title>
+  <desc id="desc">简化封面示意：通过两个寄存器堆读端口分步收集三个操作数，再进行四路有符号 INT8 融合点积累加。图中不表示指令周期数或完整流水线时序。</desc>
+  <defs><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M2 2 10 6 2 10" fill="none" stroke="#526663" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+  <rect width="1200" height="560" fill="#f4f1e9"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#17322f">
+    <text x="64" y="119" font-size="76" font-weight="600" letter-spacing="1">双读端口</text>
+    <path d="M66 153H190" stroke="#a4482b" stroke-width="7" stroke-linecap="round"/>
+    <g fill="#fffdf8" stroke="#c7cec2" stroke-width="3"><rect x="64" y="210" width="220" height="94" rx="20"/><rect x="64" y="340" width="220" height="94" rx="20"/></g>
+    <g font-size="61" font-weight="600" text-anchor="middle"><text x="174" y="278">R1</text><text x="174" y="408">R2</text></g>
+    <g fill="none" stroke="#526663" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><path d="M284 257H346Q364 257 364 275V280Q364 296 380 296H418"/><path d="M284 387H346Q364 387 364 369V364Q364 348 380 348H418"/><path d="M712 322H836"/></g>
+    <rect x="434" y="210" width="278" height="224" rx="27" fill="#e2e9df"/>
+    <text x="573" y="296" font-size="51" font-weight="600" text-anchor="middle">分步采集</text>
+    <g fill="#17322f"><circle cx="504" cy="370" r="17"/><circle cx="573" cy="370" r="17"/></g><circle cx="642" cy="370" r="17" fill="#a4482b"/>
+    <rect x="856" y="210" width="280" height="224" rx="27" fill="#17322f"/>
+    <g fill="#fffdf8" text-anchor="middle"><text x="996" y="291" font-size="54" font-weight="500">融合</text><text x="996" y="381" font-size="81" font-weight="650" letter-spacing="1">INT8</text></g>
+    <text x="64" y="510" font-size="39" font-weight="500" letter-spacing="4" fill="#526663">RISC-V</text>
+  </g>
+</svg>

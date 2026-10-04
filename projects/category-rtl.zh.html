@@ -955,8 +955,16 @@ html:not(.js-ready) .requires-js,
 
 .inline-link::after,
 .publication-link::after {
-  content: " ↗";
+  content: " →";
 }
+
+.inline-link[target="_blank"]::after,
+.publication-link[target="_blank"]::after { content: " ↗"; }
+.publication-link[download]::after { content: " ↓"; }
+.inline-link[href^="mailto:"]::after { content: ""; }
+.inline-link.link-back::after { content: ""; }
+.inline-link.link-back::before { content: "← "; }
+.skill-evidence .inline-link::after { content: ""; }
 
 .inline-placeholder {
   cursor: default;
@@ -1447,6 +1455,10 @@ html:not(.js-ready) .requires-js,
   animation: enter-view 350ms ease both;
 }
 
+.js-ready .reveal.is-settled {
+  animation: none;
+}
+
 @keyframes enter-view {
   from { opacity: 0.8; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1457,7 +1469,8 @@ html:not(.js-ready) .requires-js,
     scroll-behavior: auto;
   }
 
-  .js-ready .reveal {
+  .js-ready .reveal,
+  .js-ready .reveal.is-visible {
     opacity: 1;
     transform: none;
     animation: none;
@@ -1782,7 +1795,8 @@ html:not(.js-ready) .requires-js,
   .project-detail-button, .copy-button, .copy-result,
   .contact-actions, .modal-toolbar, .modal-evidence-open,
   #back-to-top, .no-js-only, .related-projects { display: none !important; }
-  .js-ready .reveal { opacity: 1; transform: none; animation: none; }
+  .js-ready .reveal,
+  .js-ready .reveal.is-visible { opacity: 1; transform: none; animation: none; }
   .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
   .hero, .research-grid, .project-grid, .experience-grid,
   .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
@@ -2005,13 +2019,24 @@ html:not(.js-ready) .requires-js,
 .project-card { min-height: 0; padding: 28px; }
 .project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
 .project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
-.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
-.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview { position: relative; display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; object-fit: contain; transition: transform 180ms ease; }
+.project-preview-label { display: flex; justify-content: space-between; align-items: center; min-height: 40px; padding: 6px 14px; border-top: 1px solid #d9d4c8; color: #17322f; font-size: 12px; font-weight: 700; background: #f4f1e9; }
 .project-card-preview:hover img { transform: scale(1.025); }
 .project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .project-card.has-preview::after { display: none; }
 .project-highlights { margin-top: 16px; gap: 8px; }
 .project-card-footer { padding-top: 20px; gap: 14px; }
+.project-card-footer .tag { border: 0; border-radius: 6px; padding: 4px 8px; background: var(--paper-deep); font-weight: 600; }
+.project-detail-button { gap: 10px; justify-content: center; }
+.project-card.is-supporting { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; align-items: center; padding: 22px 26px; background: color-mix(in srgb, var(--surface) 58%, var(--paper-deep)); }
+.project-card.is-supporting::after { display: none; }
+.project-card.is-supporting h3 { margin: 8px 0; max-width: none; font-size: 24px; }
+.supporting-copy { min-width: 0; }
+.supporting-copy > p { max-width: 70ch; }
+.supporting-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.supporting-actions .evidence-labels { justify-content: flex-end; }
+.supporting-actions .project-evidence-summary.is-compact { margin: 0; }
 .project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
 #research .research-card { min-height: 0; padding: 24px; }
 #research .research-card h3 { margin-top: 18px; font-size: 23px; }
@@ -2039,7 +2064,11 @@ html:not(.js-ready) .requires-js,
 @media (max-width: 760px) {
   #projects.section { padding-block: 38px 48px; }
   .project-card { padding: 22px; }
-  .project-card-preview img { max-height: 220px; }
+  .project-card.is-supporting { grid-template-columns: 1fr; padding: 20px 22px; gap: 16px; }
+  .project-card.is-supporting h3 { font-size: 23px; }
+  .supporting-actions { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+  .supporting-actions .evidence-labels { justify-content: flex-start; }
+  .supporting-actions .project-detail-button { width: auto; min-height: 44px; }
   #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
   .project-discussion { padding: 20px; }
 }
@@ -2177,7 +2206,7 @@ html:not(.js-ready) .requires-js,
   <a class="skip-link" href="projects/category-rtl.zh.html#main-content">跳到主要内容</a>
   <header class="standalone-header shell">
     <nav class="standalone-actions" aria-label="页面导航">
-      <a class="inline-link" href="zh.html#projects">← 返回主页</a>
+      <a class="inline-link link-back" data-project-return href="zh.html#projects">返回项目</a>
       <a class="inline-link" href="projects/index.zh.html">全部项目</a>
       <a class="inline-link" href="projects/category-rtl.html" lang="en" hreflang="en">English</a>
       <a class="inline-link" href="mailto:litaoliu_2026@163.com?subject=Academic%20CV%20request">索取 CV</a>
@@ -2187,7 +2216,7 @@ html:not(.js-ready) .requires-js,
   <main id="main-content" class="shell standalone-project standalone-catalogue">
     <header class="section-heading"><p class="section-kicker">研究方向</p><h1>RTL / 数字 · 相关项目</h1><p>此方向包含 3 个项目，可查看个人贡献、方法与验证证据。</p></header>
 <nav class="category-links" aria-label="项目方向"><a href="projects/category-rtl.zh.html" aria-current="page">RTL / 数字</a><a href="projects/category-ic.zh.html">IC 设计</a><a href="projects/category-devices.zh.html">器件仿真</a><a href="projects/category-embedded.zh.html">嵌入式系统</a></nav>
-<div class="project-grid"><article class="project-card has-preview"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h2>RISC-V INT8 点积累加扩展</h2><a class="project-card-preview" href="projects/riscv-int8.zh.html" aria-label="阅读设计解读: RISC-V INT8 点积累加扩展"><img src="assets/research/riscv-architecture.zh.svg" alt="双读端口 RISC-V 分步收集三个操作数的功能示意图" width="1000" height="640" loading="lazy" decoding="async"></a><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>进行中</li><li>RTL 仿真</li></ul></div><p>以分步操作数收集，在双读端口 RISC-V 中实现融合 INT8 点积累加。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 / INT8 结果均匹配参考</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html">阅读设计解读 <span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图检查</li><li>提取网表仿真</li></ul></div><p>完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>RTL 仿真</li><li>实现时序检查</li></ul></div><p>作为两人数字子组成员，共同开发并验证 PT100 系统的 VHDL 后端。</p><ul class="project-highlights"><li>模块与集成测试覆盖复位、握手及代表输入与边界条件</li><li>核对 16 周期串行帧、数据打包与寄存越界标志</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
+<div class="project-grid"><article class="project-card has-preview" id="project-card-riscv-int8" data-project-card="riscv-int8"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h2>RISC-V INT8 点积累加扩展</h2><a class="project-card-preview" href="projects/riscv-int8.zh.html" aria-label="阅读设计解读: RISC-V INT8 点积累加扩展"><img src="assets/covers/riscv.zh.svg" alt="双读端口经分步采集实现融合 INT8 运算的简化封面" width="1200" height="560" loading="lazy" decoding="async"><span class="project-preview-label">阅读案例 <span aria-hidden="true">→</span></span></a><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>进行中</li><li>RTL 仿真</li></ul></div><p>以分步操作数收集，在双读端口 RISC-V 中实现融合 INT8 点积累加。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 / INT8 结果均匹配参考</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html">阅读设计解读 <span aria-hidden="true">→</span><span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card" id="project-card-vlsi-cmos" data-project-card="vlsi-cmos"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图检查</li><li>提取网表仿真</li></ul></div><p>完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span aria-hidden="true">→</span><span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card" id="project-card-pt100-rtl" data-project-card="pt100-rtl"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>RTL 仿真</li><li>实现时序检查</li></ul></div><p>作为两人数字子组成员，共同开发并验证 PT100 系统的 VHDL 后端。</p><ul class="project-highlights"><li>模块与集成测试覆盖复位、握手及代表输入与边界条件</li><li>核对 16 周期串行帧、数据打包与寄存越界标志</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span aria-hidden="true">→</span><span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>刘力滔 · 学术与工程项目</p><a class="inline-link" href="zh.html#contact">联系</a></div></footer>
   <script>
@@ -2381,6 +2410,122 @@ html:not(.js-ready) .requires-js,
 })();
 
 </script>
+  <script>
+(function () {
+  "use strict";
+
+  const prefix = "academic-site-visit:";
+  const pendingKey = `${prefix}return`;
+  const lifetime = 4 * 60 * 60 * 1000;
+  const base = new URL(".", document.baseURI);
+  const read = (key) => {
+    try { return JSON.parse(sessionStorage.getItem(key) || "null"); }
+    catch { return null; }
+  };
+  const write = (key, value) => {
+    try { sessionStorage.setItem(key, JSON.stringify(value)); }
+    catch { /* Native project and return links remain usable without storage. */ }
+  };
+  function collectionUrl(value) {
+    try {
+      const url = new URL(value, base);
+      if (url.origin !== location.origin || !url.pathname.startsWith(base.pathname)) return null;
+      const relative = url.pathname.slice(base.pathname.length);
+      if (!/^(?:(?:index|zh)\.html|projects\/(?:index|category-[a-z0-9-]+)(?:\.zh)?\.html)?$/.test(relative)) return null;
+      return url;
+    } catch { return null; }
+  }
+  function valid(record) {
+    return record && record.version === 1 && collectionUrl(record.url)
+      && typeof record.anchor === "string" && /^[a-z0-9-]+$/.test(record.anchor)
+      && Number.isFinite(record.scrollY) && Number.isFinite(record.offset)
+      && Number.isFinite(record.width) && Date.now() - record.time < lifetime;
+  }
+  function projectId(link) {
+    const url = new URL(link.href, base);
+    if (url.origin !== location.origin) return null;
+    const match = url.pathname.match(/\/projects\/([a-z0-9-]+)(?:\.zh)?\.html$/);
+    if (!match || match[1] === "index" || match[1].startsWith("category-")) return null;
+    return match[1];
+  }
+  function remember(link) {
+    if (!document.querySelector("#project-grid, .standalone-catalogue")) return;
+    const id = projectId(link);
+    const url = collectionUrl(location.href);
+    if (!id || !url) return;
+    let anchor = link.closest("[data-project-card]");
+    if (!anchor && link.closest("#project-modal")) anchor = document.getElementById(`project-card-${id}`);
+    if (!anchor) anchor = link.closest("main [id]") || document.getElementById("projects");
+    if (!anchor?.id) return;
+    // Measure the settled card position rather than an in-flight entrance animation.
+    anchor.classList.add("is-settled");
+    url.searchParams.delete("project");
+    if (document.getElementById("project-grid")) {
+      const selected = document.querySelector("[data-project-filter][aria-pressed='true']");
+      url.searchParams.set("filter", selected?.dataset.projectFilter || "featured");
+      url.searchParams.set("lang", document.documentElement.lang.startsWith("zh") ? "zh" : "en");
+    }
+    url.hash = anchor.id;
+    write(prefix + id, {
+      version: 1, id, url: url.href, anchor: anchor.id,
+      scrollY: window.scrollY, offset: anchor.getBoundingClientRect().top,
+      width: innerWidth, time: Date.now(),
+      preview: link.hasAttribute("data-project-preview"),
+    });
+  }
+  function returnRecord() {
+    const id = document.body.dataset.projectId;
+    const record = id ? read(prefix + id) : null;
+    return valid(record) && record.id === id ? record : null;
+  }
+  function prepareReturns() {
+    const record = returnRecord();
+    if (!record) return;
+    document.querySelectorAll("[data-project-return]").forEach((link) => { link.href = record.url; });
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (link.hasAttribute("data-project-return")) {
+      const record = returnRecord();
+      if (record) { link.href = record.url; write(pendingKey, record); }
+      return;
+    }
+    remember(link);
+  }, true);
+
+  let restoring = false;
+  async function restoreCollection() {
+    const record = read(pendingKey);
+    if (restoring || !valid(record)) return;
+    const destination = collectionUrl(record.url);
+    if (destination.pathname !== location.pathname) return;
+    if (!document.querySelector("#project-grid, .standalone-catalogue")) return;
+    restoring = true;
+    try { sessionStorage.removeItem(pendingKey); } catch { /* Storage may be restricted. */ }
+    if (document.fonts?.ready) await document.fonts.ready;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const anchor = document.getElementById(record.anchor);
+      anchor?.classList.add("is-settled");
+      const sameWidth = Math.abs(innerWidth - record.width) < 40;
+      const y = anchor
+        ? anchor.getBoundingClientRect().top + scrollY - (sameWidth ? record.offset : 100)
+        : record.scrollY;
+      window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
+      const control = anchor?.querySelector(record.preview ? "[data-project-preview]" : "[data-project-index], a[href]");
+      control?.focus({ preventScroll: true });
+      restoring = false;
+    }));
+  }
+  function ready() { prepareReturns(); restoreCollection(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+  window.addEventListener("pageshow", ready);
+})();
+
+</script>
+
 
 </body>
 </html>

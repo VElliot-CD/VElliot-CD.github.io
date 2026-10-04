@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="case-reading-document">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -955,8 +955,16 @@ html:not(.js-ready) .requires-js,
 
 .inline-link::after,
 .publication-link::after {
-  content: " ↗";
+  content: " →";
 }
+
+.inline-link[target="_blank"]::after,
+.publication-link[target="_blank"]::after { content: " ↗"; }
+.publication-link[download]::after { content: " ↓"; }
+.inline-link[href^="mailto:"]::after { content: ""; }
+.inline-link.link-back::after { content: ""; }
+.inline-link.link-back::before { content: "← "; }
+.skill-evidence .inline-link::after { content: ""; }
 
 .inline-placeholder {
   cursor: default;
@@ -1447,6 +1455,10 @@ html:not(.js-ready) .requires-js,
   animation: enter-view 350ms ease both;
 }
 
+.js-ready .reveal.is-settled {
+  animation: none;
+}
+
 @keyframes enter-view {
   from { opacity: 0.8; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1457,7 +1469,8 @@ html:not(.js-ready) .requires-js,
     scroll-behavior: auto;
   }
 
-  .js-ready .reveal {
+  .js-ready .reveal,
+  .js-ready .reveal.is-visible {
     opacity: 1;
     transform: none;
     animation: none;
@@ -1782,7 +1795,8 @@ html:not(.js-ready) .requires-js,
   .project-detail-button, .copy-button, .copy-result,
   .contact-actions, .modal-toolbar, .modal-evidence-open,
   #back-to-top, .no-js-only, .related-projects { display: none !important; }
-  .js-ready .reveal { opacity: 1; transform: none; animation: none; }
+  .js-ready .reveal,
+  .js-ready .reveal.is-visible { opacity: 1; transform: none; animation: none; }
   .hero, .section, .contact-section { min-height: 0; padding: 16pt 0; }
   .hero, .research-grid, .project-grid, .experience-grid,
   .skill-groups, .contact-inner, .focus-panel, .modal-detail-grid { display: block; }
@@ -2005,13 +2019,24 @@ html:not(.js-ready) .requires-js,
 .project-card { min-height: 0; padding: 28px; }
 .project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
 .project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
-.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
-.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview { position: relative; display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; object-fit: contain; transition: transform 180ms ease; }
+.project-preview-label { display: flex; justify-content: space-between; align-items: center; min-height: 40px; padding: 6px 14px; border-top: 1px solid #d9d4c8; color: #17322f; font-size: 12px; font-weight: 700; background: #f4f1e9; }
 .project-card-preview:hover img { transform: scale(1.025); }
 .project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .project-card.has-preview::after { display: none; }
 .project-highlights { margin-top: 16px; gap: 8px; }
 .project-card-footer { padding-top: 20px; gap: 14px; }
+.project-card-footer .tag { border: 0; border-radius: 6px; padding: 4px 8px; background: var(--paper-deep); font-weight: 600; }
+.project-detail-button { gap: 10px; justify-content: center; }
+.project-card.is-supporting { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; align-items: center; padding: 22px 26px; background: color-mix(in srgb, var(--surface) 58%, var(--paper-deep)); }
+.project-card.is-supporting::after { display: none; }
+.project-card.is-supporting h3 { margin: 8px 0; max-width: none; font-size: 24px; }
+.supporting-copy { min-width: 0; }
+.supporting-copy > p { max-width: 70ch; }
+.supporting-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.supporting-actions .evidence-labels { justify-content: flex-end; }
+.supporting-actions .project-evidence-summary.is-compact { margin: 0; }
 .project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
 #research .research-card { min-height: 0; padding: 24px; }
 #research .research-card h3 { margin-top: 18px; font-size: 23px; }
@@ -2039,7 +2064,11 @@ html:not(.js-ready) .requires-js,
 @media (max-width: 760px) {
   #projects.section { padding-block: 38px 48px; }
   .project-card { padding: 22px; }
-  .project-card-preview img { max-height: 220px; }
+  .project-card.is-supporting { grid-template-columns: 1fr; padding: 20px 22px; gap: 16px; }
+  .project-card.is-supporting h3 { font-size: 23px; }
+  .supporting-actions { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+  .supporting-actions .evidence-labels { justify-content: flex-start; }
+  .supporting-actions .project-detail-button { width: auto; min-height: 44px; }
   #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
   .project-discussion { padding: 20px; }
 }
@@ -2171,26 +2200,139 @@ html:not(.js-ready) .requires-js,
   .study-note, .project-record { border: 0; }
 }
 
+/* One reading menu moves from a compact toolbar to a wide-screen sidebar. */
+.case-reading-document { scroll-padding-top: 0; }
+.case-reading-layout { --reading-offset: 88px; margin-top: 12px; }
+.case-reading-content { min-width: 0; }
+.case-reading-content [id^="study-"] { scroll-margin-top: var(--reading-offset); }
+.case-reading {
+  position: sticky;
+  top: max(8px, env(safe-area-inset-top));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 14px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.case-reading-back { display: inline-flex; align-items: center; flex-shrink: 0; min-height: 44px; font-size: 13px; }
+.case-reading-menu { min-width: 0; border-left: 1px solid var(--line); padding-left: 14px; }
+.case-reading-menu > summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+.case-reading-menu > summary::-webkit-details-marker { display: none; }
+.case-reading-current { min-width: 0; color: var(--ink-soft); font-weight: 400; white-space: nowrap; }
+.case-reading-current::before { content: "·"; margin-right: 7px; }
+.case-reading-chevron { flex-shrink: 0; width: 6px; height: 6px; margin-left: 3px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.case-reading-menu[open] .case-reading-chevron { transform: translateY(2px) rotate(225deg); }
+.case-reading .study-toc {
+  position: absolute;
+  inset: calc(100% + 8px) 0 auto auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+  width: min(320px, 100%);
+  max-height: min(62vh, 320px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.case-reading .study-toc a {
+  gap: 12px;
+  min-height: 46px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.case-reading .study-toc a:hover { color: var(--ink); background: var(--paper-deep); }
+.case-reading .study-toc a[aria-current="location"] { color: var(--accent); background: var(--accent-soft); font-weight: 750; }
+.reading-section-number { font-size: 10px; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.case-reading a:focus-visible, .case-reading summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+@media (max-width: 1199px) {
+  /* Without script, an open native menu must not cover its anchor targets. */
+  .case-reading:not(.is-enhanced) { position: static; display: block; }
+  .case-reading:not(.is-enhanced) .case-reading-menu { border: 0; padding: 0; }
+  .case-reading:not(.is-enhanced) .case-reading-menu > summary { justify-content: flex-start; }
+  .case-reading:not(.is-enhanced) .study-toc { position: static; width: 100%; margin-top: 8px; box-shadow: none; }
+}
+
+@media (max-width: 360px) {
+  .case-reading { gap: 8px; padding-inline: 10px; }
+  .case-reading-menu { padding-left: 10px; }
+  .case-reading-back, .case-reading-menu > summary { font-size: 12px; }
+  .case-reading-menu > summary { gap: 5px; }
+  .case-reading-current::before { margin-right: 5px; }
+}
+@media (min-width: 1200px) {
+  .case-reading-layout { display: grid; grid-template-columns: 168px minmax(0, 920px); gap: 48px; width: min(1160px, calc(100% - 64px)); margin-block: 40px 64px; --reading-offset: 24px; }
+  .case-reading { top: 24px; align-self: start; display: block; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+  .case-reading-back { margin-bottom: 22px; }
+  .case-reading-menu { padding-left: 0; border-left: 0; }
+  .case-reading-menu > summary { justify-content: flex-start; min-height: 36px; color: var(--ink-soft); font-size: 12px; letter-spacing: .03em; }
+  .case-reading.is-enhanced .case-reading-menu > summary { cursor: default; }
+  .case-reading-current, .case-reading.is-enhanced .case-reading-chevron { display: none; }
+  .case-reading .study-toc { position: static; width: 100%; max-height: calc(100vh - 160px); margin-top: 6px; padding: 0 0 0 8px; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: none; box-shadow: none; }
+  .case-reading .study-toc a { padding-inline: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-reading-document { scroll-behavior: auto; }
+}
+@media print {
+  .case-reading { display: none !important; }
+  .case-reading-layout { display: block; width: 100%; margin: 0; }
+  .case-reading-content [id^="study-"] { scroll-margin-top: 0; }
+}
+
 </style>
 </head>
-<body>
+<body data-project-id="cmos-opamp" class="case-study-page">
   <a class="skip-link" href="projects/cmos-opamp.html#main-content">Skip to main content</a>
   <header class="standalone-header shell">
     <nav class="standalone-actions" aria-label="Page navigation">
-      <a class="inline-link" href="./?lang=en#projects">← Back to homepage</a>
+
       <a class="inline-link" href="projects/index.html">All projects</a>
       <a class="inline-link" href="projects/cmos-opamp.zh.html" lang="zh-CN" hreflang="zh-CN">中文</a>
       <a class="inline-link" href="mailto:litaoliu_2026@163.com?subject=Academic%20CV%20request">Request CV</a>
       <button class="icon-button" id="theme-toggle" data-theme-toggle type="button" hidden aria-label="Toggle colour theme"><span class="theme-icon" aria-hidden="true">☾</span></button>
     </nav>
   </header>
-  <main id="main-content" class="shell standalone-project">
-
+  <main id="main-content" class="shell standalone-project case-reading-layout">
+    <aside class="case-reading" data-case-reading aria-label="Case reading tools">
+      <a class="inline-link link-back case-reading-back" data-project-return href="./?lang=en#projects">Back to projects</a>
+      <details class="case-reading-menu">
+        <summary><span class="case-reading-label">Contents</span><span class="case-reading-current" data-reading-current aria-hidden="true">Question</span><span class="case-reading-chevron" aria-hidden="true"></span></summary>
+        <nav class="study-toc" aria-label="Case study contents"><a href="projects/cmos-opamp.html#study-question" data-reading-section="study-question"><span class="reading-section-number" aria-hidden="true">01</span><span>Question</span></a><a href="projects/cmos-opamp.html#study-approach" data-reading-section="study-approach"><span class="reading-section-number" aria-hidden="true">02</span><span>Approach</span></a><a href="projects/cmos-opamp.html#study-results" data-reading-section="study-results"><span class="reading-section-number" aria-hidden="true">03</span><span>Results</span></a><a href="projects/cmos-opamp.html#study-limits" data-reading-section="study-limits"><span class="reading-section-number" aria-hidden="true">04</span><span>Limits</span></a></nav>
+      </details>
+    </aside><div class="case-reading-content">
       <div class="modal-meta">Mar — May 2026 · Individual coursework · Analog design &amp; layout</div>
       <h1 id="modal-title">Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h1>
       <div class="project-evidence-summary" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul><p class="evidence-note">Results use a parasitic-extracted view; remaining DRC spacing violations prevent completed physical signoff.</p></div>
       <p class="modal-summary" id="modal-summary">Designed and laid out a two-stage amplifier in CSMC 0.50 μm st02 using Cadence Virtuoso and Spectre, from NMOS characterization to an LVS-matched extracted view for parasitic simulation.</p>
-      <div class="project-study"><nav class="study-toc" aria-label="Case study contents"><span class="study-toc-label">On this page</span><a href="projects/cmos-opamp.html#study-question">Question</a><a href="projects/cmos-opamp.html#study-approach">Approach</a><a href="projects/cmos-opamp.html#study-results">Results</a><a href="projects/cmos-opamp.html#study-limits">Limits</a></nav>
+      <div class="project-study">
       <section class="study-opening" id="study-question"><p class="study-kicker">Design study</p><h2>Two gain stages. Bandwidth and stability together.</h2><p>A two-stage CMOS amplifier needs to be evaluated through gain, unity-gain bandwidth and phase margin together. This project carries the design into a parasitic-extracted view and checks the same metrics across five process corners.</p>
         <div id="study-approach"><figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-architecture.en.svg" alt="Two-stage CMOS amplifier functional view: an NMOS differential input with PMOS mirror load feeds a common-source second stage and a 3 pF output load. Miller compensation connects the output to the first-stage output node; bias branches establish the operating point." width="1000" height="610" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional view redrawn from the project circuit, not a complete transistor schematic. Results belong to the st02 project with a 3 pF load, distinct from the separate supply-rejection study.</figcaption></figure>
         <ol class="study-process"><li><strong>Establish differential gain and bias</strong><p>An NMOS differential input and PMOS mirror load form the first-stage signal sent to the second stage.</p></li><li><strong>Add gain and a compensation path</strong><p>The common-source second stage adds amplification. Miller compensation connects its output to the first-stage output node.</p></li><li><strong>Recheck the extracted view</strong><p>AC analysis includes extracted parasitics, while process-corner comparisons show variation in the same design.</p></li></ol>
@@ -2250,7 +2392,7 @@ html:not(.js-ready) .requires-js,
           <p>Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.</p>
         </a>
       </div>
-    </nav>
+    </nav></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="./?lang=en#contact">Contact</a></div></footer>
   <script>
@@ -2441,6 +2583,218 @@ html:not(.js-ready) .requires-js,
   window.addEventListener("resize", () => { if (dialog?.open) layout(); });
   // Navigating browser history should not leave an image over a different page.
   window.addEventListener("popstate", closeViewer);
+})();
+
+</script>
+  <script>
+(function () {
+  "use strict";
+
+  const prefix = "academic-site-visit:";
+  const pendingKey = `${prefix}return`;
+  const lifetime = 4 * 60 * 60 * 1000;
+  const base = new URL(".", document.baseURI);
+  const read = (key) => {
+    try { return JSON.parse(sessionStorage.getItem(key) || "null"); }
+    catch { return null; }
+  };
+  const write = (key, value) => {
+    try { sessionStorage.setItem(key, JSON.stringify(value)); }
+    catch { /* Native project and return links remain usable without storage. */ }
+  };
+  function collectionUrl(value) {
+    try {
+      const url = new URL(value, base);
+      if (url.origin !== location.origin || !url.pathname.startsWith(base.pathname)) return null;
+      const relative = url.pathname.slice(base.pathname.length);
+      if (!/^(?:(?:index|zh)\.html|projects\/(?:index|category-[a-z0-9-]+)(?:\.zh)?\.html)?$/.test(relative)) return null;
+      return url;
+    } catch { return null; }
+  }
+  function valid(record) {
+    return record && record.version === 1 && collectionUrl(record.url)
+      && typeof record.anchor === "string" && /^[a-z0-9-]+$/.test(record.anchor)
+      && Number.isFinite(record.scrollY) && Number.isFinite(record.offset)
+      && Number.isFinite(record.width) && Date.now() - record.time < lifetime;
+  }
+  function projectId(link) {
+    const url = new URL(link.href, base);
+    if (url.origin !== location.origin) return null;
+    const match = url.pathname.match(/\/projects\/([a-z0-9-]+)(?:\.zh)?\.html$/);
+    if (!match || match[1] === "index" || match[1].startsWith("category-")) return null;
+    return match[1];
+  }
+  function remember(link) {
+    if (!document.querySelector("#project-grid, .standalone-catalogue")) return;
+    const id = projectId(link);
+    const url = collectionUrl(location.href);
+    if (!id || !url) return;
+    let anchor = link.closest("[data-project-card]");
+    if (!anchor && link.closest("#project-modal")) anchor = document.getElementById(`project-card-${id}`);
+    if (!anchor) anchor = link.closest("main [id]") || document.getElementById("projects");
+    if (!anchor?.id) return;
+    // Measure the settled card position rather than an in-flight entrance animation.
+    anchor.classList.add("is-settled");
+    url.searchParams.delete("project");
+    if (document.getElementById("project-grid")) {
+      const selected = document.querySelector("[data-project-filter][aria-pressed='true']");
+      url.searchParams.set("filter", selected?.dataset.projectFilter || "featured");
+      url.searchParams.set("lang", document.documentElement.lang.startsWith("zh") ? "zh" : "en");
+    }
+    url.hash = anchor.id;
+    write(prefix + id, {
+      version: 1, id, url: url.href, anchor: anchor.id,
+      scrollY: window.scrollY, offset: anchor.getBoundingClientRect().top,
+      width: innerWidth, time: Date.now(),
+      preview: link.hasAttribute("data-project-preview"),
+    });
+  }
+  function returnRecord() {
+    const id = document.body.dataset.projectId;
+    const record = id ? read(prefix + id) : null;
+    return valid(record) && record.id === id ? record : null;
+  }
+  function prepareReturns() {
+    const record = returnRecord();
+    if (!record) return;
+    document.querySelectorAll("[data-project-return]").forEach((link) => { link.href = record.url; });
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (link.hasAttribute("data-project-return")) {
+      const record = returnRecord();
+      if (record) { link.href = record.url; write(pendingKey, record); }
+      return;
+    }
+    remember(link);
+  }, true);
+
+  let restoring = false;
+  async function restoreCollection() {
+    const record = read(pendingKey);
+    if (restoring || !valid(record)) return;
+    const destination = collectionUrl(record.url);
+    if (destination.pathname !== location.pathname) return;
+    if (!document.querySelector("#project-grid, .standalone-catalogue")) return;
+    restoring = true;
+    try { sessionStorage.removeItem(pendingKey); } catch { /* Storage may be restricted. */ }
+    if (document.fonts?.ready) await document.fonts.ready;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const anchor = document.getElementById(record.anchor);
+      anchor?.classList.add("is-settled");
+      const sameWidth = Math.abs(innerWidth - record.width) < 40;
+      const y = anchor
+        ? anchor.getBoundingClientRect().top + scrollY - (sameWidth ? record.offset : 100)
+        : record.scrollY;
+      window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
+      const control = anchor?.querySelector(record.preview ? "[data-project-preview]" : "[data-project-index], a[href]");
+      control?.focus({ preventScroll: true });
+      restoring = false;
+    }));
+  }
+  function ready() { prepareReturns(); restoreCollection(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+  window.addEventListener("pageshow", ready);
+})();
+
+</script>
+  <script>
+(() => {
+  const reading = document.querySelector('[data-case-reading]');
+  if (!reading) return;
+  const menu = reading.querySelector('.case-reading-menu');
+  const summary = menu?.querySelector('summary');
+  const current = reading.querySelector('[data-reading-current]');
+  const layout = reading.closest('.case-reading-layout');
+  const links = [...reading.querySelectorAll('[data-reading-section]')];
+  const sections = links.map((link) => document.getElementById(link.dataset.readingSection));
+  if (!menu || !summary || !current || !layout || sections.some((section) => !section)) return;
+
+  const wide = window.matchMedia('(min-width: 1200px)');
+  let frame = 0;
+  let offset = 88;
+  let activeId = '';
+  reading.classList.add('is-enhanced');
+
+  function updateCurrent() {
+    frame = 0;
+    // Compare heading positions instead of intersection ratios: long sections
+    // and the nested approach section still have a stable reading position.
+    const threshold = offset + Math.min(120, window.innerHeight * .15);
+    let active = 0;
+    sections.forEach((section, index) => {
+      if (section.getBoundingClientRect().top <= threshold) active = index;
+    });
+    const nextId = sections[active].id;
+    if (nextId === activeId) return;
+    activeId = nextId;
+    links.forEach((link, index) => {
+      if (index === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    current.textContent = links[active].lastElementChild.textContent;
+  }
+
+  function scheduleUpdate() {
+    if (!frame) frame = window.requestAnimationFrame(updateCurrent);
+  }
+
+  function measure() {
+    const stickyTop = Number.parseFloat(getComputedStyle(reading).top) || 8;
+    offset = wide.matches ? 24 : Math.ceil(reading.getBoundingClientRect().height + stickyTop + 16);
+    layout.style.setProperty('--reading-offset', `${offset}px`);
+    scheduleUpdate();
+  }
+
+  function setMode() {
+    menu.open = wide.matches;
+    if (wide.matches) summary.setAttribute('tabindex', '-1');
+    else summary.removeAttribute('tabindex');
+    measure();
+  }
+
+  summary.addEventListener('click', (event) => {
+    if (wide.matches) event.preventDefault();
+  });
+  menu.addEventListener('toggle', () => {
+    // Wide screens always expose the links; narrow screens retain native
+    // details semantics and keyboard interaction without a separate control.
+    if (wide.matches && !menu.open) menu.open = true;
+  });
+
+  reading.addEventListener('click', (event) => {
+    const link = event.target.closest('[data-reading-section]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (!wide.matches) {
+      menu.open = false;
+      // Keep keyboard focus out of the newly closed disclosure. The browser
+      // still follows the original hash link and honors reduced-motion CSS.
+      summary.focus({ preventScroll: true });
+    }
+    scheduleUpdate();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || wide.matches || !menu.open || document.querySelector('.image-viewer[open]')) return;
+    menu.open = false;
+    summary.focus({ preventScroll: true });
+    event.preventDefault();
+  });
+  document.addEventListener('click', (event) => {
+    if (!wide.matches && menu.open && !reading.contains(event.target)) menu.open = false;
+  });
+  document.addEventListener('focusin', (event) => {
+    if (!wide.matches && menu.open && !reading.contains(event.target)) menu.open = false;
+  });
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('hashchange', scheduleUpdate);
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', measure, { once: true });
+  wide.addEventListener('change', setMode);
+  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(reading);
+  setMode();
 })();
 
 </script>
