@@ -1,0 +1,4 @@
+# CVs are shared privately on request, not as website assets.
+/assets/*CV*.pdf
+/assets/*cv*.pdf
+*.docx
