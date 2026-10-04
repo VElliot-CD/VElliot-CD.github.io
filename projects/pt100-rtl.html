@@ -7,6 +7,94 @@
   <title>VHDL digital backend for PT100 temperature measurement | Litao Liu</title>
   <meta name="description" content="Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project." />
   <meta name="theme-color" content="#f4f1e9" />
+  <script>
+(function () {
+  "use strict";
+
+  const key = "academic-site-theme";
+  const root = document.documentElement;
+  const controls = "#theme-toggle, [data-theme-toggle]";
+  const validTheme = (value) => value === "light" || value === "dark";
+  const systemTheme = typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
+  let preference = null;
+
+  function readPreference() {
+    try {
+      const stored = localStorage.getItem(key);
+      preference = validTheme(stored) ? stored : null;
+    } catch {
+      // Keep this page's manual choice when storage is unavailable.
+    }
+  }
+
+  function updateControls() {
+    const dark = root.dataset.theme === "dark";
+    const chinese = root.lang.toLowerCase().startsWith("zh");
+    document.querySelectorAll(controls).forEach((button) => {
+      const label = dark
+        ? button.dataset.themeLabelLight || (chinese ? "切换到浅色模式" : "Switch to light mode")
+        : button.dataset.themeLabelDark || (chinese ? "切换到深色模式" : "Switch to dark mode");
+      button.setAttribute("aria-pressed", String(dark));
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
+      const icon = button.querySelector(".theme-icon");
+      if (icon) icon.textContent = dark ? "☀" : "☾";
+      button.hidden = false;
+    });
+  }
+
+  function applyTheme() {
+    const theme = preference || (systemTheme?.matches ? "dark" : "light");
+    root.dataset.theme = theme;
+    const meta = document.querySelector("meta[name='theme-color']");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#101b1a" : "#f4f1e9");
+    updateControls();
+  }
+
+  // Run in the head before the styles so linked pages paint in the same theme.
+  readPreference();
+  applyTheme();
+
+  document.addEventListener("click", (event) => {
+    const button = event.target instanceof Element ? event.target.closest(controls) : null;
+    if (!button) return;
+    preference = root.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem(key, preference);
+    } catch {
+      // Theme switching still works without browser storage.
+    }
+    applyTheme();
+  });
+
+  const followSystem = () => {
+    if (!preference) applyTheme();
+  };
+  if (systemTheme?.addEventListener) systemTheme.addEventListener("change", followSystem);
+  else systemTheme?.addListener?.(followSystem);
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== null && event.key !== key) return;
+    readPreference();
+    applyTheme();
+  });
+  window.addEventListener("pageshow", () => {
+    // Restore the preference even when the browser reuses a cached page.
+    readPreference();
+    applyTheme();
+  });
+
+  function ready() {
+    updateControls();
+    new MutationObserver(updateControls).observe(root, { attributes: true, attributeFilter: ["lang"] });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+})();
+
+</script>
   <link rel="canonical" href="https://velliot-cd.github.io/projects/pt100-rtl.html" />
   <link rel="alternate" hreflang="en" href="https://velliot-cd.github.io/projects/pt100-rtl.html" />
   <link rel="alternate" hreflang="zh-CN" href="https://velliot-cd.github.io/projects/pt100-rtl.zh.html" />
@@ -208,6 +296,9 @@ img {
 .icon-button {
   font-size: 17px;
 }
+
+.icon-button[hidden] { display: none !important; }
+.icon-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 .menu-button {
   display: none;
@@ -1722,6 +1813,178 @@ html:not(.js-ready) .requires-js,
   #modal-content { padding: 0; overflow: visible; }
 }
 
+/* Keep recent work easy to scan, while retaining every update. */
+.news-archive > summary {
+  padding: 20px 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.news-archive > summary::marker { color: var(--accent); }
+.news-archive[open] > summary { border-bottom: 1px solid var(--line); }
+
+@media (max-width: 560px) {
+  .hero {
+    padding-block: 38px 46px;
+    gap: 28px;
+  }
+
+  .hero-role { margin-top: 22px; }
+  .hero-actions { margin-top: 24px; }
+
+  .portrait-wrap {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .portrait-backdrop { display: none; }
+
+  .portrait {
+    width: 80px;
+    height: 100px;
+    border-radius: 18px;
+    box-shadow: none;
+  }
+
+  .availability {
+    position: static;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .project-card h3 { max-width: 100%; }
+}
+
+@media print {
+  .news-archive::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+
+  .news-archive > summary { display: none; }
+  .news-archive-items { display: block !important; }
+  .portrait-wrap { display: none; }
+}
+
+/* Include after styles.css. Natural image proportions remove the large fixed
+   preview frame; portrait evidence remains bounded on smaller screens. */
+.modal-evidence-media {
+  text-align: center;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.modal-evidence-media img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(68vh, 680px);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.modal-evidence-open {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px;
+}
+
+.image-viewer-open { overflow: hidden; }
+
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  border: 0;
+  background: var(--paper, #f4f1e9);
+  color: var(--ink, #222720);
+  font: inherit;
+  overflow: hidden;
+}
+
+.image-viewer[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-viewer::backdrop { background: rgba(0, 0, 0, 0.7); }
+.image-viewer-header, .image-viewer-tools { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.image-viewer-header { justify-content: space-between; }
+.image-viewer-header h2 { margin: 0; font-size: 18px; line-height: 1.3; font-weight: 700; }
+.image-viewer-tools { flex-wrap: wrap; }
+
+.image-viewer button, .image-viewer-original {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--line, #b7b7b0);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--ink, #222720);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.image-viewer button:disabled { opacity: 0.45; cursor: default; }
+.image-viewer button:focus-visible, .image-viewer a:focus-visible, .image-viewer-viewport:focus-visible { outline: 3px solid var(--accent, #a4482b); outline-offset: 2px; }
+.image-viewer-scale { min-width: 42px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.image-viewer-original { margin-left: auto; }
+.image-viewer-viewport { flex: 1 1 auto; min-width: 0; min-height: 72px; overflow: auto; overscroll-behavior: contain; background: var(--surface, #fff); border: 1px solid var(--line, #b7b7b0); border-radius: 12px; }
+.image-viewer-canvas { position: relative; min-width: 100%; min-height: 100%; }
+.image-viewer-image { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; max-width: none; max-height: none; background: #fff; user-select: none; -webkit-user-drag: none; }
+.image-viewer [hidden] { display: none; }
+.image-viewer-viewport.is-zoomed { cursor: grab; }
+.image-viewer-viewport.is-dragging { cursor: grabbing; }
+.image-viewer-status, .image-viewer-hint { flex: 0 0 auto; margin: 0; font-size: 12px; line-height: 1.45; color: var(--ink-soft, #55594f); }
+.image-viewer-status:empty { display: none; }
+
+@media (max-width: 560px) {
+  .image-viewer { padding-right: max(10px, env(safe-area-inset-right)); padding-left: max(10px, env(safe-area-inset-left)); gap: 8px; }
+  .image-viewer-tools { gap: 6px; }
+  .image-viewer-tools button, .image-viewer-original { padding-inline: 9px; }
+  .image-viewer-original { font-size: 12px; }
+  .image-viewer-scale { min-width: 35px; }
+}
+
+@media (max-height: 450px) and (min-width: 561px) {
+  .image-viewer[open] { padding-top: 8px; padding-bottom: 8px; gap: 6px; }
+  .image-viewer-header { position: absolute; top: 8px; right: max(20px, env(safe-area-inset-right)); }
+  .image-viewer-header h2 { display: none; }
+  .image-viewer-tools { padding-right: 72px; }
+}
+
+@media print {
+  .image-viewer, .image-viewer[open] { display: none !important; }
+  .image-viewer-open { overflow: visible; }
+  .modal-evidence-media img { width: auto; height: auto; max-height: 70mm; }
+}
+
 </style>
 </head>
 <body>
@@ -1732,6 +1995,7 @@ html:not(.js-ready) .requires-js,
       <a class="inline-link" href="projects/index.html">All projects</a>
       <a class="inline-link" href="projects/pt100-rtl.zh.html" lang="zh-CN" hreflang="zh-CN">中文</a>
       <a class="inline-link" href="mailto:litaoliu_2026@163.com?subject=Academic%20CV%20request">Request CV</a>
+      <button class="icon-button" id="theme-toggle" data-theme-toggle type="button" hidden aria-label="Toggle colour theme"><span class="theme-icon" aria-hidden="true">☾</span></button>
     </nav>
   </header>
   <main id="main-content" class="shell standalone-project">
@@ -1739,7 +2003,7 @@ html:not(.js-ready) .requires-js,
       <div class="modal-meta">Apr — Jun 2026 · Two-person digital subgroup · Six-member team</div>
       <h1 id="modal-title">VHDL digital backend for PT100 temperature measurement</h1>
       <p class="modal-summary" id="modal-summary">Co-developed the digital backend within a six-member mixed-signal system team, working with one other digital-design teammate on RTL integration and simulation.</p>
-      <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/pt100-rtl-verification.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/pt100-rtl-verification.png" alt="RTL modules and verification results for the PT100 temperature sensor IC" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">Open full-size evidence <span aria-hidden="true">↗</span></span></a><figcaption>Report excerpt: backend module structure, input cases, and simulation-waveform analysis.</figcaption></figure>
+      <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/pt100-rtl-verification.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/pt100-rtl-verification.png" alt="RTL modules and verification results for the PT100 temperature sensor IC" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Report excerpt: backend module structure, input cases, and simulation-waveform analysis.</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
           <h2>Context</h2>
@@ -1764,16 +2028,207 @@ html:not(.js-ready) .requires-js,
       <h2 id="related-projects-title">Related projects</h2>
       <div class="related-project-grid">
         <a class="related-project-card" href="projects/vlsi-cmos.html">
-          <h3>CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</h3>
+          <h3>CMOS logic cells &amp; full adder</h3>
           <p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p>
         </a>
         <a class="related-project-card" href="projects/riscv-int8.html">
-          <h3>Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</h3>
+          <h3>RISC-V INT8 dot-product extension</h3>
           <p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p>
         </a>
       </div>
     </nav>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="./?lang=en#contact">Contact</a></div></footer>
+  <script>
+/* Load once after the page scripts (or with defer). Delegated links also support
+   dynamically rendered project modals. The dialog is created only on demand. */
+(() => {
+  "use strict";
+  if (window.__academicImageViewer || typeof HTMLDialogElement === "undefined" || !HTMLDialogElement.prototype.showModal) return;
+  window.__academicImageViewer = true;
+
+  const copy = {
+    en: { title: "Project image", close: "Close", zoomIn: "Zoom in", zoomOut: "Zoom out", fit: "Fit image", original: "Open original image", loading: "Loading image…", error: "This image could not be loaded. You can try opening the original.", hint: "Zoom in, then drag or scroll to inspect. Press Escape to close.", viewport: "Image preview. Use arrow keys to scroll when zoomed in." },
+    zh: { title: "项目图片", close: "关闭", zoomIn: "放大", zoomOut: "缩小", fit: "适应窗口", original: "打开原图", loading: "正在加载图片…", error: "图片暂时无法加载，可以尝试打开原图。", hint: "放大后可拖动或滚动查看，按 Escape 关闭。", viewport: "图片预览。放大后可使用方向键滚动查看。" }
+  };
+  let dialog, viewport, canvas, image, status, zoomIn, zoomOut, fit, scaleLabel, returnFocus;
+  let zoom = 1, fitScale = 1, loaded = false, savedScroll, drag = null;
+  let labels = copy.en;
+
+  function createViewer() {
+    dialog = document.createElement("dialog");
+    dialog.className = "image-viewer";
+    dialog.setAttribute("aria-labelledby", "image-viewer-title");
+    dialog.innerHTML = `<div class="image-viewer-header"><h2 id="image-viewer-title"></h2><button type="button" class="image-viewer-close" autofocus></button></div>
+      <div class="image-viewer-tools" role="group"><button type="button" data-image-action="out">−</button><output class="image-viewer-scale" aria-live="polite"></output><button type="button" data-image-action="in">+</button><button type="button" data-image-action="fit"></button><a class="image-viewer-original" target="_blank" rel="noreferrer"></a></div>
+      <div class="image-viewer-viewport" tabindex="0"><div class="image-viewer-canvas"><img class="image-viewer-image" draggable="false" alt="" /></div></div>
+      <p class="image-viewer-status" role="status" aria-live="polite"></p><p class="image-viewer-hint"></p>`;
+    document.body.append(dialog);
+    viewport = dialog.querySelector(".image-viewer-viewport");
+    canvas = dialog.querySelector(".image-viewer-canvas");
+    image = dialog.querySelector(".image-viewer-image");
+    status = dialog.querySelector(".image-viewer-status");
+    zoomIn = dialog.querySelector('[data-image-action="in"]');
+    zoomOut = dialog.querySelector('[data-image-action="out"]');
+    fit = dialog.querySelector('[data-image-action="fit"]');
+    scaleLabel = dialog.querySelector(".image-viewer-scale");
+    dialog.querySelector(".image-viewer-close").addEventListener("click", closeViewer);
+    zoomIn.addEventListener("click", () => changeZoom(zoom * 1.5));
+    zoomOut.addEventListener("click", () => changeZoom(zoom / 1.5));
+    fit.addEventListener("click", () => changeZoom(1));
+    dialog.addEventListener("cancel", (event) => { event.preventDefault(); closeViewer(); });
+    dialog.addEventListener("close", restorePage);
+    image.addEventListener("load", () => {
+      if (!dialog.open) return;
+      loaded = image.naturalWidth > 0;
+      if (!loaded) return;
+      status.textContent = "";
+      image.hidden = false;
+      canvas.hidden = false;
+      layout(true);
+    });
+    image.addEventListener("error", () => {
+      if (!dialog.open) return;
+      loaded = false;
+      status.textContent = labels.error;
+      image.hidden = true;
+      canvas.hidden = true;
+      updateControls();
+    });
+    // Touch uses the browser's native two-dimensional scrolling. Mouse users
+    // can also grab the enlarged image without losing the scrollbar controls.
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0 || zoom <= 1 || !loaded) return;
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+      viewport.setPointerCapture(event.pointerId);
+      viewport.classList.add("is-dragging");
+      viewport.focus({ preventScroll: true });
+      event.preventDefault();
+    });
+    viewport.addEventListener("pointermove", (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      viewport.scrollLeft = drag.left - event.clientX + drag.x;
+      viewport.scrollTop = drag.top - event.clientY + drag.y;
+    });
+    const endDrag = () => { drag = null; viewport.classList.remove("is-dragging"); };
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("lostpointercapture", endDrag);
+  }
+
+  function updateControls() {
+    zoomIn.disabled = !loaded || zoom >= 8;
+    zoomOut.disabled = !loaded || zoom <= 1;
+    fit.disabled = !loaded;
+    scaleLabel.textContent = loaded ? `${Math.round(fitScale * zoom * 100)}%` : "—";
+    viewport.classList.toggle("is-zoomed", loaded && zoom > 1);
+  }
+
+  function layout(center = false) {
+    if (!loaded || !dialog.open) return;
+    const oldWidth = canvas.offsetWidth || 1;
+    const oldHeight = canvas.offsetHeight || 1;
+    const centerX = (viewport.scrollLeft + viewport.clientWidth / 2) / oldWidth;
+    const centerY = (viewport.scrollTop + viewport.clientHeight / 2) / oldHeight;
+    // A small inset keeps a fitted image clear of the viewport edge.
+    fitScale = Math.min((viewport.clientWidth - 24) / image.naturalWidth, (viewport.clientHeight - 24) / image.naturalHeight, 1);
+    fitScale = Math.max(fitScale, 0.01);
+    const width = Math.round(image.naturalWidth * fitScale * zoom);
+    const height = Math.round(image.naturalHeight * fitScale * zoom);
+    canvas.style.width = `${Math.max(viewport.clientWidth, width + 24)}px`;
+    canvas.style.height = `${Math.max(viewport.clientHeight, height + 24)}px`;
+    image.style.width = `${width}px`;
+    image.style.height = `${height}px`;
+    viewport.scrollLeft = (center ? 0.5 : centerX) * canvas.offsetWidth - viewport.clientWidth / 2;
+    viewport.scrollTop = (center ? 0.5 : centerY) * canvas.offsetHeight - viewport.clientHeight / 2;
+    updateControls();
+  }
+
+  function changeZoom(next) {
+    if (!loaded) return;
+    zoom = Math.max(1, Math.min(8, next));
+    layout(zoom === 1);
+  }
+
+  function restorePage() {
+    document.body.classList.remove("image-viewer-open");
+    drag = null;
+    // The underlying project modal owns its own inert state and scroll lock.
+    // Do not remove either when closing this second, native modal.
+    if (returnFocus?.isConnected && !returnFocus.closest('[inert], [aria-hidden="true"]')) returnFocus.focus({ preventScroll: true });
+    if (savedScroll) window.scrollTo(savedScroll.x, savedScroll.y);
+    returnFocus = null;
+    savedScroll = null;
+  }
+
+  function closeViewer() {
+    if (dialog?.open) dialog.close();
+  }
+
+  function openViewer(anchor) {
+    const preview = anchor.querySelector("img");
+    if (!preview) return false;
+    if (!dialog) createViewer();
+    if (dialog.open) return false;
+    labels = document.documentElement.lang.toLowerCase().startsWith("zh") ? copy.zh : copy.en;
+    dialog.lang = document.documentElement.lang || "en";
+    dialog.querySelector("#image-viewer-title").textContent = labels.title;
+    dialog.querySelector(".image-viewer-close").textContent = labels.close;
+    dialog.querySelector(".image-viewer-tools").setAttribute("aria-label", labels.title);
+    zoomIn.setAttribute("aria-label", labels.zoomIn);
+    zoomOut.setAttribute("aria-label", labels.zoomOut);
+    fit.textContent = labels.fit;
+    const original = dialog.querySelector(".image-viewer-original");
+    original.textContent = labels.original;
+    original.href = anchor.href;
+    dialog.querySelector(".image-viewer-hint").textContent = labels.hint;
+    viewport.setAttribute("aria-label", labels.viewport);
+    image.alt = preview.alt;
+    image.hidden = true;
+    canvas.hidden = true;
+    loaded = false;
+    zoom = 1;
+    status.textContent = labels.loading;
+    updateControls();
+    returnFocus = anchor;
+    savedScroll = { x: window.scrollX, y: window.scrollY };
+    try { dialog.showModal(); } catch { returnFocus = null; savedScroll = null; return false; }
+    document.body.classList.add("image-viewer-open");
+    image.src = anchor.href;
+    return true;
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const anchor = event.target instanceof Element ? event.target.closest("a.modal-evidence-media") : null;
+    if (anchor && openViewer(anchor)) event.preventDefault();
+  });
+
+  // Capture before the homepage's bubbling handler so Escape never closes the
+  // underlying project and Tab never enters its separate focus trap.
+  window.addEventListener("keydown", (event) => {
+    if (!dialog?.open) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      closeViewer();
+    } else if (event.key === "Tab") {
+      event.stopImmediatePropagation();
+      const controls = [...dialog.querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter((node) => node.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    } else if (["+", "=", "-", "0"].includes(event.key) && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      changeZoom(event.key === "0" ? 1 : event.key === "-" ? zoom / 1.5 : zoom * 1.5);
+    }
+  }, true);
+  window.addEventListener("resize", () => { if (dialog?.open) layout(); });
+  // Navigating browser history should not leave an image over a different page.
+  window.addEventListener("popstate", closeViewer);
+})();
+
+</script>
 </body>
 </html>

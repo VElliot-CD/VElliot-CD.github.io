@@ -19,6 +19,94 @@
     <link rel="canonical" href="https://velliot-cd.github.io/zh.html">
     <title>刘力滔｜集成电路设计与 RISC-V</title>
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml">
+    <script>
+(function () {
+  "use strict";
+
+  const key = "academic-site-theme";
+  const root = document.documentElement;
+  const controls = "#theme-toggle, [data-theme-toggle]";
+  const validTheme = (value) => value === "light" || value === "dark";
+  const systemTheme = typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
+  let preference = null;
+
+  function readPreference() {
+    try {
+      const stored = localStorage.getItem(key);
+      preference = validTheme(stored) ? stored : null;
+    } catch {
+      // Keep this page's manual choice when storage is unavailable.
+    }
+  }
+
+  function updateControls() {
+    const dark = root.dataset.theme === "dark";
+    const chinese = root.lang.toLowerCase().startsWith("zh");
+    document.querySelectorAll(controls).forEach((button) => {
+      const label = dark
+        ? button.dataset.themeLabelLight || (chinese ? "切换到浅色模式" : "Switch to light mode")
+        : button.dataset.themeLabelDark || (chinese ? "切换到深色模式" : "Switch to dark mode");
+      button.setAttribute("aria-pressed", String(dark));
+      button.setAttribute("aria-label", label);
+      button.setAttribute("title", label);
+      const icon = button.querySelector(".theme-icon");
+      if (icon) icon.textContent = dark ? "☀" : "☾";
+      button.hidden = false;
+    });
+  }
+
+  function applyTheme() {
+    const theme = preference || (systemTheme?.matches ? "dark" : "light");
+    root.dataset.theme = theme;
+    const meta = document.querySelector("meta[name='theme-color']");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#101b1a" : "#f4f1e9");
+    updateControls();
+  }
+
+  // Run in the head before the styles so linked pages paint in the same theme.
+  readPreference();
+  applyTheme();
+
+  document.addEventListener("click", (event) => {
+    const button = event.target instanceof Element ? event.target.closest(controls) : null;
+    if (!button) return;
+    preference = root.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem(key, preference);
+    } catch {
+      // Theme switching still works without browser storage.
+    }
+    applyTheme();
+  });
+
+  const followSystem = () => {
+    if (!preference) applyTheme();
+  };
+  if (systemTheme?.addEventListener) systemTheme.addEventListener("change", followSystem);
+  else systemTheme?.addListener?.(followSystem);
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== null && event.key !== key) return;
+    readPreference();
+    applyTheme();
+  });
+  window.addEventListener("pageshow", () => {
+    // Restore the preference even when the browser reuses a cached page.
+    readPreference();
+    applyTheme();
+  });
+
+  function ready() {
+    updateControls();
+    new MutationObserver(updateControls).observe(root, { attributes: true, attributeFilter: ["lang"] });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
+  else ready();
+})();
+
+</script>
     <style>
 :root {
   color-scheme: light;
@@ -205,6 +293,9 @@ img {
 .icon-button {
   font-size: 17px;
 }
+
+.icon-button[hidden] { display: none !important; }
+.icon-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 .menu-button {
   display: none;
@@ -1719,6 +1810,178 @@ html:not(.js-ready) .requires-js,
   #modal-content { padding: 0; overflow: visible; }
 }
 
+/* Keep recent work easy to scan, while retaining every update. */
+.news-archive > summary {
+  padding: 20px 0;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.news-archive > summary::marker { color: var(--accent); }
+.news-archive[open] > summary { border-bottom: 1px solid var(--line); }
+
+@media (max-width: 560px) {
+  .hero {
+    padding-block: 38px 46px;
+    gap: 28px;
+  }
+
+  .hero-role { margin-top: 22px; }
+  .hero-actions { margin-top: 24px; }
+
+  .portrait-wrap {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .portrait-backdrop { display: none; }
+
+  .portrait {
+    width: 80px;
+    height: 100px;
+    border-radius: 18px;
+    box-shadow: none;
+  }
+
+  .availability {
+    position: static;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .project-card h3 { max-width: 100%; }
+}
+
+@media print {
+  .news-archive::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+
+  .news-archive > summary { display: none; }
+  .news-archive-items { display: block !important; }
+  .portrait-wrap { display: none; }
+}
+
+/* Include after styles.css. Natural image proportions remove the large fixed
+   preview frame; portrait evidence remains bounded on smaller screens. */
+.modal-evidence-media {
+  text-align: center;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.modal-evidence-media img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(68vh, 680px);
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.modal-evidence-open {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px;
+}
+
+.image-viewer-open { overflow: hidden; }
+
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  border: 0;
+  background: var(--paper, #f4f1e9);
+  color: var(--ink, #222720);
+  font: inherit;
+  overflow: hidden;
+}
+
+.image-viewer[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-viewer::backdrop { background: rgba(0, 0, 0, 0.7); }
+.image-viewer-header, .image-viewer-tools { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.image-viewer-header { justify-content: space-between; }
+.image-viewer-header h2 { margin: 0; font-size: 18px; line-height: 1.3; font-weight: 700; }
+.image-viewer-tools { flex-wrap: wrap; }
+
+.image-viewer button, .image-viewer-original {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--line, #b7b7b0);
+  border-radius: 999px;
+  background: var(--surface, #fff);
+  color: var(--ink, #222720);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.image-viewer button:disabled { opacity: 0.45; cursor: default; }
+.image-viewer button:focus-visible, .image-viewer a:focus-visible, .image-viewer-viewport:focus-visible { outline: 3px solid var(--accent, #a4482b); outline-offset: 2px; }
+.image-viewer-scale { min-width: 42px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.image-viewer-original { margin-left: auto; }
+.image-viewer-viewport { flex: 1 1 auto; min-width: 0; min-height: 72px; overflow: auto; overscroll-behavior: contain; background: var(--surface, #fff); border: 1px solid var(--line, #b7b7b0); border-radius: 12px; }
+.image-viewer-canvas { position: relative; min-width: 100%; min-height: 100%; }
+.image-viewer-image { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; max-width: none; max-height: none; background: #fff; user-select: none; -webkit-user-drag: none; }
+.image-viewer [hidden] { display: none; }
+.image-viewer-viewport.is-zoomed { cursor: grab; }
+.image-viewer-viewport.is-dragging { cursor: grabbing; }
+.image-viewer-status, .image-viewer-hint { flex: 0 0 auto; margin: 0; font-size: 12px; line-height: 1.45; color: var(--ink-soft, #55594f); }
+.image-viewer-status:empty { display: none; }
+
+@media (max-width: 560px) {
+  .image-viewer { padding-right: max(10px, env(safe-area-inset-right)); padding-left: max(10px, env(safe-area-inset-left)); gap: 8px; }
+  .image-viewer-tools { gap: 6px; }
+  .image-viewer-tools button, .image-viewer-original { padding-inline: 9px; }
+  .image-viewer-original { font-size: 12px; }
+  .image-viewer-scale { min-width: 35px; }
+}
+
+@media (max-height: 450px) and (min-width: 561px) {
+  .image-viewer[open] { padding-top: 8px; padding-bottom: 8px; gap: 6px; }
+  .image-viewer-header { position: absolute; top: 8px; right: max(20px, env(safe-area-inset-right)); }
+  .image-viewer-header h2 { display: none; }
+  .image-viewer-tools { padding-right: 72px; }
+}
+
+@media print {
+  .image-viewer, .image-viewer[open] { display: none !important; }
+  .image-viewer-open { overflow: visible; }
+  .modal-evidence-media img { width: auto; height: auto; max-height: 70mm; }
+}
+
 </style>
     <script type="application/ld+json">
       {
@@ -1770,7 +2033,7 @@ html:not(.js-ready) .requires-js,
 
         <div class="header-actions">
           <a class="text-button" id="language-toggle" href="./?lang=en" hreflang="en" aria-label="Switch to English" lang="en">EN</a>
-          <button class="icon-button requires-js" id="theme-toggle" type="button" aria-label="切换明暗主题" aria-pressed="false">
+          <button class="icon-button requires-js" id="theme-toggle" type="button" aria-label="切换到深色模式" aria-pressed="false" title="切换到深色模式">
             <span class="theme-icon" aria-hidden="true">☾</span>
           </button>
         </div>
@@ -1832,7 +2095,7 @@ html:not(.js-ready) .requires-js,
             <p id="projects-intro">精选四项处理器、模拟 IC、VLSI 单元与 RTL 验证项目；可查看全部项目或按方向筛选。</p>
           </div>
           <div class="project-filters reveal requires-js" id="project-filters" aria-label="Project filters"><button class="filter-button is-active" type="button" data-project-filter="featured" aria-pressed="true">精选</button><button class="filter-button" type="button" data-project-filter="all" aria-pressed="false">全部</button><button class="filter-button" type="button" data-project-filter="ic" aria-pressed="false">IC 设计</button><button class="filter-button" type="button" data-project-filter="rtl" aria-pressed="false">RTL / 数字</button><button class="filter-button" type="button" data-project-filter="devices" aria-pressed="false">器件仿真</button><button class="filter-button" type="button" data-project-filter="power" aria-pressed="false">功率电子</button><button class="filter-button" type="button" data-project-filter="embedded" aria-pressed="false">嵌入式系统</button><button class="filter-button" type="button" data-project-filter="individual" aria-pressed="false">个人项目</button><button class="filter-button" type="button" data-project-filter="team" aria-pressed="false">小组项目</button></div>
-          <div class="project-grid" id="project-grid"><article class="project-card reveal"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h3>双读端口 RISC-V 的融合 INT8 点积累加扩展</h3><p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html" data-project-index="0">查看详情 <span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h3>两级 CMOS 运算放大器：从器件表征到版图后仿真</h3><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html" data-project-index="2">查看详情 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h3>CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</h3><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html" data-project-index="1">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h3>PT100 测温系统的 VHDL 数字后端</h3><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html" data-project-index="4">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
+          <div class="project-grid" id="project-grid"><article class="project-card reveal"><div class="project-meta"><span>2026.07 — 至今</span><span>·</span><span>本科毕业设计 · RTL 设计与验证</span></div><h3>RISC-V INT8 点积累加扩展</h3><p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p><ul class="project-highlights"><li>50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%</li><li>10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.zh.html" data-project-index="0">查看详情 <span class="sr-only">— 双读端口 RISC-V 的融合 INT8 点积累加扩展</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h3>两级 CMOS 运算放大器</h3><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html" data-project-index="2">查看详情 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h3>CMOS 逻辑单元与全加器</h3><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html" data-project-index="1">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h3>PT100 测温数字后端</h3><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html" data-project-index="4">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
           <div class="project-grid-footer">
             <p id="project-count" role="status" aria-live="polite">已显示 4 / 9 个项目</p>
             <button class="project-detail-button requires-js" id="more-projects" type="button">查看全部 9 个项目</button>
@@ -1849,7 +2112,7 @@ html:not(.js-ready) .requires-js,
           </div>
           <p id="news-intro">近期学术、竞赛与工程经历。</p>
         </div>
-        <div class="news-list" id="news-list"><article class="news-item reveal"><time datetime="2026-09">2026 年 9 月</time><div><h3>推进 RISC-V INT8 毕设的单层工作负载验证</h3><p>完成 DOT4ACC 与 DOT4+ADD 的对照评估：10 个图像输入下，单个卷积层平均周期减少约 10.26%；下一步将评估端到端推理与板级实现。</p><a class="inline-link news-link" href="projects/riscv-int8.zh.html">查看详情<span class="sr-only"> — 推进 RISC-V INT8 毕设的单层工作负载验证</span></a></div></article><article class="news-item reveal"><time datetime="2026-09">2026 年 9 月</time><div><h3>完成 CMOS 逻辑单元与全加器 VLSI 实验</h3><p>在 Electric 中完成 NOR2、OR2 与 28 晶体管全加器的设计和版图检查，结合 IRSIM 与 xsim 核对逻辑功能。</p><a class="inline-link news-link" href="projects/vlsi-cmos.zh.html">查看详情<span class="sr-only"> — 完成 CMOS 逻辑单元与全加器 VLSI 实验</span></a></div></article><article class="news-item reveal"><time datetime="2026-07">2026 年 7 月</time><div><h3>参加 UWE Bristol Telerobotics Summer School</h3><p>在 Bristol Robotics Laboratory 参与远程机械臂项目，进行 Python 调试、输入设备集成与位姿反馈排查，团队完成物体转移演示。</p><a class="inline-link news-link" href="#positions-title">查看详情<span class="sr-only"> — 参加 UWE Bristol Telerobotics Summer School</span></a></div></article><article class="news-item reveal"><time datetime="2026-07">2026 年 7 月</time><div><h3>机器人集体舞项目获全国总决赛二等奖</h3><p>双六足机器人项目获第二十八届中国机器人及人工智能大赛全国总决赛二等奖，并于 6 月获四川赛区二等奖。</p><a class="inline-link news-link" href="projects/hexapod-dance.zh.html">查看详情<span class="sr-only"> — 机器人集体舞项目获全国总决赛二等奖</span></a></div></article><article class="news-item reveal"><time datetime="2025">2025 年</time><div><h3>作为第三作者参与 PHM-Xi’an 2025 论文</h3><p>研究超算基础设施运维场景中的大语言模型能力边界；本人主要负责文献综述，并参与少量模型搭建工作。</p><a class="inline-link news-link" href="#publications">查看详情<span class="sr-only"> — 作为第三作者参与 PHM-Xi’an 2025 论文</span></a></div></article></div>
+        <div class="news-list" id="news-list"><article class="news-item reveal"><time datetime="2026-09">2026 年 9 月</time><div><h3>推进 RISC-V INT8 毕设的单层工作负载验证</h3><p>完成 DOT4ACC 与 DOT4+ADD 的对照评估：10 个图像输入下，单个卷积层平均周期减少约 10.26%；下一步将评估端到端推理与板级实现。</p><a class="inline-link news-link" href="projects/riscv-int8.zh.html">查看详情<span class="sr-only"> — 推进 RISC-V INT8 毕设的单层工作负载验证</span></a></div></article><article class="news-item reveal"><time datetime="2026-09">2026 年 9 月</time><div><h3>完成 CMOS 逻辑单元与全加器 VLSI 实验</h3><p>在 Electric 中完成 NOR2、OR2 与 28 晶体管全加器的设计和版图检查，结合 IRSIM 与 xsim 核对逻辑功能。</p><a class="inline-link news-link" href="projects/vlsi-cmos.zh.html">查看详情<span class="sr-only"> — 完成 CMOS 逻辑单元与全加器 VLSI 实验</span></a></div></article><article class="news-item reveal"><time datetime="2026-07">2026 年 7 月</time><div><h3>参加 UWE Bristol Telerobotics Summer School</h3><p>在 Bristol Robotics Laboratory 参与远程机械臂项目，进行 Python 调试、输入设备集成与位姿反馈排查，团队完成物体转移演示。</p><a class="inline-link news-link" href="#positions-title">查看详情<span class="sr-only"> — 参加 UWE Bristol Telerobotics Summer School</span></a></div></article><details class="news-archive"><summary>较早动态（2）</summary><div class="news-archive-items"><article class="news-item reveal"><time datetime="2026-07">2026 年 7 月</time><div><h3>机器人集体舞项目获全国总决赛二等奖</h3><p>双六足机器人项目获第二十八届中国机器人及人工智能大赛全国总决赛二等奖，并于 6 月获四川赛区二等奖。</p><a class="inline-link news-link" href="projects/hexapod-dance.zh.html">查看详情<span class="sr-only"> — 机器人集体舞项目获全国总决赛二等奖</span></a></div></article><article class="news-item reveal"><time datetime="2025">2025 年</time><div><h3>作为第三作者参与 PHM-Xi’an 2025 论文</h3><p>研究超算基础设施运维场景中的大语言模型能力边界；本人主要负责文献综述，并参与少量模型搭建工作。</p><a class="inline-link news-link" href="#publications">查看详情<span class="sr-only"> — 作为第三作者参与 PHM-Xi’an 2025 论文</span></a></div></article></div></details></div>
       </section>
 
       <section class="section section-experience" id="experience">
@@ -1965,7 +2228,8 @@ window.SITE_DATA = {
       "emailCopied": "邮箱已复制",
       "openProjectPage": "打开独立页面",
       "copyManual": "请选中并复制下方内容。",
-      "readMore": "查看详情"
+      "readMore": "查看详情",
+      "olderNews": "较早动态（{count}）"
     },
     "nav": {
       "about": "关于",
@@ -2105,13 +2369,14 @@ window.SITE_DATA = {
         "contribution": "我的贡献",
         "method": "方法与工具",
         "evidence": "结果证据",
-        "openEvidence": "打开原图"
+        "openEvidence": "查看大图"
       },
       "items": [
         {
           "period": "2026.07 — 至今",
           "role": "本科毕业设计 · RTL 设计与验证",
           "title": "双读端口 RISC-V 的融合 INT8 点积累加扩展",
+          "cardTitle": "RISC-V INT8 点积累加扩展",
           "description": "在五级 SiMPLE RV32I 处理器中集成四路有符号 INT8 点积累加指令，通过两步操作数收集复用双读端口，并以 MobileNet Visual Wake Words 的完整逐点卷积层验证流水线与软硬件协同效果。",
           "highlights": [
             "实现旧目的寄存器 RAW 检查、寄存器别名与 x0 处理、复位取消及常规流水线写回",
@@ -2160,6 +2425,7 @@ window.SITE_DATA = {
           "period": "2026 年 9 月",
           "role": "个人课程实验 · 晶体管级设计与验证",
           "title": "CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证",
+          "cardTitle": "CMOS 逻辑单元与全加器",
           "description": "在 Electric 9.07 的 mocmos 技术中完成 NOR2、OR2 与 28 晶体管全加器的原理图和版图，结合物理规则检查、原理图—版图一致性检查与 IRSIM 提取网表仿真验证设计。",
           "highlights": [
             "全加器物理层边界 206 × 84 λ，面积 1,557.36 μm²；保留 5 条 Metal 2 布线通道",
@@ -2215,6 +2481,7 @@ window.SITE_DATA = {
           "period": "2026.03 — 05",
           "role": "个人课程项目 · 模拟电路与版图",
           "title": "两级 CMOS 运算放大器：从器件表征到版图后仿真",
+          "cardTitle": "两级 CMOS 运算放大器",
           "description": "基于 CSMC 0.50 μm st02 工艺，在 Cadence Virtuoso / Spectre 中完成 NMOS 表征、两级运放原理图和版图，并获得 LVS 匹配的寄生提取视图进行仿真。",
           "highlights": [
             "典型工艺角、3 pF 负载：82.93 dB 增益、22.48 MHz UGBW、52.4° 相位裕度",
@@ -2266,6 +2533,7 @@ window.SITE_DATA = {
           "period": "2026",
           "role": "个人课程拓展 · 原理图仿真",
           "title": "两级 CMOS 运放的供电抑制研究",
+          "cardTitle": "CMOS 运放供电抑制研究",
           "description": "在 SMIC18MMRF 工艺下设计 NMOS 输入、PMOS 电流镜负载的两级运放，使用串联电阻米勒补偿，并分析供电扰动向输出的耦合。",
           "highlights": [
             "标称原理图低频开环增益 85.96 dB",
@@ -2310,6 +2578,7 @@ window.SITE_DATA = {
           "period": "2026.04 — 06",
           "role": "两人数字子组 · 六人系统团队",
           "title": "PT100 测温系统的 VHDL 数字后端",
+          "cardTitle": "PT100 测温数字后端",
           "description": "在六人混合信号系统团队中，与一名同学共同开发测温系统的数字后端，完成模块划分、RTL 集成和仿真验证。",
           "highlights": [
             "共同开发顶层、越界检测、LED 控制、数据打包与串行器 5 个设计单元",
@@ -2362,6 +2631,7 @@ window.SITE_DATA = {
           "period": "2023.12 — 2024.12",
           "role": "团队项目 · 探索性器件仿真",
           "title": "面向生物传感的石墨烯 FET 器件探索",
+          "cardTitle": "石墨烯 FET 生物传感探索",
           "description": "围绕 GFET 生物传感机制开展文献研究与二维、三维器件建模，通过偏置扫描分析输出、转移特性及电场分布。",
           "highlights": [
             "使用 Silvaco DeckBuild、TonyPlot 和 TonyPlot3D",
@@ -2404,6 +2674,7 @@ window.SITE_DATA = {
           "period": "2026.03 — 06",
           "role": "小组项目 · 硬件子系统负责人",
           "title": "24 GHz 雷达辅助的自主循迹智能车",
+          "cardTitle": "雷达辅助循迹智能车",
           "description": "开发集循迹、LoRa 通信和雷达避障于一体的四轮智能车。负责硬件子系统，并在后期参与整车集成、循迹调参与故障定位。",
           "highlights": [
             "依据接口需求完成原理图、PCB 布局、焊接、电路装配与机械制作",
@@ -2448,6 +2719,7 @@ window.SITE_DATA = {
           "period": "2026.05 — 07",
           "role": "三人团队 · 动作编程与同步",
           "title": "双 18 自由度六足机器人的同步表演",
+          "cardTitle": "六足机器人同步表演",
           "description": "参与两台 Libot 六足机器人的动作编程和调试，编排步态、姿态与队形，并将动作序列与音乐对齐。",
           "highlights": [
             "两台机器人共 36 个总线舵机，团队完成偏移校准",
@@ -2492,6 +2764,7 @@ window.SITE_DATA = {
           "period": "2026.04 — 05",
           "role": "个人实验 · 仿真与硬件测试",
           "title": "功率变换与控制实验组合",
+          "cardTitle": "功率变换与控制",
           "description": "通过四组连续实验研究 PWM 发生器、整流滤波与线性稳压、Boost 变换器，以及单相全桥逆变器的调制方式和频谱特性。",
           "highlights": [
             "Boost 硬件将 5 V 升压至 10.0 V 与 20.0 V，纹波分别约 70 mV 与 72 mV",
@@ -2706,7 +2979,8 @@ window.SITE_DATA = {
       "emailCopied": "Email copied",
       "openProjectPage": "Open full page",
       "copyManual": "Select and copy the text below.",
-      "readMore": "Read more"
+      "readMore": "Read more",
+      "olderNews": "Earlier updates ({count})"
     },
     "nav": {
       "about": "About",
@@ -2846,13 +3120,14 @@ window.SITE_DATA = {
         "contribution": "My contribution",
         "method": "Methods & tools",
         "evidence": "Evidence",
-        "openEvidence": "Open full-size evidence"
+        "openEvidence": "View image"
       },
       "items": [
         {
           "period": "Jul 2026 — Present",
           "role": "Undergraduate thesis · RTL design and verification",
           "title": "Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core",
+          "cardTitle": "RISC-V INT8 dot-product extension",
           "description": "Integrated a four-lane signed INT8 dot-product accumulation instruction into the five-stage SiMPLE RV32I core, reusing two read ports through operand collection and evaluating the design on a complete MobileNet Visual Wake Words pointwise convolution layer.",
           "highlights": [
             "Implemented old-destination RAW checks, register-alias and x0 handling, reset cancellation, and normal pipeline writeback",
@@ -2901,6 +3176,7 @@ window.SITE_DATA = {
           "period": "Sep 2026",
           "role": "Individual coursework · Transistor-level design and verification",
           "title": "CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification",
+          "cardTitle": "CMOS logic cells & full adder",
           "description": "Implemented NOR2, OR2 and a 28-transistor full adder in Electric 9.07 using mocmos technology, combining physical checks, schematic-to-layout comparison and IRSIM simulation of extracted layout netlists.",
           "highlights": [
             "Full-adder physical-layer bounds of 206 × 84 λ (1,557.36 μm²), with five spare Metal 2 routing tracks",
@@ -2956,6 +3232,7 @@ window.SITE_DATA = {
           "period": "Mar — May 2026",
           "role": "Individual coursework · Analog design & layout",
           "title": "Two-Stage CMOS Operational Amplifier: Device to Post-Layout",
+          "cardTitle": "Two-stage CMOS op-amp",
           "description": "Designed and laid out a two-stage amplifier in CSMC 0.50 μm st02 using Cadence Virtuoso and Spectre, from NMOS characterization to an LVS-matched extracted view for parasitic simulation.",
           "highlights": [
             "Typical corner, 3 pF load: 82.93 dB gain, 22.48 MHz UGBW and 52.4° phase margin",
@@ -3007,6 +3284,7 @@ window.SITE_DATA = {
           "period": "2026",
           "role": "Individual coursework extension · Schematic simulation",
           "title": "Supply rejection in a two-stage CMOS amplifier",
+          "cardTitle": "CMOS supply rejection",
           "description": "Designed an NMOS-input amplifier with a PMOS current-mirror load and series-resistor Miller compensation in SMIC18MMRF, examining supply-disturbance coupling to the output.",
           "highlights": [
             "85.96 dB low-frequency gain in nominal schematic simulation",
@@ -3051,6 +3329,7 @@ window.SITE_DATA = {
           "period": "Apr — Jun 2026",
           "role": "Two-person digital subgroup · Six-member team",
           "title": "VHDL digital backend for PT100 temperature measurement",
+          "cardTitle": "PT100 digital backend",
           "description": "Co-developed the digital backend within a six-member mixed-signal system team, working with one other digital-design teammate on RTL integration and simulation.",
           "highlights": [
             "Co-developed five units: top level, range detector, LED controller, data packer and serializer",
@@ -3103,6 +3382,7 @@ window.SITE_DATA = {
           "period": "Dec 2023 — Dec 2024",
           "role": "Team project · Exploratory device simulation",
           "title": "Exploratory graphene FET modeling for biosensing",
+          "cardTitle": "Graphene FET biosensing",
           "description": "Reviewed GFET biosensing mechanisms and built two- and three-dimensional device simulations, using bias sweeps to examine output, transfer and electric-field characteristics.",
           "highlights": [
             "Used Silvaco DeckBuild, TonyPlot and TonyPlot3D",
@@ -3145,6 +3425,7 @@ window.SITE_DATA = {
           "period": "Mar — Jun 2026",
           "role": "Team · Hardware subsystem lead",
           "title": "Autonomous Path-Following Vehicle with 24 GHz Radar",
+          "cardTitle": "Radar-assisted autonomous vehicle",
           "description": "Developed a four-wheel vehicle combining path following, LoRa communication, and radar-based obstacle avoidance. I led the hardware subsystem and later supported vehicle integration, tuning, and fault isolation.",
           "highlights": [
             "Produced the schematic and PCB layout from interface requirements, then handled soldering, circuit assembly, and mechanical fabrication",
@@ -3189,6 +3470,7 @@ window.SITE_DATA = {
           "period": "May — Jul 2026",
           "role": "Three-member team · Motion programming & synchronization",
           "title": "Synchronized performance by two 18-DOF hexapods",
+          "cardTitle": "Synchronized hexapod robots",
           "description": "Contributed motion programming and debugging for two Libot hexapods, coordinating gait, posture and formation sequences with music.",
           "highlights": [
             "36 bus servos across two robots, with offset calibration completed by the team",
@@ -3233,6 +3515,7 @@ window.SITE_DATA = {
           "period": "Apr — May 2026",
           "role": "Individual · Simulation and bench testing",
           "title": "Power Conversion & Control Laboratory Portfolio",
+          "cardTitle": "Power conversion & control",
           "description": "Four linked experiments covering a PWM generator, rectification and linear regulation, a boost converter, and modulation and spectral analysis of a single-phase full-bridge inverter.",
           "highlights": [
             "Boosted 5 V to measured 10.0 V and 20.0 V with approximately 70 mV and 72 mV ripple",
@@ -3531,12 +3814,14 @@ window.SITE_DATA = {
     text("#news-kicker", content.news.kicker);
     text("#news-title", content.news.title);
     text("#news-intro", content.news.intro);
-    $("#news-list").innerHTML = (content.news.items || [])
-      .map(
-        (item) =>
-          `<article class="news-item reveal"><time${item.datetime ? ` datetime="${escapeHtml(item.datetime)}"` : ""}>${escapeHtml(item.date)}</time><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${item.href ? `<a class="inline-link news-link" href="${escapeHtml(item.href)}">${escapeHtml(content.ui.readMore)}<span class="sr-only"> — ${escapeHtml(item.title)}</span></a>` : ""}</div></article>`
-      )
-      .join("");
+    const items = content.news.items || [];
+    const renderItem = (item) =>
+      `<article class="news-item reveal"><time${item.datetime ? ` datetime="${escapeHtml(item.datetime)}"` : ""}>${escapeHtml(item.date)}</time><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p>${item.href ? `<a class="inline-link news-link" href="${escapeHtml(item.href)}">${escapeHtml(content.ui.readMore)}<span class="sr-only"> — ${escapeHtml(item.title)}</span></a>` : ""}</div></article>`;
+    const olderItems = items.slice(3);
+    const archive = olderItems.length
+      ? `<details class="news-archive"><summary>${escapeHtml(content.ui.olderNews.replace("{count}", olderItems.length))}</summary><div class="news-archive-items">${olderItems.map(renderItem).join("")}</div></details>`
+      : "";
+    $("#news-list").innerHTML = items.slice(0, 3).map(renderItem).join("") + archive;
   }
 
   function renderFocusPanel(content) {
@@ -3580,7 +3865,7 @@ window.SITE_DATA = {
         const highlights = listMarkup(item.cardHighlights || item.highlights);
         const tags = (item.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
         const href = projectPath(item);
-        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.cardSummary || item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><a class="project-detail-button" href="${escapeHtml(href)}" data-project-index="${index}">${escapeHtml(content.ui.details)} <span class="sr-only">— ${escapeHtml(item.title)}</span></a></div></article>`;
+        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.cardTitle || item.title)}</h3><p>${escapeHtml(item.cardSummary || item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><a class="project-detail-button" href="${escapeHtml(href)}" data-project-index="${index}">${escapeHtml(content.ui.details)} <span class="sr-only">— ${escapeHtml(item.title)}</span></a></div></article>`;
       })
       .join("");
 
@@ -3607,7 +3892,7 @@ window.SITE_DATA = {
     const labels = content.projects.detailLabels || {};
     const details = item.details || {};
     const evidenceFigure = item.evidenceImage
-      ? `<figure class="modal-evidence"><a class="modal-evidence-media" href="${escapeHtml(item.evidenceImage)}" target="_blank" rel="noreferrer"><img src="${escapeHtml(item.evidenceImage)}" alt="${escapeHtml(item.evidenceAlt || "")}"${item.evidenceWidth && item.evidenceHeight ? ` width="${item.evidenceWidth}" height="${item.evidenceHeight}"` : ""} loading="lazy" decoding="async" /><span class="modal-evidence-open">${escapeHtml(labels.openEvidence || "Open full-size evidence")} <span aria-hidden="true">↗</span></span></a>${item.evidenceCaption ? `<figcaption>${escapeHtml(item.evidenceCaption)}</figcaption>` : ""}</figure>`
+      ? `<figure class="modal-evidence"><a class="modal-evidence-media" href="${escapeHtml(item.evidenceImage)}" target="_blank" rel="noreferrer"><img src="${escapeHtml(item.evidenceImage)}" alt="${escapeHtml(item.evidenceAlt || "")}"${item.evidenceWidth && item.evidenceHeight ? ` width="${item.evidenceWidth}" height="${item.evidenceHeight}"` : ""} loading="lazy" decoding="async" /><span class="modal-evidence-open">${escapeHtml(labels.openEvidence || "View image")} <span aria-hidden="true">⤢</span></span></a>${item.evidenceCaption ? `<figcaption>${escapeHtml(item.evidenceCaption)}</figcaption>` : ""}</figure>`
       : "";
     $("#modal-close").textContent = content.ui.closeProject;
     $("#modal-share").textContent = content.ui.shareProject;
@@ -3750,7 +4035,6 @@ window.SITE_DATA = {
     $("#language-toggle")?.setAttribute("href", isZh ? "./?lang=en" : "zh.html");
     $("#language-toggle")?.setAttribute("hreflang", isZh ? "en" : "zh-CN");
     $("#language-toggle")?.setAttribute("lang", isZh ? "en" : "zh-CN");
-    $("#theme-toggle")?.setAttribute("aria-label", content.ui.theme);
     $("#menu-button .sr-only")?.replaceChildren(document.createTextNode(content.ui.menu));
     text("#back-to-top", content.ui.backToTop);
 
@@ -3893,29 +4177,6 @@ window.SITE_DATA = {
     render();
   });
 
-  const systemTheme = window.matchMedia?.("(prefers-color-scheme: dark)");
-  const savedTheme = getStored("academic-site-theme", "");
-  let themePreference = ["light", "dark"].includes(savedTheme) ? savedTheme : null;
-
-  function applyTheme(next) {
-    document.documentElement.dataset.theme = next;
-    text(".theme-icon", next === "dark" ? "☀" : "☾");
-    $("#theme-toggle")?.setAttribute("aria-pressed", String(next === "dark"));
-    setMeta("meta[name='theme-color']", "content", next === "dark" ? "#101b1a" : "#f4f1e9");
-  }
-
-  applyTheme(themePreference || (systemTheme?.matches ? "dark" : "light"));
-  systemTheme?.addEventListener?.("change", (event) => {
-    if (!themePreference) applyTheme(event.matches ? "dark" : "light");
-  });
-
-  $("#theme-toggle")?.addEventListener("click", () => {
-    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    themePreference = next;
-    applyTheme(next);
-    setStored("academic-site-theme", next);
-  });
-
   const menuButton = $("#menu-button");
   const nav = $("#site-nav");
   function closeMenu(restoreFocus = false) {
@@ -3980,6 +4241,197 @@ window.SITE_DATA = {
   setStored("academic-site-language", language);
   const initialProject = data[language].projects.items.findIndex((item) => item.id === initialParams.get("project"));
   if (initialProject >= 0) openProjectModal(initialProject, false);
+})();
+
+</script>
+<script>
+/* Load once after the page scripts (or with defer). Delegated links also support
+   dynamically rendered project modals. The dialog is created only on demand. */
+(() => {
+  "use strict";
+  if (window.__academicImageViewer || typeof HTMLDialogElement === "undefined" || !HTMLDialogElement.prototype.showModal) return;
+  window.__academicImageViewer = true;
+
+  const copy = {
+    en: { title: "Project image", close: "Close", zoomIn: "Zoom in", zoomOut: "Zoom out", fit: "Fit image", original: "Open original image", loading: "Loading image…", error: "This image could not be loaded. You can try opening the original.", hint: "Zoom in, then drag or scroll to inspect. Press Escape to close.", viewport: "Image preview. Use arrow keys to scroll when zoomed in." },
+    zh: { title: "项目图片", close: "关闭", zoomIn: "放大", zoomOut: "缩小", fit: "适应窗口", original: "打开原图", loading: "正在加载图片…", error: "图片暂时无法加载，可以尝试打开原图。", hint: "放大后可拖动或滚动查看，按 Escape 关闭。", viewport: "图片预览。放大后可使用方向键滚动查看。" }
+  };
+  let dialog, viewport, canvas, image, status, zoomIn, zoomOut, fit, scaleLabel, returnFocus;
+  let zoom = 1, fitScale = 1, loaded = false, savedScroll, drag = null;
+  let labels = copy.en;
+
+  function createViewer() {
+    dialog = document.createElement("dialog");
+    dialog.className = "image-viewer";
+    dialog.setAttribute("aria-labelledby", "image-viewer-title");
+    dialog.innerHTML = `<div class="image-viewer-header"><h2 id="image-viewer-title"></h2><button type="button" class="image-viewer-close" autofocus></button></div>
+      <div class="image-viewer-tools" role="group"><button type="button" data-image-action="out">−</button><output class="image-viewer-scale" aria-live="polite"></output><button type="button" data-image-action="in">+</button><button type="button" data-image-action="fit"></button><a class="image-viewer-original" target="_blank" rel="noreferrer"></a></div>
+      <div class="image-viewer-viewport" tabindex="0"><div class="image-viewer-canvas"><img class="image-viewer-image" draggable="false" alt="" /></div></div>
+      <p class="image-viewer-status" role="status" aria-live="polite"></p><p class="image-viewer-hint"></p>`;
+    document.body.append(dialog);
+    viewport = dialog.querySelector(".image-viewer-viewport");
+    canvas = dialog.querySelector(".image-viewer-canvas");
+    image = dialog.querySelector(".image-viewer-image");
+    status = dialog.querySelector(".image-viewer-status");
+    zoomIn = dialog.querySelector('[data-image-action="in"]');
+    zoomOut = dialog.querySelector('[data-image-action="out"]');
+    fit = dialog.querySelector('[data-image-action="fit"]');
+    scaleLabel = dialog.querySelector(".image-viewer-scale");
+    dialog.querySelector(".image-viewer-close").addEventListener("click", closeViewer);
+    zoomIn.addEventListener("click", () => changeZoom(zoom * 1.5));
+    zoomOut.addEventListener("click", () => changeZoom(zoom / 1.5));
+    fit.addEventListener("click", () => changeZoom(1));
+    dialog.addEventListener("cancel", (event) => { event.preventDefault(); closeViewer(); });
+    dialog.addEventListener("close", restorePage);
+    image.addEventListener("load", () => {
+      if (!dialog.open) return;
+      loaded = image.naturalWidth > 0;
+      if (!loaded) return;
+      status.textContent = "";
+      image.hidden = false;
+      canvas.hidden = false;
+      layout(true);
+    });
+    image.addEventListener("error", () => {
+      if (!dialog.open) return;
+      loaded = false;
+      status.textContent = labels.error;
+      image.hidden = true;
+      canvas.hidden = true;
+      updateControls();
+    });
+    // Touch uses the browser's native two-dimensional scrolling. Mouse users
+    // can also grab the enlarged image without losing the scrollbar controls.
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0 || zoom <= 1 || !loaded) return;
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+      viewport.setPointerCapture(event.pointerId);
+      viewport.classList.add("is-dragging");
+      viewport.focus({ preventScroll: true });
+      event.preventDefault();
+    });
+    viewport.addEventListener("pointermove", (event) => {
+      if (!drag || drag.id !== event.pointerId) return;
+      viewport.scrollLeft = drag.left - event.clientX + drag.x;
+      viewport.scrollTop = drag.top - event.clientY + drag.y;
+    });
+    const endDrag = () => { drag = null; viewport.classList.remove("is-dragging"); };
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("lostpointercapture", endDrag);
+  }
+
+  function updateControls() {
+    zoomIn.disabled = !loaded || zoom >= 8;
+    zoomOut.disabled = !loaded || zoom <= 1;
+    fit.disabled = !loaded;
+    scaleLabel.textContent = loaded ? `${Math.round(fitScale * zoom * 100)}%` : "—";
+    viewport.classList.toggle("is-zoomed", loaded && zoom > 1);
+  }
+
+  function layout(center = false) {
+    if (!loaded || !dialog.open) return;
+    const oldWidth = canvas.offsetWidth || 1;
+    const oldHeight = canvas.offsetHeight || 1;
+    const centerX = (viewport.scrollLeft + viewport.clientWidth / 2) / oldWidth;
+    const centerY = (viewport.scrollTop + viewport.clientHeight / 2) / oldHeight;
+    // A small inset keeps a fitted image clear of the viewport edge.
+    fitScale = Math.min((viewport.clientWidth - 24) / image.naturalWidth, (viewport.clientHeight - 24) / image.naturalHeight, 1);
+    fitScale = Math.max(fitScale, 0.01);
+    const width = Math.round(image.naturalWidth * fitScale * zoom);
+    const height = Math.round(image.naturalHeight * fitScale * zoom);
+    canvas.style.width = `${Math.max(viewport.clientWidth, width + 24)}px`;
+    canvas.style.height = `${Math.max(viewport.clientHeight, height + 24)}px`;
+    image.style.width = `${width}px`;
+    image.style.height = `${height}px`;
+    viewport.scrollLeft = (center ? 0.5 : centerX) * canvas.offsetWidth - viewport.clientWidth / 2;
+    viewport.scrollTop = (center ? 0.5 : centerY) * canvas.offsetHeight - viewport.clientHeight / 2;
+    updateControls();
+  }
+
+  function changeZoom(next) {
+    if (!loaded) return;
+    zoom = Math.max(1, Math.min(8, next));
+    layout(zoom === 1);
+  }
+
+  function restorePage() {
+    document.body.classList.remove("image-viewer-open");
+    drag = null;
+    // The underlying project modal owns its own inert state and scroll lock.
+    // Do not remove either when closing this second, native modal.
+    if (returnFocus?.isConnected && !returnFocus.closest('[inert], [aria-hidden="true"]')) returnFocus.focus({ preventScroll: true });
+    if (savedScroll) window.scrollTo(savedScroll.x, savedScroll.y);
+    returnFocus = null;
+    savedScroll = null;
+  }
+
+  function closeViewer() {
+    if (dialog?.open) dialog.close();
+  }
+
+  function openViewer(anchor) {
+    const preview = anchor.querySelector("img");
+    if (!preview) return false;
+    if (!dialog) createViewer();
+    if (dialog.open) return false;
+    labels = document.documentElement.lang.toLowerCase().startsWith("zh") ? copy.zh : copy.en;
+    dialog.lang = document.documentElement.lang || "en";
+    dialog.querySelector("#image-viewer-title").textContent = labels.title;
+    dialog.querySelector(".image-viewer-close").textContent = labels.close;
+    dialog.querySelector(".image-viewer-tools").setAttribute("aria-label", labels.title);
+    zoomIn.setAttribute("aria-label", labels.zoomIn);
+    zoomOut.setAttribute("aria-label", labels.zoomOut);
+    fit.textContent = labels.fit;
+    const original = dialog.querySelector(".image-viewer-original");
+    original.textContent = labels.original;
+    original.href = anchor.href;
+    dialog.querySelector(".image-viewer-hint").textContent = labels.hint;
+    viewport.setAttribute("aria-label", labels.viewport);
+    image.alt = preview.alt;
+    image.hidden = true;
+    canvas.hidden = true;
+    loaded = false;
+    zoom = 1;
+    status.textContent = labels.loading;
+    updateControls();
+    returnFocus = anchor;
+    savedScroll = { x: window.scrollX, y: window.scrollY };
+    try { dialog.showModal(); } catch { returnFocus = null; savedScroll = null; return false; }
+    document.body.classList.add("image-viewer-open");
+    image.src = anchor.href;
+    return true;
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const anchor = event.target instanceof Element ? event.target.closest("a.modal-evidence-media") : null;
+    if (anchor && openViewer(anchor)) event.preventDefault();
+  });
+
+  // Capture before the homepage's bubbling handler so Escape never closes the
+  // underlying project and Tab never enters its separate focus trap.
+  window.addEventListener("keydown", (event) => {
+    if (!dialog?.open) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      closeViewer();
+    } else if (event.key === "Tab") {
+      event.stopImmediatePropagation();
+      const controls = [...dialog.querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter((node) => node.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    } else if (["+", "=", "-", "0"].includes(event.key) && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      changeZoom(event.key === "0" ? 1 : event.key === "-" ? zoom / 1.5 : zoom * 1.5);
+    }
+  }, true);
+  window.addEventListener("resize", () => { if (dialog?.open) layout(); });
+  // Navigating browser history should not leave an image over a different page.
+  window.addEventListener("popstate", closeViewer);
 })();
 
 </script>
