@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="../" />
   <title>CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证 | 刘力滔</title>
-  <meta name="description" content="完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。" />
+  <meta name="description" content="完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。" />
   <meta name="theme-color" content="#f4f1e9" />
   <script>
 (function () {
@@ -102,14 +102,14 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证 | 刘力滔" />
-  <meta property="og:description" content="完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。" />
+  <meta property="og:description" content="完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。" />
   <meta property="og:url" content="https://velliot-cd.github.io/projects/vlsi-cmos.zh.html" />
   <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证 | 刘力滔" />
-  <meta name="twitter:description" content="完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。" />
+  <meta name="twitter:description" content="完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。" />
   <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证","description":"完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。","url":"https://velliot-cd.github.io/projects/vlsi-cmos.zh.html","inLanguage":"zh-CN","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证","description":"完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。","url":"https://velliot-cd.github.io/projects/vlsi-cmos.zh.html","inLanguage":"zh-CN","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
   <style>
 :root {
   color-scheme: light;
@@ -1998,9 +1998,60 @@ html:not(.js-ready) .requires-js,
 .category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
 .category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+
+/* Lead with the work; keep the supporting overview compact. */
+#projects.section { padding-block: 64px 76px; }
+#projects .section-heading { margin-bottom: 28px; }
+.project-card { min-height: 0; padding: 28px; }
+.project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
+.project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
+.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview:hover img { transform: scale(1.025); }
+.project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-card.has-preview::after { display: none; }
+.project-highlights { margin-top: 16px; gap: 8px; }
+.project-card-footer { padding-top: 20px; gap: 14px; }
+.project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
+#research .research-card { min-height: 0; padding: 24px; }
+#research .research-card h3 { margin-top: 18px; font-size: 23px; }
+#research .focus-panel { padding: 26px; gap: 28px; }
+#research .focus-panel h3 { font-size: clamp(25px, 2.5vw, 32px); }
+#research .focus-panel li { padding: 10px 12px 10px 34px; border: 0; background: transparent; }
+#research .focus-panel li::before { top: 16px; left: 12px; }
+.skill-evidence { display: grid; gap: 6px; margin-top: 20px; }
+.skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
+
+.study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
+.study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-toc-label { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.project-discussion { margin-top: 40px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-deep); }
+.project-discussion h2 { margin-top: 0; font-size: 26px; }
+.project-discussion > p { color: var(--ink-soft); font-size: 14px; }
+.project-discussion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.project-discussion-email { display: block; width: fit-content; margin-top: 16px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 14px; }
+.project-discussion .copy-result { margin-top: 10px; }
+@media (min-width: 761px) {
+  .project-card.has-preview .project-meta { min-height: 42px; align-content: start; }
+}
+@media (max-width: 760px) {
+  #projects.section { padding-block: 38px 48px; }
+  .project-card { padding: 22px; }
+  .project-card-preview img { max-height: 220px; }
+  #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .project-discussion { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-preview img { transition: none; }
+  .project-card-preview:hover img { transform: none; }
+}
 @media print {
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
+  .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
+  .project-discussion { break-inside: avoid; }
 }
 
 .site-nav a.is-current-section {
@@ -2095,6 +2146,8 @@ html:not(.js-ready) .requires-js,
 .study-note-copy p { margin: 0 0 14px; font-size: 14px; }
 .study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .study-next p { margin: 0; font-size: 14px; }
+.study-next .study-boundary { margin-bottom: 12px; font-weight: 650; }
+.standalone-project [id^="study-"] { scroll-margin-top: 24px; }
 .project-record-content { padding: 0 18px 20px; }
 .project-record-content .modal-detail-grid { margin-top: 18px; }
 .project-record-content > .modal-evidence { margin-top: 0; }
@@ -2161,16 +2214,26 @@ html:not(.js-ready) .requires-js,
 
       <div class="tag-list modal-tags"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span><span class="tag">SystemVerilog</span><span class="tag">Coursework</span></div>
 
+<section class="project-discussion" aria-labelledby="project-discussion-title">
+      <h2 id="project-discussion-title">交流这个项目</h2>
+      <p>欢迎交流设计选择、验证方法或相关研究。邮件主题会带上项目名称，便于继续讨论。</p>
+      <div class="project-discussion-actions">
+        <a class="button button-primary" href="mailto:litaoliu_2026@163.com?subject=%E9%A1%B9%E7%9B%AE%E4%BA%A4%E6%B5%81%EF%BC%9ACMOS%20%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%E4%B8%8E%E5%85%A8%E5%8A%A0%E5%99%A8">发送项目邮件</a>
+        <button class="button button-secondary" type="button" data-project-email-copy data-copied-label="邮箱已复制" data-copy-failed="自动复制未成功，已选中邮箱地址；请手动复制，或使用邮件链接。" hidden>复制邮箱</button>
+      </div>
+      <a class="project-discussion-email" data-project-email-value href="mailto:litaoliu_2026@163.com?subject=%E9%A1%B9%E7%9B%AE%E4%BA%A4%E6%B5%81%EF%BC%9ACMOS%20%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%E4%B8%8E%E5%85%A8%E5%8A%A0%E5%99%A8">litaoliu_2026@163.com</a>
+      <p class="copy-result" data-project-email-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
 <nav class="related-projects" aria-labelledby="related-projects-title">
       <h2 id="related-projects-title">相关项目</h2>
       <div class="related-project-grid">
         <a class="related-project-card" href="projects/pt100-rtl.zh.html">
           <h3>PT100 测温数字后端</h3>
-          <p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p>
+          <p>作为两人数字子组成员，共同开发并验证 PT100 系统的 VHDL 后端。</p>
         </a>
         <a class="related-project-card" href="projects/riscv-int8.zh.html">
           <h3>RISC-V INT8 点积累加扩展</h3>
-          <p>在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。</p>
+          <p>以分步操作数收集，在双读端口 RISC-V 中实现融合 INT8 点积累加。</p>
         </a>
       </div>
     </nav>
@@ -2366,6 +2429,38 @@ html:not(.js-ready) .requires-js,
   window.addEventListener("popstate", closeViewer);
 })();
 
+</script>
+  <script>
+(() => {
+  const button = document.querySelector('[data-project-email-copy]');
+  const email = document.querySelector('[data-project-email-value]');
+  const status = document.querySelector('[data-project-email-status]');
+  if (!button || !email || !status) return;
+  button.hidden = false;
+  const label = button.textContent;
+  let reset;
+  button.addEventListener('click', async () => {
+    clearTimeout(reset);
+    button.disabled = true;
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(email.textContent.trim());
+      button.textContent = button.dataset.copiedLabel;
+      status.textContent = button.dataset.copiedLabel;
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      button.textContent = label;
+      status.textContent = button.dataset.copyFailed;
+    } finally {
+      button.disabled = false;
+      reset = setTimeout(() => { button.textContent = label; }, 2500);
+    }
+  });
+})();
 </script>
 </body>
 </html>

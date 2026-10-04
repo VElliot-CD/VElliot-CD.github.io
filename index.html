@@ -1995,9 +1995,60 @@ html:not(.js-ready) .requires-js,
 .category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
 .category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+
+/* Lead with the work; keep the supporting overview compact. */
+#projects.section { padding-block: 64px 76px; }
+#projects .section-heading { margin-bottom: 28px; }
+.project-card { min-height: 0; padding: 28px; }
+.project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
+.project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
+.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview:hover img { transform: scale(1.025); }
+.project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-card.has-preview::after { display: none; }
+.project-highlights { margin-top: 16px; gap: 8px; }
+.project-card-footer { padding-top: 20px; gap: 14px; }
+.project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
+#research .research-card { min-height: 0; padding: 24px; }
+#research .research-card h3 { margin-top: 18px; font-size: 23px; }
+#research .focus-panel { padding: 26px; gap: 28px; }
+#research .focus-panel h3 { font-size: clamp(25px, 2.5vw, 32px); }
+#research .focus-panel li { padding: 10px 12px 10px 34px; border: 0; background: transparent; }
+#research .focus-panel li::before { top: 16px; left: 12px; }
+.skill-evidence { display: grid; gap: 6px; margin-top: 20px; }
+.skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
+
+.study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
+.study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-toc-label { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.project-discussion { margin-top: 40px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-deep); }
+.project-discussion h2 { margin-top: 0; font-size: 26px; }
+.project-discussion > p { color: var(--ink-soft); font-size: 14px; }
+.project-discussion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.project-discussion-email { display: block; width: fit-content; margin-top: 16px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 14px; }
+.project-discussion .copy-result { margin-top: 10px; }
+@media (min-width: 761px) {
+  .project-card.has-preview .project-meta { min-height: 42px; align-content: start; }
+}
+@media (max-width: 760px) {
+  #projects.section { padding-block: 38px 48px; }
+  .project-card { padding: 22px; }
+  .project-card-preview img { max-height: 220px; }
+  #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .project-discussion { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-preview img { transition: none; }
+  .project-card-preview:hover img { transform: none; }
+}
 @media print {
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
+  .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
+  .project-discussion { break-inside: avoid; }
 }
 
 .site-nav a.is-current-section {
@@ -2092,6 +2143,8 @@ html:not(.js-ready) .requires-js,
 .study-note-copy p { margin: 0 0 14px; font-size: 14px; }
 .study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .study-next p { margin: 0; font-size: 14px; }
+.study-next .study-boundary { margin-bottom: 12px; font-weight: 650; }
+.standalone-project [id^="study-"] { scroll-margin-top: 24px; }
 .project-record-content { padding: 0 18px 20px; }
 .project-record-content .modal-detail-grid { margin-top: 18px; }
 .project-record-content > .modal-evidence { margin-top: 0; }
@@ -2156,9 +2209,9 @@ html:not(.js-ready) .requires-js,
 
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="#about" data-nav="about" class="">About</a>
+          <a href="#projects" data-nav="projects">Projects</a>
           <a href="#research" data-nav="research">Focus</a>
           <a href="#publications" data-nav="publications">Publication</a>
-          <a href="#projects" data-nav="projects">Projects</a>
           <a href="#news" data-nav="news">News</a>
           <a href="#experience" data-nav="experience">Experience</a>
           <a href="#contact" data-nav="contact">Contact</a>
@@ -2179,7 +2232,7 @@ html:not(.js-ready) .requires-js,
           <p class="eyebrow" id="hero-eyebrow">Hello, I’m</p>
           <h1 id="hero-name">Litao Liu</h1>
           <p class="hero-role" id="hero-role">Microelectronics Undergraduate · Glasgow College, UESTC</p>
-          <p class="hero-summary" id="hero-summary">My current work focuses on processor RTL and IC design and verification. My final-year project explores RISC-V instruction support for INT8 inference, alongside CMOS analog circuits, digital-cell layout and digital interfaces for mixed-signal systems.</p>
+          <p class="hero-summary" id="hero-summary">I work on processor RTL and IC design and verification. My final-year project explores RISC-V instruction support for INT8 inference.</p>
           <div class="hero-actions" id="hero-actions"><a class="button button-primary" href="#projects">View projects <span aria-hidden="true">→</span></a><a class="button button-secondary" href="mailto:litaoliu_2026@163.com?subject=Academic%20CV%20request">Request CV <span aria-hidden="true">→</span></a></div>
         </div>
 
@@ -2190,21 +2243,40 @@ html:not(.js-ready) .requires-js,
         </div>
       </section>
 
+      <section class="section section-projects" id="projects">
+        <div class="shell">
+          <div class="section-heading heading-row reveal">
+            <div>
+              <p class="section-kicker" id="projects-kicker">Selected work</p>
+              <h2 id="projects-title" tabindex="-1">Featured projects</h2>
+            </div>
+            <p id="projects-intro">Start with two design studies: my contribution, the validation and the remaining limits.</p>
+          </div>
+          <div class="project-filters reveal requires-js" id="project-filters" aria-label="Project filters"><button class="filter-button is-active" type="button" data-project-filter="featured" aria-pressed="true">Selected</button><button class="filter-button" type="button" data-project-filter="all" aria-pressed="false">All</button><button class="filter-button" type="button" data-project-filter="ic" aria-pressed="false">IC Design</button><button class="filter-button" type="button" data-project-filter="rtl" aria-pressed="false">RTL / Digital</button><button class="filter-button" type="button" data-project-filter="devices" aria-pressed="false">Device simulation</button><button class="filter-button" type="button" data-project-filter="embedded" aria-pressed="false">Embedded</button></div>
+          <div class="project-grid" id="project-grid"><article class="project-card reveal has-preview"><div class="project-meta"><span>Jul 2026 — Present</span><span>·</span><span>Undergraduate thesis · RTL design and verification</span></div><h3>RISC-V INT8 dot-product extension</h3><a class="project-card-preview" href="projects/riscv-int8.html" data-project-preview="0" aria-label="Read design study: RISC-V INT8 dot-product extension"><img src="assets/research/riscv-architecture.en.svg" alt="Functional diagram of staged collection of three operands through two RISC-V read ports" width="1000" height="640" loading="lazy" decoding="async"></a><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>In progress</li><li>RTL simulation</li></ul></div><p>Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core.</p><ul class="project-highlights"><li>10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz</li><li>INT32 and INT8 results matched the reference across ten image inputs</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.html" data-project-index="0">Read design study <span class="sr-only">— Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</span></a></div></article><article class="project-card reveal has-preview"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h3>Two-stage CMOS op-amp</h3><a class="project-card-preview" href="projects/cmos-opamp.html" data-project-preview="2" aria-label="Read design study: Two-stage CMOS op-amp"><img src="assets/research/opamp-architecture.en.svg" alt="Functional diagram of a two-stage CMOS amplifier showing input and output stages and Miller compensation" width="1000" height="640" loading="lazy" decoding="async"></a><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul></div><p>Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html" data-project-index="2">Read design study <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h3>CMOS logic cells &amp; full adder</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Layout checks</li><li>Extracted-netlist simulation</li></ul></div><p>Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html" data-project-index="1">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h3>PT100 digital backend</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>RTL simulation</li><li>Implementation timing</li></ul></div><p>Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.</p><ul class="project-highlights"><li>Module and integration tests covered reset, handshakes, representative inputs and boundaries</li><li>Checked 16-cycle serial frames, data packing and the registered out-of-range flag</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html" data-project-index="4">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article></div>
+          <div class="project-grid-footer">
+            <p id="project-count" role="status" aria-live="polite">4 of 9 projects</p>
+            <button class="project-detail-button requires-js" id="more-projects" type="button">Show all 9 projects</button>
+            <a class="project-detail-button no-js-only" id="all-projects-link" href="projects/index.html">Show all 9 projects</a>
+          </div>
+        </div>
+      </section>
+
       <section class="section shell" id="research">
         <div class="section-heading reveal">
           <p class="section-kicker" id="research-kicker">Technical focus</p>
           <h2 id="research-title">From processor RTL to CMOS circuits</h2>
-          <p id="research-intro">I explore how hardware constraints shape design choices, from register files and pipelines to biasing, compensation and layout parasitics, and evaluate those choices through simulation and implementation results.</p>
+          <p id="research-intro">Starting from hardware constraints, I test design choices through simulation and implementation.</p>
         </div>
-        <div class="research-grid" id="research-grid"><article class="research-card reveal"><span class="card-number">01</span><h3>RISC-V &amp; digital design</h3><p>Three-source operand collection with a two-read-port register file, fused INT8 dot-product accumulation, pipeline control, result checking and timing analysis.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-rtl.html" data-research-filter="rtl">View related projects <span aria-hidden="true">→</span><span class="sr-only"> — RISC-V &amp; digital design</span></a></div></article><article class="research-card reveal"><span class="card-number">02</span><h3>CMOS circuits &amp; physical verification</h3><p>Biasing, Miller compensation and supply coupling, alongside analog parasitic extraction and digital-cell layout checks to understand physical implementation effects.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-ic.html" data-research-filter="ic">View related projects <span aria-hidden="true">→</span><span class="sr-only"> — CMOS circuits &amp; physical verification</span></a></div></article><article class="research-card reveal"><span class="card-number">03</span><h3>Further exploration: devices &amp; embedded systems</h3><p>Device simulation in Silvaco, STM32 interfaces, PCB work and robotics broaden my understanding of device behavior and system integration, supporting my circuit and digital-design work.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-devices.html" data-research-filter="devices">Device simulation <span aria-hidden="true">→</span><span class="sr-only"> — Further exploration: devices &amp; embedded systems</span></a><a class="research-project-link" href="projects/category-embedded.html" data-research-filter="embedded">Embedded <span aria-hidden="true">→</span><span class="sr-only"> — Further exploration: devices &amp; embedded systems</span></a></div></article></div>
+        <div class="research-grid" id="research-grid"><article class="research-card reveal"><span class="card-number">01</span><h3>RISC-V &amp; digital design</h3><p>Instruction extensions, pipeline dependencies and RTL verification.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-rtl.html" data-research-filter="rtl">View related projects <span aria-hidden="true">→</span><span class="sr-only"> — RISC-V &amp; digital design</span></a></div></article><article class="research-card reveal"><span class="card-number">02</span><h3>CMOS circuits &amp; physical verification</h3><p>Biasing, compensation, parasitic extraction and digital-cell layout checks.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-ic.html" data-research-filter="ic">View related projects <span aria-hidden="true">→</span><span class="sr-only"> — CMOS circuits &amp; physical verification</span></a></div></article><article class="research-card reveal"><span class="card-number">03</span><h3>Devices &amp; embedded systems</h3><p>Understanding system integration through device simulation, interfaces and PCB debugging.</p><div class="research-project-links"><a class="research-project-link" href="projects/category-devices.html" data-research-filter="devices">Device simulation <span aria-hidden="true">→</span><span class="sr-only"> — Devices &amp; embedded systems</span></a><a class="research-project-link" href="projects/category-embedded.html" data-research-filter="embedded">Embedded <span aria-hidden="true">→</span><span class="sr-only"> — Devices &amp; embedded systems</span></a></div></article></div>
         <div class="focus-panel reveal" id="focus-panel">
           <div>
             <p class="section-kicker" id="focus-panel-kicker">Current research</p>
-            <h3 id="focus-panel-title">INT8 accumulation on a two-read-port RISC-V core</h3>
-            <p id="focus-panel-intro">My final-year project asks how a three-source DOT4ACC instruction can collect its operands and handle pipeline dependencies while retaining a two-read-port register file.</p>
+            <h3 id="focus-panel-title">Three operands, two read ports?</h3>
+            <p id="focus-panel-intro">Collecting DOT4ACC operands in steps while handling pipeline dependencies.</p>
             <div id="focus-panel-action"><a class="research-project-link" href="projects/riscv-int8.html" data-focus-project="riscv-int8">View current project <span aria-hidden="true">→</span></a></div>
           </div>
-          <ul id="focus-panel-list"><li>Completed: RTL checks, a resident-layer workload comparison and OOC implementation timing checks</li><li>Current evidence: 10 image inputs, one convolution layer, compared with an existing DOT4+ADD baseline</li><li>Next: end-to-end model evaluation and validation on physical hardware</li></ul>
+          <ul id="focus-panel-list"><li>Validated: RTL behavior, one-layer comparisons and OOC implementation timing</li><li>Next: end-to-end inference and board-level validation</li></ul>
         </div>
       </section>
 
@@ -2219,24 +2291,7 @@ html:not(.js-ready) .requires-js,
         <ol class="publication-list" id="publication-list"><li class="publication-item reveal" id="llm-phm-2025"><div><h3>Find the Limitation of LLMs in Supercomputing Center Infrastructure Operation and Maintenance</h3><p class="publication-authors">Chengxu Sun, Liyuan Ren, Litao Liu, Bo Sun, Ying Li, Zhiliang Liu</p><p class="publication-venue">2025 Global Reliability and Prognostics and Health Management Conference (PHM-Xi’an)</p><p class="publication-note">Third of six authors. My contribution was primarily literature review, with limited participation in model setup. RAG, semantic-retrieval and Cross-Encoder evaluation results are team-level work.</p><div class="copy-result" id="citation-status-0" aria-live="polite"></div></div><div class="publication-links"><a class="publication-link" href="https://doi.org/10.1109/PHM-Xian66756.2025.11427414" target="_blank" rel="noreferrer">DOI</a><a class="publication-link" href="https://ieeexplore.ieee.org/document/11427414/" target="_blank" rel="noreferrer">IEEE Xplore</a><a class="publication-link" href="assets/publications/llm-phm-2025.bib" download="">Download BibTeX</a><button class="copy-button requires-js" type="button" data-copy-citation="0">Copy citation</button></div></li></ol>
       </section>
 
-      <section class="section section-projects" id="projects">
-        <div class="shell">
-          <div class="section-heading heading-row reveal">
-            <div>
-              <p class="section-kicker" id="projects-kicker">Selected work</p>
-              <h2 id="projects-title" tabindex="-1">Featured projects</h2>
-            </div>
-            <p id="projects-intro">Start with the RISC-V and CMOS amplifier design studies for choices and verification results. The other selected projects cover digital-cell layout and RTL verification; further explorations are in the full archive.</p>
-          </div>
-          <div class="project-filters reveal requires-js" id="project-filters" aria-label="Project filters"><button class="filter-button is-active" type="button" data-project-filter="featured" aria-pressed="true">Selected</button><button class="filter-button" type="button" data-project-filter="all" aria-pressed="false">All</button><button class="filter-button" type="button" data-project-filter="ic" aria-pressed="false">IC Design</button><button class="filter-button" type="button" data-project-filter="rtl" aria-pressed="false">RTL / Digital</button><button class="filter-button" type="button" data-project-filter="devices" aria-pressed="false">Device simulation</button><button class="filter-button" type="button" data-project-filter="power" aria-pressed="false">Power</button><button class="filter-button" type="button" data-project-filter="embedded" aria-pressed="false">Embedded</button><button class="filter-button" type="button" data-project-filter="individual" aria-pressed="false">Individual</button><button class="filter-button" type="button" data-project-filter="team" aria-pressed="false">Team</button></div>
-          <div class="project-grid" id="project-grid"><article class="project-card reveal"><div class="project-meta"><span>Jul 2026 — Present</span><span>·</span><span>Undergraduate thesis · RTL design and verification</span></div><h3>RISC-V INT8 dot-product extension</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>In progress</li><li>RTL simulation</li></ul></div><p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p><ul class="project-highlights"><li>10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz</li><li>INT32 accumulators and INT8 outputs matched reference results across ten images</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span></div><a class="project-detail-button" href="projects/riscv-int8.html" data-project-index="0">Read design study <span class="sr-only">— Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h3>Two-stage CMOS op-amp</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul></div><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html" data-project-index="2">Read design study <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h3>CMOS logic cells &amp; full adder</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Layout checks</li><li>Extracted-netlist simulation</li></ul></div><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html" data-project-index="1">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card reveal"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h3>PT100 digital backend</h3><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>RTL simulation</li><li>Implementation timing</li></ul></div><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html" data-project-index="4">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article></div>
-          <div class="project-grid-footer">
-            <p id="project-count" role="status" aria-live="polite">4 of 9 projects</p>
-            <button class="project-detail-button requires-js" id="more-projects" type="button">Show all 9 projects</button>
-            <a class="project-detail-button no-js-only" id="all-projects-link" href="projects/index.html">Show all 9 projects</a>
-          </div>
-        </div>
-      </section>
+
 
       <section class="section shell news-section" id="news">
         <div class="section-heading heading-row reveal">
@@ -2246,7 +2301,7 @@ html:not(.js-ready) .requires-js,
           </div>
           <p id="news-intro">Recent academic, competition, and engineering milestones.</p>
         </div>
-        <div class="news-list" id="news-list"><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Evaluated the RISC-V INT8 project on a resident convolution layer</h3><p>Compared DOT4ACC with DOT4+ADD across 10 image inputs, reducing cycles by approximately 10.26% on one convolution layer. End-to-end inference and board-level evaluation remain future work.</p><a class="inline-link news-link" href="projects/riscv-int8.html">Read more<span class="sr-only"> — Evaluated the RISC-V INT8 project on a resident convolution layer</span></a></div></article><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Completed CMOS logic-cell and full-adder VLSI labs</h3><p>Designed NOR2, OR2 and a 28-transistor full adder in Electric, checking layout and logic with IRSIM and xsim verification.</p><a class="inline-link news-link" href="projects/vlsi-cmos.html">Read more<span class="sr-only"> — Completed CMOS logic-cell and full-adder VLSI labs</span></a></div></article><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>Joined the UWE Bristol Telerobotics Summer School</h3><p>Contributed Python debugging, input-device integration and pose-feedback investigation to a manipulator project at Bristol Robotics Laboratory; the team completed an object-transfer demonstration.</p><a class="inline-link news-link" href="#positions-title">Read more<span class="sr-only"> — Joined the UWE Bristol Telerobotics Summer School</span></a></div></article><details class="news-archive"><summary>Earlier updates (2)</summary><div class="news-archive-items"><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>National Second Prize for a synchronized hexapod performance</h3><p>The two-robot dance project received Second Prize at the 28th China Robotics and Artificial Intelligence Competition National Finals, following a Sichuan Regional Second Prize in June.</p><a class="inline-link news-link" href="projects/hexapod-dance.html">Read more<span class="sr-only"> — National Second Prize for a synchronized hexapod performance</span></a></div></article><article class="news-item reveal"><time datetime="2025">2025</time><div><h3>Third-author paper at PHM-Xi’an 2025</h3><p>Studied the limits of LLMs in supercomputing infrastructure operations. My contribution was primarily literature review, with limited participation in model setup.</p><a class="inline-link news-link" href="#publications">Read more<span class="sr-only"> — Third-author paper at PHM-Xi’an 2025</span></a></div></article></div></details></div>
+        <div class="news-list" id="news-list"><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Evaluated the RISC-V INT8 project on a resident convolution layer</h3><p>Extended validation from individual instructions to a complete convolution layer, comparing fused accumulation with the existing baseline.</p><a class="inline-link news-link" href="projects/riscv-int8.html">Read more<span class="sr-only"> — Evaluated the RISC-V INT8 project on a resident convolution layer</span></a></div></article><article class="news-item reveal"><time datetime="2026-09">Sep 2026</time><div><h3>Completed CMOS logic-cell and full-adder VLSI labs</h3><p>Designed NOR2, OR2 and a 28-transistor full adder in Electric, checking layout and logic with IRSIM and xsim verification.</p><a class="inline-link news-link" href="projects/vlsi-cmos.html">Read more<span class="sr-only"> — Completed CMOS logic-cell and full-adder VLSI labs</span></a></div></article><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>Joined the UWE Bristol Telerobotics Summer School</h3><p>Contributed Python debugging, input-device integration and pose-feedback investigation to a manipulator project at Bristol Robotics Laboratory; the team completed an object-transfer demonstration.</p><a class="inline-link news-link" href="#positions-title">Read more<span class="sr-only"> — Joined the UWE Bristol Telerobotics Summer School</span></a></div></article><details class="news-archive"><summary>Earlier updates (2)</summary><div class="news-archive-items"><article class="news-item reveal"><time datetime="2026-07">Jul 2026</time><div><h3>National Second Prize for a synchronized hexapod performance</h3><p>The two-robot dance project received Second Prize at the 28th China Robotics and Artificial Intelligence Competition National Finals, following a Sichuan Regional Second Prize in June.</p><a class="inline-link news-link" href="projects/hexapod-dance.html">Read more<span class="sr-only"> — National Second Prize for a synchronized hexapod performance</span></a></div></article><article class="news-item reveal"><time datetime="2025">2025</time><div><h3>Third-author paper at PHM-Xi’an 2025</h3><p>Studied the limits of LLMs in supercomputing infrastructure operations. My contribution was primarily literature review, with limited participation in model setup.</p><a class="inline-link news-link" href="#publications">Read more<span class="sr-only"> — Third-author paper at PHM-Xi’an 2025</span></a></div></article></div></details></div>
       </section>
 
       <section class="section section-experience" id="experience">
@@ -2279,7 +2334,7 @@ html:not(.js-ready) .requires-js,
           <p class="section-kicker" id="skills-kicker">Capabilities</p>
           <h2 id="skills-title">Engineering toolkit</h2>
         </div>
-        <div class="skill-groups" id="skill-groups"><article class="skill-group reveal"><h3>Digital IC &amp; architecture</h3><ul><li>VHDL / SystemVerilog · Vivado / xsim</li><li>RISC-V datapaths, pipeline control and RTL verification</li><li>Synthesis, XDC constraints, implementation and timing analysis</li></ul></article><article class="skill-group reveal"><h3>Analog &amp; VLSI verification</h3><ul><li>Cadence Virtuoso / Spectre / ADE</li><li>Biasing, transistor sizing, Miller compensation and extraction</li><li>Electric · DRC / NCC / ERC · IRSIM</li></ul></article><article class="skill-group reveal"><h3>Devices &amp; circuit labs</h3><ul><li>Silvaco DeckBuild / TonyPlot / TonyPlot3D</li><li>LTspice · PWM, converters and Fourier analysis</li><li>Oscilloscope, digital multimeter and function generator</li></ul></article><article class="skill-group reveal"><h3>Embedded systems &amp; robotics</h3><ul><li>STM32 · EasyEDA · PCB design and assembly</li><li>Sensor, motor and LoRa interface integration</li><li>Motion programming, synchronization and fault diagnosis</li></ul></article><article class="skill-group reveal"><h3>Programming &amp; data analysis</h3><ul><li>Python · C/C++ · MATLAB</li><li>CT-image preprocessing and classifier comparisons</li><li>Literature research, experiment visualization and technical reporting</li></ul></article></div>
+        <div class="skill-groups" id="skill-groups"><article class="skill-group reveal"><h3>Digital design &amp; verification</h3><ul><li>VHDL / SystemVerilog · Vivado / XSim</li><li>Pipeline control, interface integration and testbenches</li><li>Synthesis, XDC constraints and implementation timing</li></ul><div class="skill-evidence"><p>Project evidence</p><a class="inline-link" href="projects/riscv-int8.html">RISC-V INT8 dot-product extension <span aria-hidden="true">→</span></a><a class="inline-link" href="projects/pt100-rtl.html">PT100 digital backend <span aria-hidden="true">→</span></a></div></article><article class="skill-group reveal"><h3>Analog &amp; VLSI design</h3><ul><li>Virtuoso / Spectre · biasing and Miller compensation</li><li>Parasitic extraction and schematic / layout comparisons</li><li>Electric · DRC / NCC / ERC · IRSIM</li></ul><div class="skill-evidence"><p>Project evidence</p><a class="inline-link" href="projects/cmos-opamp.html">Two-stage CMOS op-amp <span aria-hidden="true">→</span></a><a class="inline-link" href="projects/vlsi-cmos.html">CMOS logic cells &amp; full adder <span aria-hidden="true">→</span></a></div></article><article class="skill-group reveal"><h3>Devices &amp; system experiments</h3><ul><li>Silvaco device models · LTspice and bench measurements</li><li>STM32 / C/C++ · PCB and interface debugging</li><li>Python / MATLAB · experimental data analysis</li></ul><div class="skill-evidence"><p>Project evidence</p><a class="inline-link" href="projects/gfet-device.html">Graphene FET biosensing <span aria-hidden="true">→</span></a><a class="inline-link" href="projects/radar-robot.html">Radar-assisted autonomous vehicle <span aria-hidden="true">→</span></a><a class="inline-link" href="projects/power-conversion.html">Power conversion &amp; control <span aria-hidden="true">→</span></a></div></article></div>
       </section>
 
       <section class="contact-section" id="contact">
@@ -2372,7 +2427,12 @@ window.SITE_DATA = {
       "designDecisions": "设计取舍",
       "technicalNote": "技术笔记",
       "nextQuestion": "下一步待验证的问题",
-      "technicalRecord": "技术记录：个人贡献、方法与完整结果"
+      "technicalRecord": "技术记录：个人贡献、方法与完整结果",
+      "discussProject": "交流这个项目",
+      "projectEmailSubject": "项目交流：",
+      "projectEmailCopy": "复制邮箱",
+      "projectEmailCopied": "邮箱已复制",
+      "skillsEvidence": "项目实例"
     },
     "nav": {
       "about": "关于",
@@ -2388,7 +2448,7 @@ window.SITE_DATA = {
       "eyebrow": "你好，我是",
       "role": "微电子科学与工程本科生",
       "organization": "电子科技大学格拉斯哥学院",
-      "summary": "我目前主要探索处理器 RTL 与集成电路设计验证。毕业设计聚焦面向 INT8 推理的 RISC-V 指令扩展，其他项目涵盖 CMOS 模拟电路、数字单元版图与混合信号系统的数字后端。",
+      "summary": "我关注处理器 RTL 与集成电路设计验证，当前毕业设计聚焦面向 INT8 推理的 RISC-V 指令扩展。",
       "location": "",
       "status": "欢迎交流 IC 设计、处理器架构与研究机会",
       "photoAlt": "刘力滔的 LL 字母组合图像"
@@ -2403,7 +2463,7 @@ window.SITE_DATA = {
           "date": "2026 年 9 月",
           "datetime": "2026-09",
           "title": "推进 RISC-V INT8 毕设的单层工作负载验证",
-          "description": "完成 DOT4ACC 与 DOT4+ADD 的对照评估：10 个图像输入下，单个卷积层平均周期减少约 10.26%；下一步将评估端到端推理与板级实现。",
+          "description": "将验证从单条指令扩展到一个完整卷积层，完成融合累加方案与现有基线的对照评估。",
           "href": "projects/riscv-int8.zh.html"
         },
         {
@@ -2439,25 +2499,25 @@ window.SITE_DATA = {
     "research": {
       "kicker": "Technical focus",
       "title": "从处理器 RTL 到 CMOS 电路",
-      "intro": "我关注硬件约束如何影响设计选择：从寄存器堆与流水线，到偏置、补偿与版图寄生，并通过仿真和实现结果检验这些选择。",
+      "intro": "从硬件约束出发，用仿真与实现结果检验设计选择。",
       "items": [
         {
           "title": "RISC-V 与数字设计",
-          "description": "研究两读端口寄存器堆约束下的三源操作数收集、融合 INT8 点积累加，以及流水线控制、结果对照和时序分析。",
+          "description": "指令扩展、流水线依赖处理与 RTL 验证。",
           "projectFilters": [
             "rtl"
           ]
         },
         {
           "title": "CMOS 电路与物理验证",
-          "description": "探索偏置、米勒补偿与供电耦合；通过模拟电路寄生提取和数字单元版图检查，理解物理实现对功能及性能的影响。",
+          "description": "偏置与补偿设计、寄生提取，以及数字单元版图检查。",
           "projectFilters": [
             "ic"
           ]
         },
         {
-          "title": "延伸探索：器件与嵌入式",
-          "description": "通过 Silvaco 器件仿真、STM32 接口、PCB 与机器人调试，拓展对器件特性和系统集成的理解，为电路与数字设计提供背景。",
+          "title": "器件与嵌入式探索",
+          "description": "通过器件仿真、接口与 PCB 调试理解系统集成。",
           "projectFilters": [
             "devices",
             "embedded"
@@ -2466,12 +2526,11 @@ window.SITE_DATA = {
       ],
       "focusPanel": {
         "kicker": "Current research",
-        "title": "让 INT8 点积累加适配两读端口 RISC-V",
-        "intro": "毕业设计中的具体问题是：保持两读端口寄存器堆时，如何为三源 DOT4ACC 指令收集操作数，并正确处理流水线依赖？",
+        "title": "两读端口如何支持三源指令？",
+        "intro": "为 DOT4ACC 分步收集操作数，并处理流水线依赖。",
         "items": [
-          "已完成：RTL 功能验证、单层工作负载对照与 OOC 实现时序检查",
-          "当前证据：10 个图像输入、单个卷积层；基线为已有 DOT4+ADD",
-          "下一步：完整模型端到端评估与真实硬件验证"
+          "已验证：RTL 功能、单层对照与 OOC 实现时序",
+          "下一步：端到端推理与板级验证"
         ],
         "projectId": "riscv-int8"
       }
@@ -2479,7 +2538,7 @@ window.SITE_DATA = {
     "projects": {
       "kicker": "Selected work",
       "title": "代表性项目",
-      "intro": "从 RISC-V 与 CMOS 运放的设计解读开始，了解方案取舍与验证结果；其余精选展示数字单元版图和 RTL 验证，更多探索可在全部项目中查看。",
+      "intro": "从两个设计案例开始：我做了什么、如何验证、还有哪些局限。",
       "filters": [
         {
           "id": "featured",
@@ -2503,7 +2562,8 @@ window.SITE_DATA = {
         },
         {
           "id": "power",
-          "label": "功率电子"
+          "label": "功率电子",
+          "hidden": true
         },
         {
           "id": "embedded",
@@ -2511,11 +2571,13 @@ window.SITE_DATA = {
         },
         {
           "id": "individual",
-          "label": "个人项目"
+          "label": "个人项目",
+          "hidden": true
         },
         {
           "id": "team",
-          "label": "小组项目"
+          "label": "小组项目",
+          "hidden": true
         }
       ],
       "detailLabels": {
@@ -2569,10 +2631,10 @@ window.SITE_DATA = {
           "id": "riscv-int8",
           "featured": true,
           "featuredOrder": 1,
-          "cardSummary": "在五级 RISC-V 处理器中集成融合 INT8 点积累加指令，复用双读端口寄存器堆。",
+          "cardSummary": "以分步操作数收集，在双读端口 RISC-V 中实现融合 INT8 点积累加。",
           "cardHighlights": [
             "50 MHz 下，单个完整卷积层相对 DOT4+ADD 的周期减少 10.26%",
-            "10 个图像输入的 INT32 累加值与 INT8 输出均匹配参考结果"
+            "10 个图像输入的 INT32 / INT8 结果均匹配参考"
           ],
           "evidenceSummary": {
             "labels": [
@@ -2670,7 +2732,9 @@ window.SITE_DATA = {
               ]
             },
             "next": "计划继续检验：单层收益能否延续到完整模型，并在真实硬件上保持？后续工作包括端到端推理与板级验证；当前结果不代表整网准确率、端到端加速或实测能量。"
-          }
+          },
+          "cardImage": "assets/research/riscv-architecture.zh.svg",
+          "cardImageAlt": "双读端口 RISC-V 分步收集三个操作数的功能示意图"
         },
         {
           "period": "2026 年 9 月",
@@ -2720,7 +2784,7 @@ window.SITE_DATA = {
           "id": "vlsi-cmos",
           "featured": true,
           "featuredOrder": 3,
-          "cardSummary": "完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。",
+          "cardSummary": "完成 NOR2、OR2 与 28 晶体管全加器的原理图、版图和功能验证。",
           "cardHighlights": [
             "全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC",
             "IRSIM 全加器检查覆盖全部 8 组输入组合"
@@ -2779,7 +2843,7 @@ window.SITE_DATA = {
           "id": "cmos-opamp",
           "featured": true,
           "featuredOrder": 2,
-          "cardSummary": "在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。",
+          "cardSummary": "设计两级 CMOS 运放，比较原理图与寄生提取后的性能。",
           "cardHighlights": [
             "版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz",
             "LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核"
@@ -2891,7 +2955,9 @@ window.SITE_DATA = {
               ]
             },
             "next": "后续优先项是修复已知 DRC 间距问题，然后重新运行 DRC、LVS、寄生提取和性能检查，确认修正后的版图是否仍满足目标。这是根据现有未完成项提出的验证计划，尚未完成。"
-          }
+          },
+          "cardImage": "assets/research/opamp-architecture.zh.svg",
+          "cardImageAlt": "两级 CMOS 运放的输入级、输出级与米勒补偿功能示意图"
         },
         {
           "period": "2026",
@@ -2990,10 +3056,10 @@ window.SITE_DATA = {
           "id": "pt100-rtl",
           "featured": true,
           "featuredOrder": 4,
-          "cardSummary": "在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。",
+          "cardSummary": "作为两人数字子组成员，共同开发并验证 PT100 系统的 VHDL 后端。",
           "cardHighlights": [
-            "5 个设计单元，16 周期串行帧与 12-count 迟滞",
-            "通过模块及集成测试；1 kHz 约束下 WNS > 0、TNS = 0"
+            "模块与集成测试覆盖复位、握手及代表输入与边界条件",
+            "核对 16 周期串行帧、数据打包与寄存越界标志"
           ],
           "evidenceWidth": 993,
           "evidenceHeight": 1404,
@@ -3042,10 +3108,10 @@ window.SITE_DATA = {
             ]
           },
           "id": "gfet-device",
-          "cardSummary": "结合文献研究与 Silvaco 二维、三维器件建模，探索 GFET 生物传感。",
+          "cardSummary": "用 Silvaco 二维与三维器件模型探索 GFET 生物传感。",
           "cardHighlights": [
             "通过偏置扫描分析输出、转移特性及电场分布",
-            "为 13 页团队报告贡献建模结果与模型限制分析"
+            "为团队报告提供建模结果与模型限制分析"
           ],
           "evidenceSummary": {
             "labels": [
@@ -3096,8 +3162,8 @@ window.SITE_DATA = {
           "id": "radar-robot",
           "cardSummary": "负责循迹智能车的硬件开发，集成雷达避障与 LoRa 通信。",
           "cardHighlights": [
-            "完成 STM32 PCB、电路装配及雷达、红外阵列和电机驱动集成",
-            "协助修正车辆左偏，核心功能在 2500 元预算内完成"
+            "完成 STM32 PCB 与雷达、红外阵列及电机驱动集成",
+            "参与整车调试，协助修正左偏问题"
           ],
           "evidenceSummary": {
             "labels": [
@@ -3146,7 +3212,7 @@ window.SITE_DATA = {
             ]
           },
           "id": "hexapod-dance",
-          "cardSummary": "参与两台 18 自由度 Libot 六足机器人的同步动作编程与调试。",
+          "cardSummary": "为两台 18 自由度六足机器人编写与调试同步动作。",
           "cardHighlights": [
             "团队完成 3 分 12 秒同步表演",
             "团队获国赛与四川赛区二等奖"
@@ -3201,7 +3267,7 @@ window.SITE_DATA = {
             ]
           },
           "id": "power-conversion",
-          "cardSummary": "通过仿真与台架实验研究 PWM、整流滤波、Boost 变换及逆变调制。",
+          "cardSummary": "用仿真与台架实验比较整流滤波、Boost 变换和 PWM 调制。",
           "cardHighlights": [
             "5 V 输入下实测 Boost 输出 10.0 V 与 20.0 V",
             "增大滤波电容后，实测纹波由 1.40 V 降至 0.74 V"
@@ -3305,43 +3371,40 @@ window.SITE_DATA = {
       "title": "工程能力",
       "groups": [
         {
-          "title": "数字 IC 与体系结构",
+          "title": "数字设计与验证",
           "items": [
-            "VHDL / SystemVerilog · Vivado / xsim",
-            "RISC-V 数据通路、流水线控制与 RTL 验证",
-            "综合、XDC 约束、实现与时序分析"
+            "VHDL / SystemVerilog · Vivado / XSim",
+            "流水线控制、接口集成与 testbench",
+            "综合、XDC 约束及实现时序分析"
+          ],
+          "projectIds": [
+            "riscv-int8",
+            "pt100-rtl"
           ]
         },
         {
-          "title": "模拟与 VLSI 验证",
+          "title": "模拟与 VLSI 设计",
           "items": [
-            "Cadence Virtuoso / Spectre / ADE",
-            "偏置、尺寸设计、米勒补偿与寄生提取",
+            "Virtuoso / Spectre · 偏置与米勒补偿",
+            "寄生提取及原理图 / 版图结果对照",
             "Electric · DRC / NCC / ERC · IRSIM"
+          ],
+          "projectIds": [
+            "cmos-opamp",
+            "vlsi-cmos"
           ]
         },
         {
-          "title": "器件与电路实验",
+          "title": "器件与系统实验",
           "items": [
-            "Silvaco DeckBuild / TonyPlot / TonyPlot3D",
-            "LTspice · PWM、变换器与傅里叶分析",
-            "示波器、数字万用表与函数发生器"
-          ]
-        },
-        {
-          "title": "嵌入式与机器人",
-          "items": [
-            "STM32 · EasyEDA · PCB 与焊接装配",
-            "传感器、电机、LoRa 与接口联调",
-            "动作编程、同步与系统故障定位"
-          ]
-        },
-        {
-          "title": "编程与数据分析",
-          "items": [
-            "Python · C/C++ · MATLAB",
-            "CT 图像预处理与分类模型对比",
-            "文献研究、实验可视化与技术报告"
+            "Silvaco 器件建模 · LTspice 与台架测量",
+            "STM32 / C/C++ · PCB 与接口调试",
+            "Python / MATLAB · 实验数据分析"
+          ],
+          "projectIds": [
+            "gfet-device",
+            "radar-robot",
+            "power-conversion"
           ]
         }
       ]
@@ -3395,7 +3458,12 @@ window.SITE_DATA = {
       "designDecisions": "Design decisions",
       "technicalNote": "Technical note",
       "nextQuestion": "The next question to test",
-      "technicalRecord": "Technical record: contributions, methods & full results"
+      "technicalRecord": "Technical record: contributions, methods & full results",
+      "discussProject": "Discuss this project",
+      "projectEmailSubject": "Project discussion: ",
+      "projectEmailCopy": "Copy email",
+      "projectEmailCopied": "Email copied",
+      "skillsEvidence": "Project evidence"
     },
     "nav": {
       "about": "About",
@@ -3411,7 +3479,7 @@ window.SITE_DATA = {
       "eyebrow": "Hello, I’m",
       "role": "Microelectronics Undergraduate",
       "organization": "Glasgow College, UESTC",
-      "summary": "My current work focuses on processor RTL and IC design and verification. My final-year project explores RISC-V instruction support for INT8 inference, alongside CMOS analog circuits, digital-cell layout and digital interfaces for mixed-signal systems.",
+      "summary": "I work on processor RTL and IC design and verification. My final-year project explores RISC-V instruction support for INT8 inference.",
       "location": "",
       "status": "Open to research opportunities in IC design and computer architecture",
       "photoAlt": "LL monogram for Litao Liu"
@@ -3426,7 +3494,7 @@ window.SITE_DATA = {
           "date": "Sep 2026",
           "datetime": "2026-09",
           "title": "Evaluated the RISC-V INT8 project on a resident convolution layer",
-          "description": "Compared DOT4ACC with DOT4+ADD across 10 image inputs, reducing cycles by approximately 10.26% on one convolution layer. End-to-end inference and board-level evaluation remain future work.",
+          "description": "Extended validation from individual instructions to a complete convolution layer, comparing fused accumulation with the existing baseline.",
           "href": "projects/riscv-int8.html"
         },
         {
@@ -3462,25 +3530,25 @@ window.SITE_DATA = {
     "research": {
       "kicker": "Technical focus",
       "title": "From processor RTL to CMOS circuits",
-      "intro": "I explore how hardware constraints shape design choices, from register files and pipelines to biasing, compensation and layout parasitics, and evaluate those choices through simulation and implementation results.",
+      "intro": "Starting from hardware constraints, I test design choices through simulation and implementation.",
       "items": [
         {
           "title": "RISC-V & digital design",
-          "description": "Three-source operand collection with a two-read-port register file, fused INT8 dot-product accumulation, pipeline control, result checking and timing analysis.",
+          "description": "Instruction extensions, pipeline dependencies and RTL verification.",
           "projectFilters": [
             "rtl"
           ]
         },
         {
           "title": "CMOS circuits & physical verification",
-          "description": "Biasing, Miller compensation and supply coupling, alongside analog parasitic extraction and digital-cell layout checks to understand physical implementation effects.",
+          "description": "Biasing, compensation, parasitic extraction and digital-cell layout checks.",
           "projectFilters": [
             "ic"
           ]
         },
         {
-          "title": "Further exploration: devices & embedded systems",
-          "description": "Device simulation in Silvaco, STM32 interfaces, PCB work and robotics broaden my understanding of device behavior and system integration, supporting my circuit and digital-design work.",
+          "title": "Devices & embedded systems",
+          "description": "Understanding system integration through device simulation, interfaces and PCB debugging.",
           "projectFilters": [
             "devices",
             "embedded"
@@ -3489,12 +3557,11 @@ window.SITE_DATA = {
       ],
       "focusPanel": {
         "kicker": "Current research",
-        "title": "INT8 accumulation on a two-read-port RISC-V core",
-        "intro": "My final-year project asks how a three-source DOT4ACC instruction can collect its operands and handle pipeline dependencies while retaining a two-read-port register file.",
+        "title": "Three operands, two read ports?",
+        "intro": "Collecting DOT4ACC operands in steps while handling pipeline dependencies.",
         "items": [
-          "Completed: RTL checks, a resident-layer workload comparison and OOC implementation timing checks",
-          "Current evidence: 10 image inputs, one convolution layer, compared with an existing DOT4+ADD baseline",
-          "Next: end-to-end model evaluation and validation on physical hardware"
+          "Validated: RTL behavior, one-layer comparisons and OOC implementation timing",
+          "Next: end-to-end inference and board-level validation"
         ],
         "projectId": "riscv-int8"
       }
@@ -3502,7 +3569,7 @@ window.SITE_DATA = {
     "projects": {
       "kicker": "Selected work",
       "title": "Featured projects",
-      "intro": "Start with the RISC-V and CMOS amplifier design studies for choices and verification results. The other selected projects cover digital-cell layout and RTL verification; further explorations are in the full archive.",
+      "intro": "Start with two design studies: my contribution, the validation and the remaining limits.",
       "filters": [
         {
           "id": "featured",
@@ -3526,7 +3593,8 @@ window.SITE_DATA = {
         },
         {
           "id": "power",
-          "label": "Power"
+          "label": "Power",
+          "hidden": true
         },
         {
           "id": "embedded",
@@ -3534,11 +3602,13 @@ window.SITE_DATA = {
         },
         {
           "id": "individual",
-          "label": "Individual"
+          "label": "Individual",
+          "hidden": true
         },
         {
           "id": "team",
-          "label": "Team"
+          "label": "Team",
+          "hidden": true
         }
       ],
       "detailLabels": {
@@ -3592,10 +3662,10 @@ window.SITE_DATA = {
           "id": "riscv-int8",
           "featured": true,
           "featuredOrder": 1,
-          "cardSummary": "Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.",
+          "cardSummary": "Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core.",
           "cardHighlights": [
             "10.26% fewer cycles for one complete convolution layer versus DOT4+ADD at 50 MHz",
-            "INT32 accumulators and INT8 outputs matched reference results across ten images"
+            "INT32 and INT8 results matched the reference across ten image inputs"
           ],
           "evidenceSummary": {
             "labels": [
@@ -3693,7 +3763,9 @@ window.SITE_DATA = {
               ]
             },
             "next": "Planned work asks whether the single-layer benefit carries into a complete model and onto physical hardware. End-to-end inference and board validation remain future work; current results do not establish full-network accuracy, end-to-end speedup or measured energy."
-          }
+          },
+          "cardImage": "assets/research/riscv-architecture.en.svg",
+          "cardImageAlt": "Functional diagram of staged collection of three operands through two RISC-V read ports"
         },
         {
           "period": "Sep 2026",
@@ -3743,7 +3815,7 @@ window.SITE_DATA = {
           "id": "vlsi-cmos",
           "featured": true,
           "featuredOrder": 3,
-          "cardSummary": "Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.",
+          "cardSummary": "Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic.",
           "cardHighlights": [
             "Full adder passed DRC, well / antenna ERC and exact-size NCC",
             "IRSIM full-adder checks covered all eight input combinations"
@@ -3802,7 +3874,7 @@ window.SITE_DATA = {
           "id": "cmos-opamp",
           "featured": true,
           "featuredOrder": 2,
-          "cardSummary": "Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.",
+          "cardSummary": "Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance.",
           "cardHighlights": [
             "Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load",
             "LVS matched; remaining DRC spacing violations prevent full physical signoff"
@@ -3914,7 +3986,9 @@ window.SITE_DATA = {
               ]
             },
             "next": "A proposed next step is to correct the known DRC spacing violations, then rerun DRC, LVS, extraction and performance checks to see whether the revised layout still meets the targets. This plan follows the unresolved findings; it has not been completed."
-          }
+          },
+          "cardImage": "assets/research/opamp-architecture.en.svg",
+          "cardImageAlt": "Functional diagram of a two-stage CMOS amplifier showing input and output stages and Miller compensation"
         },
         {
           "period": "2026",
@@ -4013,10 +4087,10 @@ window.SITE_DATA = {
           "id": "pt100-rtl",
           "featured": true,
           "featuredOrder": 4,
-          "cardSummary": "Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.",
+          "cardSummary": "Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.",
           "cardHighlights": [
-            "Five design units, with 16-cycle serial frames and 12-count hysteresis",
-            "Module and integration tests passed; WNS > 0 and TNS = 0 at a 1 kHz constraint"
+            "Module and integration tests covered reset, handshakes, representative inputs and boundaries",
+            "Checked 16-cycle serial frames, data packing and the registered out-of-range flag"
           ],
           "evidenceWidth": 993,
           "evidenceHeight": 1404,
@@ -4065,10 +4139,10 @@ window.SITE_DATA = {
             ]
           },
           "id": "gfet-device",
-          "cardSummary": "Explored GFET biosensing through literature review and two- and three-dimensional Silvaco device models.",
+          "cardSummary": "Explored GFET biosensing with two- and three-dimensional Silvaco device models.",
           "cardHighlights": [
             "Bias sweeps examined output, transfer and electric-field characteristics",
-            "Contributed modeling results and limitations to a 13-page team report"
+            "Contributed modeling results and limitations to the team report"
           ],
           "evidenceSummary": {
             "labels": [
@@ -4119,8 +4193,8 @@ window.SITE_DATA = {
           "id": "radar-robot",
           "cardSummary": "Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.",
           "cardHighlights": [
-            "Built and integrated the STM32-based PCB, radar, IR array and motor drivers",
-            "Helped resolve leftward drift; core functions completed within the RMB 2,500 budget"
+            "Integrated an STM32-based PCB, radar, IR array and motor drivers",
+            "Contributed to vehicle debugging and helped resolve leftward drift"
           ],
           "evidenceSummary": {
             "labels": [
@@ -4169,7 +4243,7 @@ window.SITE_DATA = {
             ]
           },
           "id": "hexapod-dance",
-          "cardSummary": "Programmed and debugged coordinated motion sequences for two 18-DOF Libot hexapods.",
+          "cardSummary": "Programmed and debugged synchronized motion for two 18-DOF hexapods.",
           "cardHighlights": [
             "Completed a 3 min 12 s synchronized team performance",
             "Team Second Prize at the National Finals and Sichuan Regional Competition"
@@ -4224,7 +4298,7 @@ window.SITE_DATA = {
             ]
           },
           "id": "power-conversion",
-          "cardSummary": "Investigated PWM, rectification, boost conversion and inverter modulation through simulation and bench experiments.",
+          "cardSummary": "Compared rectification, boost conversion and PWM modulation in simulation and bench experiments.",
           "cardHighlights": [
             "Measured boost outputs of 10.0 V and 20.0 V from a 5 V supply",
             "Larger filter capacitance reduced measured ripple from 1.40 V to 0.74 V"
@@ -4328,43 +4402,40 @@ window.SITE_DATA = {
       "title": "Engineering toolkit",
       "groups": [
         {
-          "title": "Digital IC & architecture",
+          "title": "Digital design & verification",
           "items": [
-            "VHDL / SystemVerilog · Vivado / xsim",
-            "RISC-V datapaths, pipeline control and RTL verification",
-            "Synthesis, XDC constraints, implementation and timing analysis"
+            "VHDL / SystemVerilog · Vivado / XSim",
+            "Pipeline control, interface integration and testbenches",
+            "Synthesis, XDC constraints and implementation timing"
+          ],
+          "projectIds": [
+            "riscv-int8",
+            "pt100-rtl"
           ]
         },
         {
-          "title": "Analog & VLSI verification",
+          "title": "Analog & VLSI design",
           "items": [
-            "Cadence Virtuoso / Spectre / ADE",
-            "Biasing, transistor sizing, Miller compensation and extraction",
+            "Virtuoso / Spectre · biasing and Miller compensation",
+            "Parasitic extraction and schematic / layout comparisons",
             "Electric · DRC / NCC / ERC · IRSIM"
+          ],
+          "projectIds": [
+            "cmos-opamp",
+            "vlsi-cmos"
           ]
         },
         {
-          "title": "Devices & circuit labs",
+          "title": "Devices & system experiments",
           "items": [
-            "Silvaco DeckBuild / TonyPlot / TonyPlot3D",
-            "LTspice · PWM, converters and Fourier analysis",
-            "Oscilloscope, digital multimeter and function generator"
-          ]
-        },
-        {
-          "title": "Embedded systems & robotics",
-          "items": [
-            "STM32 · EasyEDA · PCB design and assembly",
-            "Sensor, motor and LoRa interface integration",
-            "Motion programming, synchronization and fault diagnosis"
-          ]
-        },
-        {
-          "title": "Programming & data analysis",
-          "items": [
-            "Python · C/C++ · MATLAB",
-            "CT-image preprocessing and classifier comparisons",
-            "Literature research, experiment visualization and technical reporting"
+            "Silvaco device models · LTspice and bench measurements",
+            "STM32 / C/C++ · PCB and interface debugging",
+            "Python / MATLAB · experimental data analysis"
+          ],
+          "projectIds": [
+            "gfet-device",
+            "radar-robot",
+            "power-conversion"
           ]
         }
       ]
@@ -4473,11 +4544,7 @@ window.SITE_DATA = {
     activeProjectFilter = validFilter(filter) ? filter : "featured";
     setStored("academic-site-filter", activeProjectFilter);
     updatePageUrl(null, pushHistory, hash);
-    $$("[data-project-filter]").forEach((node) => {
-      const selected = node.dataset.projectFilter === activeProjectFilter;
-      node.classList.toggle("is-active", selected);
-      node.setAttribute("aria-pressed", String(selected));
-    });
+    renderProjectFilters(data[language]);
     renderProjects(data[language]);
     observeReveals();
   }
@@ -4540,6 +4607,7 @@ window.SITE_DATA = {
     const filters = content.projects.filters || [{ id: "all", label: "All" }];
     if (!filters.some((filter) => filter.id === activeProjectFilter)) activeProjectFilter = "featured";
     $("#project-filters").innerHTML = filters
+      .filter((filter) => !filter.hidden || filter.id === activeProjectFilter)
       .map(
         (filter) =>
           `<button class="filter-button${filter.id === activeProjectFilter ? " is-active" : ""}" type="button" data-project-filter="${escapeHtml(filter.id)}" aria-pressed="${filter.id === activeProjectFilter}">${escapeHtml(filter.label)}</button>`
@@ -4563,15 +4631,16 @@ window.SITE_DATA = {
         const highlights = listMarkup(item.cardHighlights || item.highlights);
         const tags = (item.tags || []).slice(0, 3).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
         const href = projectPath(item);
-        return `<article class="project-card reveal"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.cardTitle || item.title)}</h3>${evidenceSummary(item, content, true)}<p>${escapeHtml(item.cardSummary || item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><a class="project-detail-button" href="${escapeHtml(href)}" data-project-index="${index}">${escapeHtml(item.caseStudy ? content.ui.designStudy : content.ui.details)} <span class="sr-only">— ${escapeHtml(item.title)}</span></a></div></article>`;
+        const preview = item.cardImage ? `<a class="project-card-preview" href="${escapeHtml(href)}" data-project-preview="${index}" aria-label="${escapeHtml(`${content.ui.designStudy}: ${item.cardTitle || item.title}`)}"><img src="${escapeHtml(item.cardImage)}" alt="${escapeHtml(item.cardImageAlt)}" width="1000" height="640" loading="lazy" decoding="async" /></a>` : "";
+        return `<article class="project-card reveal${preview ? " has-preview" : ""}"><div class="project-meta"><span>${escapeHtml(item.period)}</span><span>·</span><span>${escapeHtml(item.role)}</span></div><h3>${escapeHtml(item.cardTitle || item.title)}</h3>${preview}${evidenceSummary(item, content, true)}<p>${escapeHtml(item.cardSummary || item.description)}</p>${highlights ? `<ul class="project-highlights">${highlights}</ul>` : ""}<div class="project-card-footer"><div class="tag-list">${tags}</div><a class="project-detail-button" href="${escapeHtml(href)}" data-project-index="${index}">${escapeHtml(item.caseStudy ? content.ui.designStudy : content.ui.details)} <span class="sr-only">— ${escapeHtml(item.title)}</span></a></div></article>`;
       })
       .join("");
 
-    $$("[data-project-index]").forEach((buttonNode) => {
+    $$("[data-project-index], [data-project-preview]").forEach((buttonNode) => {
       buttonNode.addEventListener("click", (event) => {
-        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || window.matchMedia("(max-width: 760px)").matches) return;
         event.preventDefault();
-        openProjectModal(Number(buttonNode.dataset.projectIndex));
+        openProjectModal(Number(buttonNode.dataset.projectIndex ?? buttonNode.dataset.projectPreview));
       });
     });
     const total = content.projects.items.length;
@@ -4587,22 +4656,23 @@ window.SITE_DATA = {
     return `<figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="${escapeHtml(figure.image)}" target="_blank" rel="noreferrer"><img src="${escapeHtml(figure.image)}" alt="${escapeHtml(figure.alt)}" width="${figure.width}" height="${figure.height}" loading="lazy" decoding="async" /><span class="modal-evidence-open">${escapeHtml(labels.openEvidence)} <span aria-hidden="true">⤢</span></span></a><figcaption>${escapeHtml(figure.caption)}</figcaption></figure>`;
   }
 
-  function renderStudy(study, content) {
+  function renderStudy(study, content, evidenceNote) {
     if (!study) return "";
     const comparison = study.comparison;
     return `<div class="project-study">
-      <section class="study-opening"><p class="study-kicker">${escapeHtml(content.ui.designStudyLabel)}</p><h3>${escapeHtml(study.question)}</h3><p>${escapeHtml(study.intro)}</p>
-        ${studyFigure(study.architecture, content.projects.detailLabels)}
+      <section class="study-opening" id="study-question"><p class="study-kicker">${escapeHtml(content.ui.designStudyLabel)}</p><h3>${escapeHtml(study.question)}</h3><p>${escapeHtml(study.intro)}</p>
+        <div id="study-approach">${studyFigure(study.architecture, content.projects.detailLabels)}
         <ol class="study-process">${study.architecture.steps.map((step) => `<li><strong>${escapeHtml(step.title)}</strong><p>${escapeHtml(step.text)}</p></li>`).join("")}</ol>
+        </div>
       </section>
-      <section class="study-results"><h3>${escapeHtml(comparison.title)}</h3><p>${escapeHtml(comparison.intro)}</p>
+      <section class="study-results" id="study-results"><h3>${escapeHtml(comparison.title)}</h3><p>${escapeHtml(comparison.intro)}</p>
         ${studyFigure(comparison, content.projects.detailLabels)}
         <div class="study-data-wrap" role="region" aria-label="${escapeHtml(comparison.tableTitle)}" tabindex="0"><table class="study-data"><caption>${escapeHtml(comparison.tableTitle)}</caption><thead><tr>${comparison.columns.map((value) => `<th scope="col">${escapeHtml(value)}</th>`).join("")}</tr></thead><tbody>${comparison.rows.map((row) => `<tr${row.emphasis ? ' class="is-emphasized"' : ""}><th scope="row">${escapeHtml(row.label)}</th>${row.values.map((value) => `<td>${escapeHtml(value)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
         <p class="study-takeaway">${escapeHtml(comparison.takeaway)}</p><p class="study-conditions">${escapeHtml(comparison.conditions)}</p>
       </section>
       <section class="study-decisions"><h3>${escapeHtml(content.ui.designDecisions)}</h3><div class="study-decision-grid">${study.decisions.map((item) => `<article><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.text)}</p></article>`).join("")}</div></section>
       <details class="study-note"><summary>${escapeHtml(content.ui.technicalNote)} · ${escapeHtml(study.note.title)}</summary><div class="study-note-copy">${study.note.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div></details>
-      <section class="study-next"><h3>${escapeHtml(content.ui.nextQuestion)}</h3><p>${escapeHtml(study.next)}</p></section>
+      <section class="study-next" id="study-limits"><h3>${escapeHtml(language === "zh" ? "范围与下一步" : "Scope & next steps")}</h3>${evidenceNote ? `<p class="study-boundary">${escapeHtml(evidenceNote)}</p>` : ""}<p>${escapeHtml(study.next)}</p></section>
     </div>`;
   }
 
@@ -4625,7 +4695,7 @@ window.SITE_DATA = {
       <h2 id="modal-title">${escapeHtml(item.title)}</h2>
       ${evidenceSummary(item, content)}
       <p class="modal-summary" id="modal-summary">${escapeHtml(item.description)}</p>
-      ${renderStudy(item.caseStudy, content)}
+      ${renderStudy(item.caseStudy, content, item.evidenceSummary?.note)}
       ${item.caseStudy ? `<details class="project-record"><summary>${escapeHtml(content.ui.technicalRecord)}</summary><div class="project-record-content">` : ""}
       ${evidenceFigure}
       <div class="modal-detail-grid">
@@ -4859,7 +4929,11 @@ window.SITE_DATA = {
     text("#skills-kicker", content.skills.kicker);
     text("#skills-title", content.skills.title);
     $("#skill-groups").innerHTML = content.skills.groups
-      .map((group) => `<article class="skill-group reveal"><h3>${escapeHtml(group.title)}</h3><ul>${group.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>`)
+      .map((group) => {
+        const projects = (group.projectIds || []).map((id) => content.projects.items.find((item) => item.id === id)).filter(Boolean);
+        const links = projects.length ? `<div class="skill-evidence"><p>${escapeHtml(content.ui.skillsEvidence)}</p>${projects.map((item) => `<a class="inline-link" href="${escapeHtml(projectPath(item))}">${escapeHtml(item.cardTitle || item.title)} <span aria-hidden="true">→</span></a>`).join("")}</div>` : "";
+        return `<article class="skill-group reveal"><h3>${escapeHtml(group.title)}</h3><ul>${group.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>${links}</article>`;
+      })
       .join("");
 
     text("#contact-kicker", content.contact.kicker);
@@ -4916,7 +4990,7 @@ window.SITE_DATA = {
       const heading = $("#projects-title");
       heading.focus({ preventScroll: true });
       heading.scrollIntoView({ block: "start", behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-    } else if (link.dataset.focusProject) {
+    } else if (link.dataset.focusProject && !window.matchMedia("(max-width: 760px)").matches) {
       const index = data[language].projects.items.findIndex((item) => item.id === link.dataset.focusProject);
       if (index >= 0) {
         event.preventDefault();

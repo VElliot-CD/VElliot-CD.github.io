@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="../" />
   <title>Two-Stage CMOS Operational Amplifier: Device to Post-Layout | Litao Liu</title>
-  <meta name="description" content="Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre." />
+  <meta name="description" content="Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance." />
   <meta name="theme-color" content="#f4f1e9" />
   <script>
 (function () {
@@ -102,14 +102,14 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Two-Stage CMOS Operational Amplifier: Device to Post-Layout | Litao Liu" />
-  <meta property="og:description" content="Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre." />
+  <meta property="og:description" content="Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance." />
   <meta property="og:url" content="https://velliot-cd.github.io/projects/cmos-opamp.html" />
   <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Two-Stage CMOS Operational Amplifier: Device to Post-Layout | Litao Liu" />
-  <meta name="twitter:description" content="Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre." />
+  <meta name="twitter:description" content="Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance." />
   <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Two-Stage CMOS Operational Amplifier: Device to Post-Layout","description":"Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.","url":"https://velliot-cd.github.io/projects/cmos-opamp.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Two-Stage CMOS Operational Amplifier: Device to Post-Layout","description":"Designed a two-stage CMOS amplifier and compared schematic and extracted-layout performance.","url":"https://velliot-cd.github.io/projects/cmos-opamp.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
   <style>
 :root {
   color-scheme: light;
@@ -1998,9 +1998,60 @@ html:not(.js-ready) .requires-js,
 .category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
 .category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+
+/* Lead with the work; keep the supporting overview compact. */
+#projects.section { padding-block: 64px 76px; }
+#projects .section-heading { margin-bottom: 28px; }
+.project-card { min-height: 0; padding: 28px; }
+.project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
+.project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
+.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview:hover img { transform: scale(1.025); }
+.project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-card.has-preview::after { display: none; }
+.project-highlights { margin-top: 16px; gap: 8px; }
+.project-card-footer { padding-top: 20px; gap: 14px; }
+.project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
+#research .research-card { min-height: 0; padding: 24px; }
+#research .research-card h3 { margin-top: 18px; font-size: 23px; }
+#research .focus-panel { padding: 26px; gap: 28px; }
+#research .focus-panel h3 { font-size: clamp(25px, 2.5vw, 32px); }
+#research .focus-panel li { padding: 10px 12px 10px 34px; border: 0; background: transparent; }
+#research .focus-panel li::before { top: 16px; left: 12px; }
+.skill-evidence { display: grid; gap: 6px; margin-top: 20px; }
+.skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
+
+.study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
+.study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-toc-label { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.project-discussion { margin-top: 40px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-deep); }
+.project-discussion h2 { margin-top: 0; font-size: 26px; }
+.project-discussion > p { color: var(--ink-soft); font-size: 14px; }
+.project-discussion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.project-discussion-email { display: block; width: fit-content; margin-top: 16px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 14px; }
+.project-discussion .copy-result { margin-top: 10px; }
+@media (min-width: 761px) {
+  .project-card.has-preview .project-meta { min-height: 42px; align-content: start; }
+}
+@media (max-width: 760px) {
+  #projects.section { padding-block: 38px 48px; }
+  .project-card { padding: 22px; }
+  .project-card-preview img { max-height: 220px; }
+  #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .project-discussion { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-preview img { transition: none; }
+  .project-card-preview:hover img { transform: none; }
+}
 @media print {
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
+  .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
+  .project-discussion { break-inside: avoid; }
 }
 
 .site-nav a.is-current-section {
@@ -2095,6 +2146,8 @@ html:not(.js-ready) .requires-js,
 .study-note-copy p { margin: 0 0 14px; font-size: 14px; }
 .study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .study-next p { margin: 0; font-size: 14px; }
+.study-next .study-boundary { margin-bottom: 12px; font-weight: 650; }
+.standalone-project [id^="study-"] { scroll-margin-top: 24px; }
 .project-record-content { padding: 0 18px 20px; }
 .project-record-content .modal-detail-grid { margin-top: 18px; }
 .project-record-content > .modal-evidence { margin-top: 0; }
@@ -2137,19 +2190,20 @@ html:not(.js-ready) .requires-js,
       <h1 id="modal-title">Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h1>
       <div class="project-evidence-summary" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul><p class="evidence-note">Results use a parasitic-extracted view; remaining DRC spacing violations prevent completed physical signoff.</p></div>
       <p class="modal-summary" id="modal-summary">Designed and laid out a two-stage amplifier in CSMC 0.50 μm st02 using Cadence Virtuoso and Spectre, from NMOS characterization to an LVS-matched extracted view for parasitic simulation.</p>
-      <div class="project-study">
-      <section class="study-opening"><p class="study-kicker">Design study</p><h2>Two gain stages. Bandwidth and stability together.</h2><p>A two-stage CMOS amplifier needs to be evaluated through gain, unity-gain bandwidth and phase margin together. This project carries the design into a parasitic-extracted view and checks the same metrics across five process corners.</p>
-        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-architecture.en.svg" alt="Two-stage CMOS amplifier functional view: an NMOS differential input with PMOS mirror load feeds a common-source second stage and a 3 pF output load. Miller compensation connects the output to the first-stage output node; bias branches establish the operating point." width="1000" height="610" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional view redrawn from the project circuit, not a complete transistor schematic. Results belong to the st02 project with a 3 pF load, distinct from the separate supply-rejection study.</figcaption></figure>
+      <div class="project-study"><nav class="study-toc" aria-label="Case study contents"><span class="study-toc-label">On this page</span><a href="projects/cmos-opamp.html#study-question">Question</a><a href="projects/cmos-opamp.html#study-approach">Approach</a><a href="projects/cmos-opamp.html#study-results">Results</a><a href="projects/cmos-opamp.html#study-limits">Limits</a></nav>
+      <section class="study-opening" id="study-question"><p class="study-kicker">Design study</p><h2>Two gain stages. Bandwidth and stability together.</h2><p>A two-stage CMOS amplifier needs to be evaluated through gain, unity-gain bandwidth and phase margin together. This project carries the design into a parasitic-extracted view and checks the same metrics across five process corners.</p>
+        <div id="study-approach"><figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-architecture.en.svg" alt="Two-stage CMOS amplifier functional view: an NMOS differential input with PMOS mirror load feeds a common-source second stage and a 3 pF output load. Miller compensation connects the output to the first-stage output node; bias branches establish the operating point." width="1000" height="610" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional view redrawn from the project circuit, not a complete transistor schematic. Results belong to the st02 project with a 3 pF load, distinct from the separate supply-rejection study.</figcaption></figure>
         <ol class="study-process"><li><strong>Establish differential gain and bias</strong><p>An NMOS differential input and PMOS mirror load form the first-stage signal sent to the second stage.</p></li><li><strong>Add gain and a compensation path</strong><p>The common-source second stage adds amplification. Miller compensation connects its output to the first-stage output node.</p></li><li><strong>Recheck the extracted view</strong><p>AC analysis includes extracted parasitics, while process-corner comparisons show variation in the same design.</p></li></ol>
+        </div>
       </section>
-      <section class="study-results"><h2>Post-layout behavior across five process corners</h2><p>The two panels show unity-gain bandwidth and phase margin separately. Dashed lines mark the report targets of 20 MHz and 45°. Each bar is an extracted-view simulation result.</p>
+      <section class="study-results" id="study-results"><h2>Post-layout behavior across five process corners</h2><p>The two panels show unity-gain bandwidth and phase margin separately. Dashed lines mark the report targets of 20 MHz and 45°. Each bar is an extracted-view simulation result.</p>
         <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-comparison.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-comparison.en.svg" alt="Post-layout UGBW at TT, FF, SS, SF and FS is 22.48, 21.54, 20.373, 22.13 and 22.48 MHz; phase margin is 52.4, 53.65, 51.2, 52.71 and 51.8 degrees. All five exceed the stated targets." width="1000" height="620" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Redrawn from the project post-layout corner table with a 3 pF load. The panels retain distinct MHz and degree axes. This is a process-corner comparison, not a temperature or supply-voltage sweep.</figcaption></figure>
         <div class="study-data-wrap" role="region" aria-label="Extracted-view corner results · 3 pF load" tabindex="0"><table class="study-data"><caption>Extracted-view corner results · 3 pF load</caption><thead><tr><th scope="col">Corner</th><th scope="col">UGBW / MHz</th><th scope="col">Phase margin / °</th></tr></thead><tbody><tr class="is-emphasized"><th scope="row">TT</th><td>22.480</td><td>52.40</td></tr><tr><th scope="row">FF</th><td>21.540</td><td>53.65</td></tr><tr><th scope="row">SS</th><td>20.373</td><td>51.20</td></tr><tr><th scope="row">SF</th><td>22.130</td><td>52.71</td></tr><tr><th scope="row">FS</th><td>22.480</td><td>51.80</td></tr></tbody></table></div>
         <p class="study-takeaway">All five corners exceed the report targets for UGBW and phase margin. SS reaches 20.373 MHz, closest to the 20 MHz threshold and a useful priority for further checks.</p><p class="study-conditions">The typical corner also reports 82.93 dB gain and 1.195 mW power. These are simulations under the stated configuration. LVS matched, but DRC spacing violations remain; the results do not establish completed physical signoff, fabrication or silicon measurements.</p>
       </section>
       <section class="study-decisions"><h2>Design decisions</h2><div class="study-decision-grid"><article><h3>Balance bias and compensation</h3><p>The design report treats bias current and compensation capacitance as trade-offs: more bias can improve speed at a power cost, while a larger compensation capacitor can improve stability at the expense of bandwidth and slew rate. The extracted typical-corner metrics describe the chosen design, not a globally optimal setting.</p></article><article><h3>Keep electrical and layout conclusions distinct</h3><p>The extracted view includes layout parasitics in performance evaluation. LVS checks connectivity consistency; DRC checks layout rules. Favorable simulated metrics and matched LVS can coexist with spacing violations that still need correction.</p></article></div></section>
       <details class="study-note" open=""><summary>Technical note · Reading gain, bandwidth and phase margin together</summary><div class="study-note-copy"><p>Gain describes amplification, UGBW locates the unity-gain crossing, and phase margin evaluates stability margin for the specified loop configuration. They answer different questions and should be read together.</p><p>SS has the UGBW closest to the report target in these extracted results. That observation helps prioritize further checks; it does not establish comprehensive verification across temperature, supply, load and transient conditions.</p><p>Differences between schematic and extracted results require analysis of the actual parasitic network. This comparison reports process-corner behavior without attributing a change to an unisolated wire or parasitic element.</p></div></details>
-      <section class="study-next"><h2>The next question to test</h2><p>A proposed next step is to correct the known DRC spacing violations, then rerun DRC, LVS, extraction and performance checks to see whether the revised layout still meets the targets. This plan follows the unresolved findings; it has not been completed.</p></section>
+      <section class="study-next" id="study-limits"><h2>Scope &amp; next steps</h2><p class="study-boundary">Results use a parasitic-extracted view; remaining DRC spacing violations prevent completed physical signoff.</p><p>A proposed next step is to correct the known DRC spacing violations, then rerun DRC, LVS, extraction and performance checks to see whether the revised layout still meets the targets. This plan follows the unresolved findings; it has not been completed.</p></section>
     </div>
       <details class="project-record" open=""><summary>Technical record: contributions, methods &amp; full results</summary><div class="project-record-content">
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/opamp-post-layout.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/opamp-post-layout.png" alt="Summary table of post-layout results for the two-stage CMOS operational amplifier" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Report excerpt: post-layout metrics and analysis of parasitic effects.</figcaption></figure>
@@ -2174,16 +2228,26 @@ html:not(.js-ready) .requires-js,
       </div></details>
       <div class="tag-list modal-tags"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span><span class="tag">Post-layout</span></div>
 
+<section class="project-discussion" aria-labelledby="project-discussion-title">
+      <h2 id="project-discussion-title">Discuss this project</h2>
+      <p>Questions about design choices, verification methods or related research are welcome. The email subject includes this project’s name.</p>
+      <div class="project-discussion-actions">
+        <a class="button button-primary" href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20Two-stage%20CMOS%20op-amp">Email about this project</a>
+        <button class="button button-secondary" type="button" data-project-email-copy data-copied-label="Email copied" data-copy-failed="Automatic copying was unavailable. The email address is selected; copy it manually or use the email link." hidden>Copy email</button>
+      </div>
+      <a class="project-discussion-email" data-project-email-value href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20Two-stage%20CMOS%20op-amp">litaoliu_2026@163.com</a>
+      <p class="copy-result" data-project-email-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
 <nav class="related-projects" aria-labelledby="related-projects-title">
       <h2 id="related-projects-title">Related projects</h2>
       <div class="related-project-grid">
         <a class="related-project-card" href="projects/vlsi-cmos.html">
           <h3>CMOS logic cells &amp; full adder</h3>
-          <p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p>
+          <p>Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic.</p>
         </a>
         <a class="related-project-card" href="projects/pt100-rtl.html">
           <h3>PT100 digital backend</h3>
-          <p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p>
+          <p>Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.</p>
         </a>
       </div>
     </nav>
@@ -2379,6 +2443,38 @@ html:not(.js-ready) .requires-js,
   window.addEventListener("popstate", closeViewer);
 })();
 
+</script>
+  <script>
+(() => {
+  const button = document.querySelector('[data-project-email-copy]');
+  const email = document.querySelector('[data-project-email-value]');
+  const status = document.querySelector('[data-project-email-status]');
+  if (!button || !email || !status) return;
+  button.hidden = false;
+  const label = button.textContent;
+  let reset;
+  button.addEventListener('click', async () => {
+    clearTimeout(reset);
+    button.disabled = true;
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(email.textContent.trim());
+      button.textContent = button.dataset.copiedLabel;
+      status.textContent = button.dataset.copiedLabel;
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      button.textContent = label;
+      status.textContent = button.dataset.copyFailed;
+    } finally {
+      button.disabled = false;
+      reset = setTimeout(() => { button.textContent = label; }, 2500);
+    }
+  });
+})();
 </script>
 </body>
 </html>

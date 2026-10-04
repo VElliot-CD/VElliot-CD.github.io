@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="../" />
   <title>CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification | Litao Liu</title>
-  <meta name="description" content="Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout." />
+  <meta name="description" content="Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic." />
   <meta name="theme-color" content="#f4f1e9" />
   <script>
 (function () {
@@ -102,14 +102,14 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification | Litao Liu" />
-  <meta property="og:description" content="Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout." />
+  <meta property="og:description" content="Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic." />
   <meta property="og:url" content="https://velliot-cd.github.io/projects/vlsi-cmos.html" />
   <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification | Litao Liu" />
-  <meta name="twitter:description" content="Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout." />
+  <meta name="twitter:description" content="Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic." />
   <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification","description":"Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.","url":"https://velliot-cd.github.io/projects/vlsi-cmos.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification","description":"Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic.","url":"https://velliot-cd.github.io/projects/vlsi-cmos.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
   <style>
 :root {
   color-scheme: light;
@@ -1998,9 +1998,60 @@ html:not(.js-ready) .requires-js,
 .category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
 .category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+
+/* Lead with the work; keep the supporting overview compact. */
+#projects.section { padding-block: 64px 76px; }
+#projects .section-heading { margin-bottom: 28px; }
+.project-card { min-height: 0; padding: 28px; }
+.project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
+.project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
+.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview:hover img { transform: scale(1.025); }
+.project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-card.has-preview::after { display: none; }
+.project-highlights { margin-top: 16px; gap: 8px; }
+.project-card-footer { padding-top: 20px; gap: 14px; }
+.project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
+#research .research-card { min-height: 0; padding: 24px; }
+#research .research-card h3 { margin-top: 18px; font-size: 23px; }
+#research .focus-panel { padding: 26px; gap: 28px; }
+#research .focus-panel h3 { font-size: clamp(25px, 2.5vw, 32px); }
+#research .focus-panel li { padding: 10px 12px 10px 34px; border: 0; background: transparent; }
+#research .focus-panel li::before { top: 16px; left: 12px; }
+.skill-evidence { display: grid; gap: 6px; margin-top: 20px; }
+.skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
+
+.study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
+.study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-toc-label { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.project-discussion { margin-top: 40px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-deep); }
+.project-discussion h2 { margin-top: 0; font-size: 26px; }
+.project-discussion > p { color: var(--ink-soft); font-size: 14px; }
+.project-discussion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.project-discussion-email { display: block; width: fit-content; margin-top: 16px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 14px; }
+.project-discussion .copy-result { margin-top: 10px; }
+@media (min-width: 761px) {
+  .project-card.has-preview .project-meta { min-height: 42px; align-content: start; }
+}
+@media (max-width: 760px) {
+  #projects.section { padding-block: 38px 48px; }
+  .project-card { padding: 22px; }
+  .project-card-preview img { max-height: 220px; }
+  #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .project-discussion { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-preview img { transition: none; }
+  .project-card-preview:hover img { transform: none; }
+}
 @media print {
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
+  .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
+  .project-discussion { break-inside: avoid; }
 }
 
 .site-nav a.is-current-section {
@@ -2095,6 +2146,8 @@ html:not(.js-ready) .requires-js,
 .study-note-copy p { margin: 0 0 14px; font-size: 14px; }
 .study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .study-next p { margin: 0; font-size: 14px; }
+.study-next .study-boundary { margin-bottom: 12px; font-weight: 650; }
+.standalone-project [id^="study-"] { scroll-margin-top: 24px; }
 .project-record-content { padding: 0 18px 20px; }
 .project-record-content .modal-detail-grid { margin-top: 18px; }
 .project-record-content > .modal-evidence { margin-top: 0; }
@@ -2161,16 +2214,26 @@ html:not(.js-ready) .requires-js,
 
       <div class="tag-list modal-tags"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span><span class="tag">SystemVerilog</span><span class="tag">Coursework</span></div>
 
+<section class="project-discussion" aria-labelledby="project-discussion-title">
+      <h2 id="project-discussion-title">Discuss this project</h2>
+      <p>Questions about design choices, verification methods or related research are welcome. The email subject includes this project’s name.</p>
+      <div class="project-discussion-actions">
+        <a class="button button-primary" href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20CMOS%20logic%20cells%20%26%20full%20adder">Email about this project</a>
+        <button class="button button-secondary" type="button" data-project-email-copy data-copied-label="Email copied" data-copy-failed="Automatic copying was unavailable. The email address is selected; copy it manually or use the email link." hidden>Copy email</button>
+      </div>
+      <a class="project-discussion-email" data-project-email-value href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20CMOS%20logic%20cells%20%26%20full%20adder">litaoliu_2026@163.com</a>
+      <p class="copy-result" data-project-email-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
 <nav class="related-projects" aria-labelledby="related-projects-title">
       <h2 id="related-projects-title">Related projects</h2>
       <div class="related-project-grid">
         <a class="related-project-card" href="projects/pt100-rtl.html">
           <h3>PT100 digital backend</h3>
-          <p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p>
+          <p>Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.</p>
         </a>
         <a class="related-project-card" href="projects/riscv-int8.html">
           <h3>RISC-V INT8 dot-product extension</h3>
-          <p>Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.</p>
+          <p>Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core.</p>
         </a>
       </div>
     </nav>
@@ -2366,6 +2429,38 @@ html:not(.js-ready) .requires-js,
   window.addEventListener("popstate", closeViewer);
 })();
 
+</script>
+  <script>
+(() => {
+  const button = document.querySelector('[data-project-email-copy]');
+  const email = document.querySelector('[data-project-email-value]');
+  const status = document.querySelector('[data-project-email-status]');
+  if (!button || !email || !status) return;
+  button.hidden = false;
+  const label = button.textContent;
+  let reset;
+  button.addEventListener('click', async () => {
+    clearTimeout(reset);
+    button.disabled = true;
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(email.textContent.trim());
+      button.textContent = button.dataset.copiedLabel;
+      status.textContent = button.dataset.copiedLabel;
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      button.textContent = label;
+      status.textContent = button.dataset.copyFailed;
+    } finally {
+      button.disabled = false;
+      reset = setTimeout(() => { button.textContent = label; }, 2500);
+    }
+  });
+})();
 </script>
 </body>
 </html>

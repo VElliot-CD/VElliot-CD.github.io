@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="../" />
   <title>Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core | Litao Liu</title>
-  <meta name="description" content="Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file." />
+  <meta name="description" content="Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core." />
   <meta name="theme-color" content="#f4f1e9" />
   <script>
 (function () {
@@ -102,14 +102,14 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE3MzIyRiIvPgogIDxjaXJjbGUgY3g9IjQxIiBjeT0iMjMiIHI9IjE0IiBmaWxsPSIjQjM1MTMyIi8+CiAgPHBhdGggZD0iTTEzIDQ3QzIyIDM1IDMyIDM0IDQxIDM5QzQ3IDQyIDUyIDQxIDU3IDM3VjU1SDEzVjQ3WiIgZmlsbD0iI0Y0RjFFOSIvPgo8L3N2Zz4K" type="image/svg+xml" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core | Litao Liu" />
-  <meta property="og:description" content="Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file." />
+  <meta property="og:description" content="Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core." />
   <meta property="og:url" content="https://velliot-cd.github.io/projects/riscv-int8.html" />
   <meta property="og:image" content="https://velliot-cd.github.io/assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core | Litao Liu" />
-  <meta name="twitter:description" content="Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file." />
+  <meta name="twitter:description" content="Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core." />
   <meta name="twitter:image" content="https://velliot-cd.github.io/assets/og-card.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core","description":"Integrated fused INT8 dot-product accumulation into a five-stage RISC-V core with a two-read-port register file.","url":"https://velliot-cd.github.io/projects/riscv-int8.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core","description":"Used staged operand collection for fused INT8 accumulation in a two-read-port RISC-V core.","url":"https://velliot-cd.github.io/projects/riscv-int8.html","inLanguage":"en","author":{"@type":"Person","name":"Litao Liu","url":"https://velliot-cd.github.io/"}}</script>
   <style>
 :root {
   color-scheme: light;
@@ -1998,9 +1998,60 @@ html:not(.js-ready) .requires-js,
 .category-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 20px 0 32px; }
 .category-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .category-links a[aria-current="page"] { color: var(--ink); text-decoration-thickness: 2px; }
+
+/* Lead with the work; keep the supporting overview compact. */
+#projects.section { padding-block: 64px 76px; }
+#projects .section-heading { margin-bottom: 28px; }
+.project-card { min-height: 0; padding: 28px; }
+.project-card h3, .standalone-catalogue .project-card h2 { margin-top: 18px; }
+.project-meta { font-size: 11px; letter-spacing: .04em; gap: 4px 8px; }
+.project-card-preview { display: block; margin: 4px 0 16px; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fffdf8; }
+.project-card-preview img { display: block; width: 100%; height: auto; max-height: 230px; object-fit: contain; transition: transform 180ms ease; }
+.project-card-preview:hover img { transform: scale(1.025); }
+.project-card-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.project-card.has-preview::after { display: none; }
+.project-highlights { margin-top: 16px; gap: 8px; }
+.project-card-footer { padding-top: 20px; gap: 14px; }
+.project-evidence-summary.is-compact { margin-top: 0; margin-bottom: 12px; }
+#research .research-card { min-height: 0; padding: 24px; }
+#research .research-card h3 { margin-top: 18px; font-size: 23px; }
+#research .focus-panel { padding: 26px; gap: 28px; }
+#research .focus-panel h3 { font-size: clamp(25px, 2.5vw, 32px); }
+#research .focus-panel li { padding: 10px 12px 10px 34px; border: 0; background: transparent; }
+#research .focus-panel li::before { top: 16px; left: 12px; }
+.skill-evidence { display: grid; gap: 6px; margin-top: 20px; }
+.skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
+
+.study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
+.study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-toc-label { margin: 0; color: var(--ink-soft); font-size: 12px; }
+.project-discussion { margin-top: 40px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-deep); }
+.project-discussion h2 { margin-top: 0; font-size: 26px; }
+.project-discussion > p { color: var(--ink-soft); font-size: 14px; }
+.project-discussion-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.project-discussion-email { display: block; width: fit-content; margin-top: 16px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 14px; }
+.project-discussion .copy-result { margin-top: 10px; }
+@media (min-width: 761px) {
+  .project-card.has-preview .project-meta { min-height: 42px; align-content: start; }
+}
+@media (max-width: 760px) {
+  #projects.section { padding-block: 38px 48px; }
+  .project-card { padding: 22px; }
+  .project-card-preview img { max-height: 220px; }
+  #research .focus-panel { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+  .project-discussion { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card-preview img { transition: none; }
+  .project-card-preview:hover img { transform: none; }
+}
 @media print {
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
+  .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
+  .project-discussion { break-inside: avoid; }
 }
 
 .site-nav a.is-current-section {
@@ -2095,6 +2146,8 @@ html:not(.js-ready) .requires-js,
 .study-note-copy p { margin: 0 0 14px; font-size: 14px; }
 .study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .study-next p { margin: 0; font-size: 14px; }
+.study-next .study-boundary { margin-bottom: 12px; font-weight: 650; }
+.standalone-project [id^="study-"] { scroll-margin-top: 24px; }
 .project-record-content { padding: 0 18px 20px; }
 .project-record-content .modal-detail-grid { margin-top: 18px; }
 .project-record-content > .modal-evidence { margin-top: 0; }
@@ -2137,19 +2190,20 @@ html:not(.js-ready) .requires-js,
       <h1 id="modal-title">Fused INT8 Dot-Product Accumulation in a Two-Read-Port RISC-V Core</h1>
       <div class="project-evidence-summary" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>In progress</li><li>RTL simulation</li><li>Implementation timing</li></ul><p class="evidence-note">Results cover one complete convolution layer; full-network inference and board measurements remain future work.</p></div>
       <p class="modal-summary" id="modal-summary">Integrated a four-lane signed INT8 dot-product accumulation instruction into the five-stage SiMPLE RV32I core, reusing two read ports through operand collection and evaluating the design on a complete MobileNet Visual Wake Words pointwise convolution layer.</p>
-      <div class="project-study">
-      <section class="study-opening"><p class="study-kicker">Design study</p><h2>Three source operands. Two register-file read ports.</h2><p>DOT4ACC needs two packed INT8 inputs and the old destination value. The design question is how to collect that third operand correctly while retaining two read ports, and what fused accumulation gains on a complete operator.</p>
-        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/riscv-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/riscv-architecture.en.svg" alt="Two-read-port DOT4ACC flow: check RAW dependencies for rs1, rs2 and old rd, capture the packed inputs and hold fetch/decode; read old rd in the next ready step, then execute and use the normal MEM/WB writeback path." width="1000" height="640" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional diagram redrawn from the project integration description. The two steps are dependency-ready operand-collection steps, not a fixed two-cycle instruction latency.</figcaption></figure>
+      <div class="project-study"><nav class="study-toc" aria-label="Case study contents"><span class="study-toc-label">On this page</span><a href="projects/riscv-int8.html#study-question">Question</a><a href="projects/riscv-int8.html#study-approach">Approach</a><a href="projects/riscv-int8.html#study-results">Results</a><a href="projects/riscv-int8.html#study-limits">Limits</a></nav>
+      <section class="study-opening" id="study-question"><p class="study-kicker">Design study</p><h2>Three source operands. Two register-file read ports.</h2><p>DOT4ACC needs two packed INT8 inputs and the old destination value. The design question is how to collect that third operand correctly while retaining two read ports, and what fused accumulation gains on a complete operator.</p>
+        <div id="study-approach"><figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/riscv-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/riscv-architecture.en.svg" alt="Two-read-port DOT4ACC flow: check RAW dependencies for rs1, rs2 and old rd, capture the packed inputs and hold fetch/decode; read old rd in the next ready step, then execute and use the normal MEM/WB writeback path." width="1000" height="640" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional diagram redrawn from the project integration description. The two steps are dependency-ready operand-collection steps, not a fixed two-cycle instruction latency.</figcaption></figure>
         <ol class="study-process"><li><strong>Check and preserve inputs</strong><p>Check RAW dependencies for all three sources, capture rs1 and rs2, hold IF/ID and insert a control bubble during collection.</p></li><li><strong>Reuse a port for the accumulator</strong><p>The pending state selects old rd on a read port while preserving the two captured packed inputs.</p></li><li><strong>Execute and write back</strong><p>Perform four signed INT8 multiply-accumulates and commit through the existing MEM/WB path and single write port.</p></li></ol>
+        </div>
       </section>
-      <section class="study-results"><h2>One complete layer. Three controlled designs.</h2><p>A uses the existing DOT4 hardware followed by ADD. B fuses accumulation with two read ports. C performs the same fused operation with three read ports.</p>
+      <section class="study-results" id="study-results"><h2>One complete layer. Three controlled designs.</h2><p>A uses the existing DOT4 hardware followed by ADD. B fuses accumulation with two read ports. C performs the same fused operation with three read ports.</p>
         <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/riscv-comparison.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/riscv-comparison.en.svg" alt="Mean full-layer times, lower is better: A, two-port DOT4 plus ADD, 43.1202 ms; B, two-port fused, 38.6966 ms; C, three-port fused, 37.2220 ms. The time axis starts at zero." width="1000" height="640" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Ten-input means from the full-layer experiment at 50 MHz, with matched software, arithmetic units and 32 KiB data RAM. A already has packed INT8 dot-product hardware.</figcaption></figure>
         <div class="study-data-wrap" role="region" aria-label="Full-layer results · mean over ten inputs" tabindex="0"><table class="study-data"><caption>Full-layer results · mean over ten inputs</caption><thead><tr><th scope="col">Design</th><th scope="col">Read ports</th><th scope="col">Cycles</th><th scope="col">Time / ms</th></tr></thead><tbody><tr><th scope="row">A · DOT4+ADD</th><td>2</td><td>2,156,011.8</td><td>43.1202</td></tr><tr class="is-emphasized"><th scope="row">B · Fused</th><td>2</td><td>1,934,827.8</td><td>38.6966</td></tr><tr><th scope="row">C · Fused</th><td>3</td><td>1,861,099.8</td><td>37.2220</td></tr></tbody></table></div>
         <p class="study-takeaway">B reduces full-layer cycles by 10.259% versus A, a 1.1143× speedup. It retains two read ports but remains slower than the three-port design C.</p><p class="study-conditions">The workload is one complete pointwise convolution layer, op8 of an INT8 MobileNet VWW model. Timing includes CPU input copy, convolution, bias, requantization, ReLU and output copy; it excludes other network layers, startup and off-chip communication. These are simulation and OOC implementation results, not board measurements.</p>
       </section>
       <section class="study-decisions"><h2>Design decisions</h2><div class="study-decision-grid"><article><h3>Keep the ports; pay for collection</h3><p>B schedules the third-source access in the next ready step instead of adding a read port. The extra collection step costs 73,728 cycles relative to C over the full layer. This comparison describes the collection trade-off; it does not establish universal area superiority.</p></article><article><h3>Keep the comparison on one question</h3><p>All three designs retain the same five-stage pipeline, no-forwarding policy, arithmetic units, memory and software. Since A already supports four-lane INT8 dot products, 10.259% is not an overall speedup over scalar RV32I. The separate software-ablation percentage is not added to it.</p></article></div></section>
       <details class="study-note" open=""><summary>Technical note · Why is the old destination also an input?</summary><div class="study-note-copy"><p>DOT4ACC can be written as rd ← dot4(rs1, rs2) + old(rd). The destination is both an output location and an accumulator input. Checking only rs1 and rs2 misses a dependency when an earlier instruction has not yet written back rd.</p><p>The integration includes old rd in RAW checks and completes collection before issue. Register aliases and x0 also need explicit handling: when operands share a register, the instruction must preserve the required old inputs, and zero-register behavior must remain consistent with the architecture.</p><p>This explains the integration constraint. The pending sequence describes collection once dependencies are ready; pipeline waits, execution and writeback still affect total instruction latency.</p></div></details>
-      <section class="study-next"><h2>The next question to test</h2><p>Planned work asks whether the single-layer benefit carries into a complete model and onto physical hardware. End-to-end inference and board validation remain future work; current results do not establish full-network accuracy, end-to-end speedup or measured energy.</p></section>
+      <section class="study-next" id="study-limits"><h2>Scope &amp; next steps</h2><p class="study-boundary">Results cover one complete convolution layer; full-network inference and board measurements remain future work.</p><p>Planned work asks whether the single-layer benefit carries into a complete model and onto physical hardware. End-to-end inference and board validation remain future work; current results do not establish full-network accuracy, end-to-end speedup or measured energy.</p></section>
     </div>
       <details class="project-record" open=""><summary>Technical record: contributions, methods &amp; full results</summary><div class="project-record-content">
 
@@ -2174,16 +2228,26 @@ html:not(.js-ready) .requires-js,
       </div></details>
       <div class="tag-list modal-tags"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span><span class="tag">INT8</span></div>
 
+<section class="project-discussion" aria-labelledby="project-discussion-title">
+      <h2 id="project-discussion-title">Discuss this project</h2>
+      <p>Questions about design choices, verification methods or related research are welcome. The email subject includes this project’s name.</p>
+      <div class="project-discussion-actions">
+        <a class="button button-primary" href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20RISC-V%20INT8%20dot-product%20extension">Email about this project</a>
+        <button class="button button-secondary" type="button" data-project-email-copy data-copied-label="Email copied" data-copy-failed="Automatic copying was unavailable. The email address is selected; copy it manually or use the email link." hidden>Copy email</button>
+      </div>
+      <a class="project-discussion-email" data-project-email-value href="mailto:litaoliu_2026@163.com?subject=Project%20discussion%3A%20RISC-V%20INT8%20dot-product%20extension">litaoliu_2026@163.com</a>
+      <p class="copy-result" data-project-email-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
 <nav class="related-projects" aria-labelledby="related-projects-title">
       <h2 id="related-projects-title">Related projects</h2>
       <div class="related-project-grid">
         <a class="related-project-card" href="projects/vlsi-cmos.html">
           <h3>CMOS logic cells &amp; full adder</h3>
-          <p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p>
+          <p>Designed NOR2, OR2 and a 28-transistor full adder, checking schematics, layout and logic.</p>
         </a>
         <a class="related-project-card" href="projects/pt100-rtl.html">
           <h3>PT100 digital backend</h3>
-          <p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p>
+          <p>Co-developed and verified a PT100 VHDL backend as part of a two-person digital subgroup.</p>
         </a>
       </div>
     </nav>
@@ -2379,6 +2443,38 @@ html:not(.js-ready) .requires-js,
   window.addEventListener("popstate", closeViewer);
 })();
 
+</script>
+  <script>
+(() => {
+  const button = document.querySelector('[data-project-email-copy]');
+  const email = document.querySelector('[data-project-email-value]');
+  const status = document.querySelector('[data-project-email-status]');
+  if (!button || !email || !status) return;
+  button.hidden = false;
+  const label = button.textContent;
+  let reset;
+  button.addEventListener('click', async () => {
+    clearTimeout(reset);
+    button.disabled = true;
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(email.textContent.trim());
+      button.textContent = button.dataset.copiedLabel;
+      status.textContent = button.dataset.copiedLabel;
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(email);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      button.textContent = label;
+      status.textContent = button.dataset.copyFailed;
+    } finally {
+      button.disabled = false;
+      reset = setTimeout(() => { button.textContent = label; }, 2500);
+    }
+  });
+})();
 </script>
 </body>
 </html>
