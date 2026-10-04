@@ -2055,6 +2055,69 @@ html:not(.js-ready) .requires-js,
   .current-section-indicator { display: none !important; }
 }
 
+/* A reading layer for the two representative design studies. */
+.project-study { margin-top: 38px; }
+.study-opening { padding-top: 26px; border-top: 1px solid var(--line); }
+.study-kicker { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-study h3, .standalone-project .project-study h2 { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(25px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.project-study p { color: var(--ink-soft); }
+.study-opening > p:last-child { margin: 0; }
+.study-figure { margin-top: 22px; }
+.study-figure .modal-evidence-media, .study-figure img { background: #fffdf8; }
+.study-figure img { width: 100%; max-height: none; }
+.study-process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 24px 0 0; list-style: none; counter-reset: study-step; }
+.study-process li { counter-increment: study-step; padding-top: 14px; border-top: 2px solid var(--line); }
+.study-process li::before { content: "0" counter(study-step); color: var(--accent); font-size: 12px; font-weight: 750; }
+.study-process strong { display: block; margin-top: 6px; font-size: 15px; }
+.study-process p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; }
+.study-results, .study-decisions { margin-top: 38px; }
+.study-results > p { margin: 0; }
+.study-data-wrap { margin-top: 20px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.study-data-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-data { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-variant-numeric: tabular-nums; }
+.study-data caption { padding: 12px 14px; color: var(--ink-soft); font-size: 12px; font-weight: 650; text-align: left; }
+.study-data th, .study-data td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.study-data thead th { background: var(--paper-deep); color: var(--ink-soft); font-weight: 650; }
+.study-data tbody th { min-width: 80px; font-weight: 700; }
+.study-data td { white-space: nowrap; }
+.study-data tr.is-emphasized { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.study-results .study-takeaway { margin: 20px 0 0; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--paper-deep); color: var(--ink); font-size: 15px; }
+.study-results .study-conditions { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.study-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.study-decision-grid article { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-study h4, .standalone-project .project-study h3 { margin: 0 0 8px; font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: 0; line-height: 1.5; }
+.study-decision-grid p { margin: 0; font-size: 14px; }
+.study-note, .project-record { margin-top: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.study-note summary, .project-record > summary { padding: 18px 20px; cursor: pointer; color: var(--ink); font-size: 15px; font-weight: 700; }
+.study-note summary::marker, .project-record > summary::marker { color: var(--accent); }
+.study-note summary:focus-visible, .project-record > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
+.study-note-copy { padding: 0 20px 8px; }
+.study-note-copy p { margin: 0 0 14px; font-size: 14px; }
+.study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.study-next p { margin: 0; font-size: 14px; }
+.project-record-content { padding: 0 18px 20px; }
+.project-record-content .modal-detail-grid { margin-top: 18px; }
+.project-record-content > .modal-evidence { margin-top: 0; }
+@media (max-width: 600px) {
+  .study-process, .study-decision-grid { grid-template-columns: 1fr; gap: 14px; }
+  .study-process li { display: grid; grid-template-columns: 24px 1fr; gap: 0 10px; }
+  .study-process strong { margin-top: 0; }
+  .study-process p { grid-column: 2; }
+  .study-data th, .study-data td { padding: 9px 10px; }
+  .study-data { font-size: 12px; }
+  .study-results .study-takeaway { padding: 14px; }
+  .project-record-content { padding-inline: 10px; }
+  .study-note summary, .project-record > summary { padding: 16px; }
+}
+@media print {
+  .study-note::details-content, .project-record::details-content { content-visibility: visible; display: block; }
+  .study-note-copy, .project-record-content { display: block !important; }
+  .study-data-wrap { overflow: visible; }
+  .study-figure, .study-data, .study-decision-grid article { break-inside: avoid; }
+  .project-study h3, .standalone-project .project-study h2 { font-size: 18pt; }
+  .study-note, .project-record { border: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -2071,7 +2134,7 @@ html:not(.js-ready) .requires-js,
   <main id="main-content" class="shell standalone-project standalone-catalogue">
     <header class="section-heading"><p class="section-kicker">Research area</p><h1>IC Design projects</h1><p>4 projects in this area, with personal contributions, methods and verification evidence.</p></header>
 <nav class="category-links" aria-label="Project categories"><a href="projects/category-rtl.html">RTL / Digital</a><a href="projects/category-ic.html" aria-current="page">IC Design</a><a href="projects/category-devices.html">Device simulation</a><a href="projects/category-embedded.html">Embedded</a></nav>
-<div class="project-grid"><article class="project-card"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h2>CMOS logic cells &amp; full adder</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Layout checks</li><li>Extracted-netlist simulation</li></ul></div><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h2>Two-stage CMOS op-amp</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul></div><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html">View details <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>Individual coursework extension · Schematic simulation</span></div><h2>CMOS supply rejection</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Schematic simulation</li><li>DC / AC analysis</li></ul></div><p>Studied supply-disturbance coupling in a Miller-compensated SMIC18MMRF two-stage amplifier.</p><ul class="project-highlights"><li>85.96 dB low-frequency gain in nominal schematic simulation</li><li>−79.54 dB supply-to-output transfer under the report’s convention</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.html">View details <span class="sr-only">— Supply rejection in a two-stage CMOS amplifier</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h2>PT100 digital backend</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>RTL simulation</li><li>Implementation timing</li></ul></div><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article></div>
+<div class="project-grid"><article class="project-card"><div class="project-meta"><span>Sep 2026</span><span>·</span><span>Individual coursework · Transistor-level design and verification</span></div><h2>CMOS logic cells &amp; full adder</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Layout checks</li><li>Extracted-netlist simulation</li></ul></div><p>Designed and verified NOR2, OR2 and a 28-transistor full adder from schematics to extracted layout.</p><ul class="project-highlights"><li>Full adder passed DRC, well / antenna ERC and exact-size NCC</li><li>IRSIM full-adder checks covered all eight input combinations</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.html">View details <span class="sr-only">— CMOS Logic Cells and a 28-Transistor Full Adder: Schematic, Layout and Verification</span></a></div></article><article class="project-card"><div class="project-meta"><span>Mar — May 2026</span><span>·</span><span>Individual coursework · Analog design &amp; layout</span></div><h2>Two-stage CMOS op-amp</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul></div><p>Designed a two-stage CMOS amplifier and evaluated its parasitic-extracted layout in Cadence Virtuoso and Spectre.</p><ul class="project-highlights"><li>Post-layout: 82.93 dB gain and 22.48 MHz UGBW at the typical corner, 3 pF load</li><li>LVS matched; remaining DRC spacing violations prevent full physical signoff</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.html">Read design study <span class="sr-only">— Two-Stage CMOS Operational Amplifier: Device to Post-Layout</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>Individual coursework extension · Schematic simulation</span></div><h2>CMOS supply rejection</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Schematic simulation</li><li>DC / AC analysis</li></ul></div><p>Studied supply-disturbance coupling in a Miller-compensated SMIC18MMRF two-stage amplifier.</p><ul class="project-highlights"><li>85.96 dB low-frequency gain in nominal schematic simulation</li><li>−79.54 dB supply-to-output transfer under the report’s convention</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.html">View details <span class="sr-only">— Supply rejection in a two-stage CMOS amplifier</span></a></div></article><article class="project-card"><div class="project-meta"><span>Apr — Jun 2026</span><span>·</span><span>Two-person digital subgroup · Six-member team</span></div><h2>PT100 digital backend</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>RTL simulation</li><li>Implementation timing</li></ul></div><p>Co-developed and verified the VHDL backend of a six-member PT100 mixed-signal system project.</p><ul class="project-highlights"><li>Five design units, with 16-cycle serial frames and 12-count hysteresis</li><li>Module and integration tests passed; WNS &gt; 0 and TNS = 0 at a 1 kHz constraint</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.html">View details <span class="sr-only">— VHDL digital backend for PT100 temperature measurement</span></a></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="./?lang=en#contact">Contact</a></div></footer>
   <script>

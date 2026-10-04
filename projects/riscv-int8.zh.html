@@ -2055,6 +2055,69 @@ html:not(.js-ready) .requires-js,
   .current-section-indicator { display: none !important; }
 }
 
+/* A reading layer for the two representative design studies. */
+.project-study { margin-top: 38px; }
+.study-opening { padding-top: 26px; border-top: 1px solid var(--line); }
+.study-kicker { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-study h3, .standalone-project .project-study h2 { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(25px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.project-study p { color: var(--ink-soft); }
+.study-opening > p:last-child { margin: 0; }
+.study-figure { margin-top: 22px; }
+.study-figure .modal-evidence-media, .study-figure img { background: #fffdf8; }
+.study-figure img { width: 100%; max-height: none; }
+.study-process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 24px 0 0; list-style: none; counter-reset: study-step; }
+.study-process li { counter-increment: study-step; padding-top: 14px; border-top: 2px solid var(--line); }
+.study-process li::before { content: "0" counter(study-step); color: var(--accent); font-size: 12px; font-weight: 750; }
+.study-process strong { display: block; margin-top: 6px; font-size: 15px; }
+.study-process p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; }
+.study-results, .study-decisions { margin-top: 38px; }
+.study-results > p { margin: 0; }
+.study-data-wrap { margin-top: 20px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.study-data-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-data { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-variant-numeric: tabular-nums; }
+.study-data caption { padding: 12px 14px; color: var(--ink-soft); font-size: 12px; font-weight: 650; text-align: left; }
+.study-data th, .study-data td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.study-data thead th { background: var(--paper-deep); color: var(--ink-soft); font-weight: 650; }
+.study-data tbody th { min-width: 80px; font-weight: 700; }
+.study-data td { white-space: nowrap; }
+.study-data tr.is-emphasized { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.study-results .study-takeaway { margin: 20px 0 0; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--paper-deep); color: var(--ink); font-size: 15px; }
+.study-results .study-conditions { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.study-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.study-decision-grid article { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-study h4, .standalone-project .project-study h3 { margin: 0 0 8px; font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: 0; line-height: 1.5; }
+.study-decision-grid p { margin: 0; font-size: 14px; }
+.study-note, .project-record { margin-top: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.study-note summary, .project-record > summary { padding: 18px 20px; cursor: pointer; color: var(--ink); font-size: 15px; font-weight: 700; }
+.study-note summary::marker, .project-record > summary::marker { color: var(--accent); }
+.study-note summary:focus-visible, .project-record > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
+.study-note-copy { padding: 0 20px 8px; }
+.study-note-copy p { margin: 0 0 14px; font-size: 14px; }
+.study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.study-next p { margin: 0; font-size: 14px; }
+.project-record-content { padding: 0 18px 20px; }
+.project-record-content .modal-detail-grid { margin-top: 18px; }
+.project-record-content > .modal-evidence { margin-top: 0; }
+@media (max-width: 600px) {
+  .study-process, .study-decision-grid { grid-template-columns: 1fr; gap: 14px; }
+  .study-process li { display: grid; grid-template-columns: 24px 1fr; gap: 0 10px; }
+  .study-process strong { margin-top: 0; }
+  .study-process p { grid-column: 2; }
+  .study-data th, .study-data td { padding: 9px 10px; }
+  .study-data { font-size: 12px; }
+  .study-results .study-takeaway { padding: 14px; }
+  .project-record-content { padding-inline: 10px; }
+  .study-note summary, .project-record > summary { padding: 16px; }
+}
+@media print {
+  .study-note::details-content, .project-record::details-content { content-visibility: visible; display: block; }
+  .study-note-copy, .project-record-content { display: block !important; }
+  .study-data-wrap { overflow: visible; }
+  .study-figure, .study-data, .study-decision-grid article { break-inside: avoid; }
+  .project-study h3, .standalone-project .project-study h2 { font-size: 18pt; }
+  .study-note, .project-record { border: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -2074,6 +2137,21 @@ html:not(.js-ready) .requires-js,
       <h1 id="modal-title">双读端口 RISC-V 的融合 INT8 点积累加扩展</h1>
       <div class="project-evidence-summary" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>进行中</li><li>RTL 仿真</li><li>实现时序检查</li></ul><p class="evidence-note">当前验证覆盖单个完整卷积层；整网推理与板级实测尚待开展。</p></div>
       <p class="modal-summary" id="modal-summary">在五级 SiMPLE RV32I 处理器中集成四路有符号 INT8 点积累加指令，通过两步操作数收集复用双读端口，并以 MobileNet Visual Wake Words 的完整逐点卷积层验证流水线与软硬件协同效果。</p>
+      <div class="project-study">
+      <section class="study-opening"><p class="study-kicker">设计解读</p><h2>三源融合指令，如何适配两个读端口？</h2><p>DOT4ACC 需要两个打包的 INT8 输入和旧目的寄存器值。这里研究的重点，是在保留双读端口寄存器堆的条件下，正确收集第三个操作数，并量化融合累加在完整算子中的收益。</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/riscv-architecture.zh.svg" target="_blank" rel="noreferrer"><img src="assets/research/riscv-architecture.zh.svg" alt="双读端口 DOT4ACC 功能流程：先检查 rs1、rs2 与旧 rd 的 RAW 依赖并锁存两组打包输入，保持取指和译码；下一就绪步骤读取旧 rd，再送入执行与常规 MEM/WB 写回。" width="1000" height="640" loading="lazy" decoding="async"><span class="modal-evidence-open">查看大图 <span aria-hidden="true">⤢</span></span></a><figcaption>依据项目 RTL 集成说明重绘的功能示意。图中的两步是依赖满足后的操作数收集步骤，不代表整条指令固定只需两个时钟周期。</figcaption></figure>
+        <ol class="study-process"><li><strong>检查依赖并保存输入</strong><p>检查三个源的 RAW 依赖，锁存 rs1 与 rs2；收集期间保持 IF/ID，并插入控制气泡。</p></li><li><strong>复用端口读取累加值</strong><p>通过 pending 状态切换读地址，采集旧 rd；此前锁存的两个打包输入保持有效。</p></li><li><strong>执行并正常写回</strong><p>完成四路有符号 INT8 点积累加，经既有 MEM/WB 路径和单写端口提交结果。</p></li></ol>
+      </section>
+      <section class="study-results"><h2>同一完整卷积层，三个受控方案</h2><p>A 保留已有 DOT4 硬件，并用独立 ADD 累加；B 在两读端口下融合累加；C 使用三读端口完成同样的融合运算。</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/riscv-comparison.zh.svg" target="_blank" rel="noreferrer"><img src="assets/research/riscv-comparison.zh.svg" alt="平均完整层时间，越低越好：A 双端口 DOT4+ADD 为43.1202毫秒；B 双端口融合为38.6966毫秒；C 三端口融合为37.2220毫秒。横轴从零开始。" width="1000" height="640" loading="lazy" decoding="async"><span class="modal-evidence-open">查看大图 <span aria-hidden="true">⤢</span></span></a><figcaption>项目完整层实验的 10 个输入均值，固定 50 MHz。A/B/C 使用相同的软件、运算单元和 32 KiB 数据 RAM；不是标量 RV32I 与 SIMD 的对比。</figcaption></figure>
+        <div class="study-data-wrap" role="region" aria-label="完整层结果 · 10 个输入的平均值" tabindex="0"><table class="study-data"><caption>完整层结果 · 10 个输入的平均值</caption><thead><tr><th scope="col">方案</th><th scope="col">读端口</th><th scope="col">周期</th><th scope="col">时间 / ms</th></tr></thead><tbody><tr><th scope="row">A · DOT4+ADD</th><td>2</td><td>2,156,011.8</td><td>43.1202</td></tr><tr class="is-emphasized"><th scope="row">B · 融合累加</th><td>2</td><td>1,934,827.8</td><td>38.6966</td></tr><tr><th scope="row">C · 融合累加</th><td>3</td><td>1,861,099.8</td><td>37.2220</td></tr></tbody></table></div>
+        <p class="study-takeaway">B 相对 A 的完整层周期减少 10.259%，对应 1.1143× 加速；保留两个读端口的同时，B 的耗时仍高于三端口方案 C。</p><p class="study-conditions">工作负载为 MobileNet VWW INT8 模型 op8 的单个完整逐点卷积层。计时包括 CPU 输入拷贝、卷积、偏置与再量化、ReLU 和输出拷贝；不包括整网其他层、启动与片外通信。这是仿真与 OOC 实现评估，不是板级实测。</p>
+      </section>
+      <section class="study-decisions"><h2>设计取舍</h2><div class="study-decision-grid"><article><h3>保留端口数，付出收集步骤</h3><p>B 将第三源的访问安排到下一就绪步骤，避免为该方案增加第三个读端口。代价是每条融合指令多一次收集：完整层中，B 比 C 多 73,728 个周期。这个对照说明了端口与收集开销的关系，不证明 B 在所有实现中面积更优。</p></article><article><h3>让比较围绕同一个问题</h3><p>三种方案保留相同的五级流水线、无前递策略、运算单元、内存与软件。由于 A 已支持四路 INT8 点积，10.259% 不能解释为“从标量处理器获得的总体加速”。独立的软件优化实验也不与这个百分比相加。</p></article></div></section>
+      <details class="study-note" open=""><summary>技术笔记 · 为什么旧目的寄存器也是输入？</summary><div class="study-note-copy"><p>DOT4ACC 的语义可写为 rd ← dot4(rs1, rs2) + old(rd)。rd 同时是输出位置和累加输入，因此只检查 rs1、rs2 的依赖还不够：前序指令尚未写回 rd 时，累加会读到旧值。</p><p>项目将旧 rd 纳入 RAW 检查，并在发射前完成操作数收集。寄存器别名与 x0 也需要明确处理：目的寄存器与输入同名时，必须保存指令所需的旧输入；x0 的读取与写回仍须遵守体系结构语义。</p><p>这段说明解释的是集成约束。pending 两步描述的是依赖已满足时的收集流程；流水线等待、执行和写回仍会影响完整指令延迟。</p></div></details>
+      <section class="study-next"><h2>下一步待验证的问题</h2><p>计划继续检验：单层收益能否延续到完整模型，并在真实硬件上保持？后续工作包括端到端推理与板级验证；当前结果不代表整网准确率、端到端加速或实测能量。</p></section>
+    </div>
+      <details class="project-record" open=""><summary>技术记录：个人贡献、方法与完整结果</summary><div class="project-record-content">
 
       <div class="modal-detail-grid">
         <section>
@@ -2093,6 +2171,7 @@ html:not(.js-ready) .requires-js,
           <ul><li>每种架构在 RTL 与所选映射后功能仿真中均匹配 92,160 个 INT32 和 92,160 个 INT8 值；所有架构均满足规定的 50 MHz 时序约束。</li><li>A/B/C 平均完整层时间分别为 43.1202 / 38.6966 / 37.2220 ms；B 相对 A 周期降低 10.259%，加速比 1.1143×。该基线已具备四路 INT8 点积硬件。</li><li>B 的平均层能量估算为 4.141 mJ，相对 A 降低 9.917%；这是 50 MHz、25°C、典型工艺下基于功能 SAIF 的 Vivado 估算，部分存储器活动由工具传播，并非实测功耗或能量。</li><li>独立的 4 KiB 空间块实验中，精确再量化及循环展开使 B 的平均周期降低 39.893%；该软件结果不与完整层架构收益合并。当前验证不代表整网推理、分类准确率或板级实测。</li></ul>
         </section>
       </div>
+      </div></details>
       <div class="tag-list modal-tags"><span class="tag">RISC-V</span><span class="tag">RTL</span><span class="tag">Vivado / XSim</span><span class="tag">INT8</span></div>
 
 <nav class="related-projects" aria-labelledby="related-projects-title">

@@ -2055,6 +2055,69 @@ html:not(.js-ready) .requires-js,
   .current-section-indicator { display: none !important; }
 }
 
+/* A reading layer for the two representative design studies. */
+.project-study { margin-top: 38px; }
+.study-opening { padding-top: 26px; border-top: 1px solid var(--line); }
+.study-kicker { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-study h3, .standalone-project .project-study h2 { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(25px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.project-study p { color: var(--ink-soft); }
+.study-opening > p:last-child { margin: 0; }
+.study-figure { margin-top: 22px; }
+.study-figure .modal-evidence-media, .study-figure img { background: #fffdf8; }
+.study-figure img { width: 100%; max-height: none; }
+.study-process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 24px 0 0; list-style: none; counter-reset: study-step; }
+.study-process li { counter-increment: study-step; padding-top: 14px; border-top: 2px solid var(--line); }
+.study-process li::before { content: "0" counter(study-step); color: var(--accent); font-size: 12px; font-weight: 750; }
+.study-process strong { display: block; margin-top: 6px; font-size: 15px; }
+.study-process p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; }
+.study-results, .study-decisions { margin-top: 38px; }
+.study-results > p { margin: 0; }
+.study-data-wrap { margin-top: 20px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.study-data-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-data { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-variant-numeric: tabular-nums; }
+.study-data caption { padding: 12px 14px; color: var(--ink-soft); font-size: 12px; font-weight: 650; text-align: left; }
+.study-data th, .study-data td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.study-data thead th { background: var(--paper-deep); color: var(--ink-soft); font-weight: 650; }
+.study-data tbody th { min-width: 80px; font-weight: 700; }
+.study-data td { white-space: nowrap; }
+.study-data tr.is-emphasized { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.study-results .study-takeaway { margin: 20px 0 0; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--paper-deep); color: var(--ink); font-size: 15px; }
+.study-results .study-conditions { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.study-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.study-decision-grid article { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-study h4, .standalone-project .project-study h3 { margin: 0 0 8px; font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: 0; line-height: 1.5; }
+.study-decision-grid p { margin: 0; font-size: 14px; }
+.study-note, .project-record { margin-top: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.study-note summary, .project-record > summary { padding: 18px 20px; cursor: pointer; color: var(--ink); font-size: 15px; font-weight: 700; }
+.study-note summary::marker, .project-record > summary::marker { color: var(--accent); }
+.study-note summary:focus-visible, .project-record > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
+.study-note-copy { padding: 0 20px 8px; }
+.study-note-copy p { margin: 0 0 14px; font-size: 14px; }
+.study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.study-next p { margin: 0; font-size: 14px; }
+.project-record-content { padding: 0 18px 20px; }
+.project-record-content .modal-detail-grid { margin-top: 18px; }
+.project-record-content > .modal-evidence { margin-top: 0; }
+@media (max-width: 600px) {
+  .study-process, .study-decision-grid { grid-template-columns: 1fr; gap: 14px; }
+  .study-process li { display: grid; grid-template-columns: 24px 1fr; gap: 0 10px; }
+  .study-process strong { margin-top: 0; }
+  .study-process p { grid-column: 2; }
+  .study-data th, .study-data td { padding: 9px 10px; }
+  .study-data { font-size: 12px; }
+  .study-results .study-takeaway { padding: 14px; }
+  .project-record-content { padding-inline: 10px; }
+  .study-note summary, .project-record > summary { padding: 16px; }
+}
+@media print {
+  .study-note::details-content, .project-record::details-content { content-visibility: visible; display: block; }
+  .study-note-copy, .project-record-content { display: block !important; }
+  .study-data-wrap { overflow: visible; }
+  .study-figure, .study-data, .study-decision-grid article { break-inside: avoid; }
+  .project-study h3, .standalone-project .project-study h2 { font-size: 18pt; }
+  .study-note, .project-record { border: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -2074,6 +2137,21 @@ html:not(.js-ready) .requires-js,
       <h1 id="modal-title">Two-Stage CMOS Operational Amplifier: Device to Post-Layout</h1>
       <div class="project-evidence-summary" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Post-layout simulation</li><li>LVS matched</li></ul><p class="evidence-note">Results use a parasitic-extracted view; remaining DRC spacing violations prevent completed physical signoff.</p></div>
       <p class="modal-summary" id="modal-summary">Designed and laid out a two-stage amplifier in CSMC 0.50 μm st02 using Cadence Virtuoso and Spectre, from NMOS characterization to an LVS-matched extracted view for parasitic simulation.</p>
+      <div class="project-study">
+      <section class="study-opening"><p class="study-kicker">Design study</p><h2>Two gain stages. Bandwidth and stability together.</h2><p>A two-stage CMOS amplifier needs to be evaluated through gain, unity-gain bandwidth and phase margin together. This project carries the design into a parasitic-extracted view and checks the same metrics across five process corners.</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-architecture.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-architecture.en.svg" alt="Two-stage CMOS amplifier functional view: an NMOS differential input with PMOS mirror load feeds a common-source second stage and a 3 pF output load. Miller compensation connects the output to the first-stage output node; bias branches establish the operating point." width="1000" height="610" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Functional view redrawn from the project circuit, not a complete transistor schematic. Results belong to the st02 project with a 3 pF load, distinct from the separate supply-rejection study.</figcaption></figure>
+        <ol class="study-process"><li><strong>Establish differential gain and bias</strong><p>An NMOS differential input and PMOS mirror load form the first-stage signal sent to the second stage.</p></li><li><strong>Add gain and a compensation path</strong><p>The common-source second stage adds amplification. Miller compensation connects its output to the first-stage output node.</p></li><li><strong>Recheck the extracted view</strong><p>AC analysis includes extracted parasitics, while process-corner comparisons show variation in the same design.</p></li></ol>
+      </section>
+      <section class="study-results"><h2>Post-layout behavior across five process corners</h2><p>The two panels show unity-gain bandwidth and phase margin separately. Dashed lines mark the report targets of 20 MHz and 45°. Each bar is an extracted-view simulation result.</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-comparison.en.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-comparison.en.svg" alt="Post-layout UGBW at TT, FF, SS, SF and FS is 22.48, 21.54, 20.373, 22.13 and 22.48 MHz; phase margin is 52.4, 53.65, 51.2, 52.71 and 51.8 degrees. All five exceed the stated targets." width="1000" height="620" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Redrawn from the project post-layout corner table with a 3 pF load. The panels retain distinct MHz and degree axes. This is a process-corner comparison, not a temperature or supply-voltage sweep.</figcaption></figure>
+        <div class="study-data-wrap" role="region" aria-label="Extracted-view corner results · 3 pF load" tabindex="0"><table class="study-data"><caption>Extracted-view corner results · 3 pF load</caption><thead><tr><th scope="col">Corner</th><th scope="col">UGBW / MHz</th><th scope="col">Phase margin / °</th></tr></thead><tbody><tr class="is-emphasized"><th scope="row">TT</th><td>22.480</td><td>52.40</td></tr><tr><th scope="row">FF</th><td>21.540</td><td>53.65</td></tr><tr><th scope="row">SS</th><td>20.373</td><td>51.20</td></tr><tr><th scope="row">SF</th><td>22.130</td><td>52.71</td></tr><tr><th scope="row">FS</th><td>22.480</td><td>51.80</td></tr></tbody></table></div>
+        <p class="study-takeaway">All five corners exceed the report targets for UGBW and phase margin. SS reaches 20.373 MHz, closest to the 20 MHz threshold and a useful priority for further checks.</p><p class="study-conditions">The typical corner also reports 82.93 dB gain and 1.195 mW power. These are simulations under the stated configuration. LVS matched, but DRC spacing violations remain; the results do not establish completed physical signoff, fabrication or silicon measurements.</p>
+      </section>
+      <section class="study-decisions"><h2>Design decisions</h2><div class="study-decision-grid"><article><h3>Balance bias and compensation</h3><p>The design report treats bias current and compensation capacitance as trade-offs: more bias can improve speed at a power cost, while a larger compensation capacitor can improve stability at the expense of bandwidth and slew rate. The extracted typical-corner metrics describe the chosen design, not a globally optimal setting.</p></article><article><h3>Keep electrical and layout conclusions distinct</h3><p>The extracted view includes layout parasitics in performance evaluation. LVS checks connectivity consistency; DRC checks layout rules. Favorable simulated metrics and matched LVS can coexist with spacing violations that still need correction.</p></article></div></section>
+      <details class="study-note" open=""><summary>Technical note · Reading gain, bandwidth and phase margin together</summary><div class="study-note-copy"><p>Gain describes amplification, UGBW locates the unity-gain crossing, and phase margin evaluates stability margin for the specified loop configuration. They answer different questions and should be read together.</p><p>SS has the UGBW closest to the report target in these extracted results. That observation helps prioritize further checks; it does not establish comprehensive verification across temperature, supply, load and transient conditions.</p><p>Differences between schematic and extracted results require analysis of the actual parasitic network. This comparison reports process-corner behavior without attributing a change to an unisolated wire or parasitic element.</p></div></details>
+      <section class="study-next"><h2>The next question to test</h2><p>A proposed next step is to correct the known DRC spacing violations, then rerun DRC, LVS, extraction and performance checks to see whether the revised layout still meets the targets. This plan follows the unresolved findings; it has not been completed.</p></section>
+    </div>
+      <details class="project-record" open=""><summary>Technical record: contributions, methods &amp; full results</summary><div class="project-record-content">
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/opamp-post-layout.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/opamp-post-layout.png" alt="Summary table of post-layout results for the two-stage CMOS operational amplifier" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">View image <span aria-hidden="true">⤢</span></span></a><figcaption>Report excerpt: post-layout metrics and analysis of parasitic effects.</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
@@ -2093,6 +2171,7 @@ html:not(.js-ready) .requires-js,
           <ul><li>Typical-corner extracted view: 82.93 dB gain, 22.48 MHz UGBW, 52.4° phase margin and 1.195 mW power.</li><li>Across five process corners: 82.37–83.13 dB gain, 20.37–22.48 MHz UGBW and 1.146–1.249 mW power.</li><li>LVS matched the extracted view to the schematic; remaining DRC spacing violations prevent a claim of completed physical signoff.</li></ul>
         </section>
       </div>
+      </div></details>
       <div class="tag-list modal-tags"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span><span class="tag">Post-layout</span></div>
 
 <nav class="related-projects" aria-labelledby="related-projects-title">

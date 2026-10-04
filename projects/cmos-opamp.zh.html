@@ -2055,6 +2055,69 @@ html:not(.js-ready) .requires-js,
   .current-section-indicator { display: none !important; }
 }
 
+/* A reading layer for the two representative design studies. */
+.project-study { margin-top: 38px; }
+.study-opening { padding-top: 26px; border-top: 1px solid var(--line); }
+.study-kicker { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-study h3, .standalone-project .project-study h2 { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(25px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.project-study p { color: var(--ink-soft); }
+.study-opening > p:last-child { margin: 0; }
+.study-figure { margin-top: 22px; }
+.study-figure .modal-evidence-media, .study-figure img { background: #fffdf8; }
+.study-figure img { width: 100%; max-height: none; }
+.study-process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 24px 0 0; list-style: none; counter-reset: study-step; }
+.study-process li { counter-increment: study-step; padding-top: 14px; border-top: 2px solid var(--line); }
+.study-process li::before { content: "0" counter(study-step); color: var(--accent); font-size: 12px; font-weight: 750; }
+.study-process strong { display: block; margin-top: 6px; font-size: 15px; }
+.study-process p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; }
+.study-results, .study-decisions { margin-top: 38px; }
+.study-results > p { margin: 0; }
+.study-data-wrap { margin-top: 20px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.study-data-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-data { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-variant-numeric: tabular-nums; }
+.study-data caption { padding: 12px 14px; color: var(--ink-soft); font-size: 12px; font-weight: 650; text-align: left; }
+.study-data th, .study-data td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.study-data thead th { background: var(--paper-deep); color: var(--ink-soft); font-weight: 650; }
+.study-data tbody th { min-width: 80px; font-weight: 700; }
+.study-data td { white-space: nowrap; }
+.study-data tr.is-emphasized { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.study-results .study-takeaway { margin: 20px 0 0; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--paper-deep); color: var(--ink); font-size: 15px; }
+.study-results .study-conditions { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.study-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.study-decision-grid article { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-study h4, .standalone-project .project-study h3 { margin: 0 0 8px; font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: 0; line-height: 1.5; }
+.study-decision-grid p { margin: 0; font-size: 14px; }
+.study-note, .project-record { margin-top: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.study-note summary, .project-record > summary { padding: 18px 20px; cursor: pointer; color: var(--ink); font-size: 15px; font-weight: 700; }
+.study-note summary::marker, .project-record > summary::marker { color: var(--accent); }
+.study-note summary:focus-visible, .project-record > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
+.study-note-copy { padding: 0 20px 8px; }
+.study-note-copy p { margin: 0 0 14px; font-size: 14px; }
+.study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.study-next p { margin: 0; font-size: 14px; }
+.project-record-content { padding: 0 18px 20px; }
+.project-record-content .modal-detail-grid { margin-top: 18px; }
+.project-record-content > .modal-evidence { margin-top: 0; }
+@media (max-width: 600px) {
+  .study-process, .study-decision-grid { grid-template-columns: 1fr; gap: 14px; }
+  .study-process li { display: grid; grid-template-columns: 24px 1fr; gap: 0 10px; }
+  .study-process strong { margin-top: 0; }
+  .study-process p { grid-column: 2; }
+  .study-data th, .study-data td { padding: 9px 10px; }
+  .study-data { font-size: 12px; }
+  .study-results .study-takeaway { padding: 14px; }
+  .project-record-content { padding-inline: 10px; }
+  .study-note summary, .project-record > summary { padding: 16px; }
+}
+@media print {
+  .study-note::details-content, .project-record::details-content { content-visibility: visible; display: block; }
+  .study-note-copy, .project-record-content { display: block !important; }
+  .study-data-wrap { overflow: visible; }
+  .study-figure, .study-data, .study-decision-grid article { break-inside: avoid; }
+  .project-study h3, .standalone-project .project-study h2 { font-size: 18pt; }
+  .study-note, .project-record { border: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -2074,6 +2137,21 @@ html:not(.js-ready) .requires-js,
       <h1 id="modal-title">两级 CMOS 运算放大器：从器件表征到版图后仿真</h1>
       <div class="project-evidence-summary" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图后仿真</li><li>LVS 匹配</li></ul><p class="evidence-note">结果来自寄生提取视图；DRC 间距违规仍在，尚未完成物理签核。</p></div>
       <p class="modal-summary" id="modal-summary">基于 CSMC 0.50 μm st02 工艺，在 Cadence Virtuoso / Spectre 中完成 NMOS 表征、两级运放原理图和版图，并获得 LVS 匹配的寄生提取视图进行仿真。</p>
+      <div class="project-study">
+      <section class="study-opening"><p class="study-kicker">设计解读</p><h2>两级增益，如何兼顾带宽与稳定性？</h2><p>两级 CMOS 运放的评估需要同时考虑增益、单位增益带宽和相位裕度。本项目将电路设计推进到寄生提取视图，并在五个工艺角下检查同一组性能指标。</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-architecture.zh.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-architecture.zh.svg" alt="两级 CMOS 运放功能示意：NMOS 差分输入与 PMOS 镜像负载连接第二级共源放大级，再驱动3pF负载；米勒补偿从输出反馈至第一级输出节点，偏置支路提供工作点。" width="1000" height="610" loading="lazy" decoding="async"><span class="modal-evidence-open">查看大图 <span aria-hidden="true">⤢</span></span></a><figcaption>依据本项目电路重绘的功能示意，不是完整晶体管原理图。结果对应 st02 工艺项目与 3 pF 负载；不混入独立的供电抑制研究。</figcaption></figure>
+        <ol class="study-process"><li><strong>建立差分增益与偏置</strong><p>NMOS 差分输入级配合 PMOS 镜像负载，将差分输入转换为送往第二级的信号。</p></li><li><strong>引入第二级与补偿路径</strong><p>共源第二级进一步放大，米勒补偿连接输出与第一级输出节点，参与增益与稳定性的取舍。</p></li><li><strong>在提取视图中重新检查</strong><p>通过寄生提取后的 AC 分析评估指标，并用工艺角比较观察同一设计的变化。</p></li></ol>
+      </section>
+      <section class="study-results"><h2>后仿真：五个工艺角下的表现</h2><p>图中分别比较单位增益带宽和相位裕度，虚线是报告所列的 20 MHz 与 45° 目标。每根柱都是提取视图的仿真结果。</p>
+        <figure class="modal-evidence study-figure"><a class="modal-evidence-media" href="assets/research/opamp-comparison.zh.svg" target="_blank" rel="noreferrer"><img src="assets/research/opamp-comparison.zh.svg" alt="TT、FF、SS、SF、FS工艺角的后仿真单位增益带宽分别为22.48、21.54、20.373、22.13、22.48 MHz；相位裕度分别为52.4、53.65、51.2、52.71、51.8度，均高于报告目标。" width="1000" height="620" loading="lazy" decoding="async"><span class="modal-evidence-open">查看大图 <span aria-hidden="true">⤢</span></span></a><figcaption>数据来自本项目报告的后仿真工艺角表，负载为 3 pF。两个纵轴分别表示 MHz 与角度，不混用单位；这不是温度或供电电压扫描。</figcaption></figure>
+        <div class="study-data-wrap" role="region" aria-label="提取视图工艺角结果 · 3 pF 负载" tabindex="0"><table class="study-data"><caption>提取视图工艺角结果 · 3 pF 负载</caption><thead><tr><th scope="col">工艺角</th><th scope="col">UGBW / MHz</th><th scope="col">相位裕度 / °</th></tr></thead><tbody><tr class="is-emphasized"><th scope="row">TT</th><td>22.480</td><td>52.40</td></tr><tr><th scope="row">FF</th><td>21.540</td><td>53.65</td></tr><tr><th scope="row">SS</th><td>20.373</td><td>51.20</td></tr><tr><th scope="row">SF</th><td>22.130</td><td>52.71</td></tr><tr><th scope="row">FS</th><td>22.480</td><td>51.80</td></tr></tbody></table></div>
+        <p class="study-takeaway">这五个工艺角的 UGBW 与相位裕度均高于报告所列目标；SS 的 UGBW 为 20.373 MHz，最接近 20 MHz 门槛，值得在后续检查中重点关注。</p><p class="study-conditions">典型角另报告 82.93 dB 增益与 1.195 mW 功耗。以上都是指定配置下的仿真数据；LVS 匹配，但仍有 DRC 间距违规，不能据此宣称完成物理签核、流片或硅片测试。</p>
+      </section>
+      <section class="study-decisions"><h2>设计取舍</h2><div class="study-decision-grid"><article><h3>同时调节偏置与补偿</h3><p>设计报告讨论了两组取舍：增加偏置电流可以提高速度，但会增加功耗；增大补偿电容可以改善稳定性余量，却可能降低单位增益带宽和转换速率。提取后的典型角指标描述最终选定的设计，不证明某个参数已达到全局最优。</p></article><article><h3>让电路性能与版图检查各自有结论</h3><p>提取视图将版图寄生纳入性能评估；LVS 检查连接一致性，DRC 检查版图规则。后仿真指标与 LVS 匹配可以同时成立，DRC 间距问题也仍然需要修复。</p></article></div></section>
+      <details class="study-note" open=""><summary>技术笔记 · 如何同时阅读增益、带宽与相位裕度？</summary><div class="study-note-copy"><p>增益说明放大能力，UGBW 描述单位增益交越的频率，相位裕度用于评估给定环路配置下的稳定性余量。它们回答不同问题，不能用一个指标代替另两个。</p><p>在这组提取结果中，SS 的 UGBW 最接近报告目标。这个观察提供了后续检查的优先次序，但不意味着已经完成温度、电源、负载变化与瞬态条件下的全面验证。</p><p>原理图与提取视图的差异需要结合具体寄生网络分析。这里展示工艺角结果，不把某个指标变化归因于未经单独验证的走线或寄生元件。</p></div></details>
+      <section class="study-next"><h2>下一步待验证的问题</h2><p>后续优先项是修复已知 DRC 间距问题，然后重新运行 DRC、LVS、寄生提取和性能检查，确认修正后的版图是否仍满足目标。这是根据现有未完成项提出的验证计划，尚未完成。</p></section>
+    </div>
+      <details class="project-record" open=""><summary>技术记录：个人贡献、方法与完整结果</summary><div class="project-record-content">
       <figure class="modal-evidence"><a class="modal-evidence-media" href="assets/project-evidence/opamp-post-layout.png" target="_blank" rel="noreferrer"><img src="assets/project-evidence/opamp-post-layout.png" alt="两级 CMOS 运放后仿真性能汇总表" width="993" height="1404" loading="lazy" decoding="async"><span class="modal-evidence-open">查看大图 <span aria-hidden="true">⤢</span></span></a><figcaption>报告节选：后仿真关键指标与版图寄生影响分析。</figcaption></figure>
       <div class="modal-detail-grid">
         <section>
@@ -2093,6 +2171,7 @@ html:not(.js-ready) .requires-js,
           <ul><li>典型角提取视图：增益 82.93 dB，UGBW 22.48 MHz，相位裕度 52.4°，功耗 1.195 mW。</li><li>五个工艺角下：增益 82.37–83.13 dB，UGBW 20.37–22.48 MHz，功耗 1.146–1.249 mW。</li><li>提取视图与原理图 LVS 匹配；DRC 间距违规仍在，不能视为可制造性签核完成。</li></ul>
         </section>
       </div>
+      </div></details>
       <div class="tag-list modal-tags"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span><span class="tag">Post-layout</span></div>
 
 <nav class="related-projects" aria-labelledby="related-projects-title">

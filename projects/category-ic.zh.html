@@ -2055,6 +2055,69 @@ html:not(.js-ready) .requires-js,
   .current-section-indicator { display: none !important; }
 }
 
+/* A reading layer for the two representative design studies. */
+.project-study { margin-top: 38px; }
+.study-opening { padding-top: 26px; border-top: 1px solid var(--line); }
+.study-kicker { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-study h3, .standalone-project .project-study h2 { margin: 0 0 14px; font-family: var(--serif); font-size: clamp(25px, 3vw, 34px); font-weight: 500; letter-spacing: -.025em; line-height: 1.2; }
+.project-study p { color: var(--ink-soft); }
+.study-opening > p:last-child { margin: 0; }
+.study-figure { margin-top: 22px; }
+.study-figure .modal-evidence-media, .study-figure img { background: #fffdf8; }
+.study-figure img { width: 100%; max-height: none; }
+.study-process { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 24px 0 0; list-style: none; counter-reset: study-step; }
+.study-process li { counter-increment: study-step; padding-top: 14px; border-top: 2px solid var(--line); }
+.study-process li::before { content: "0" counter(study-step); color: var(--accent); font-size: 12px; font-weight: 750; }
+.study-process strong { display: block; margin-top: 6px; font-size: 15px; }
+.study-process p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; }
+.study-results, .study-decisions { margin-top: 38px; }
+.study-results > p { margin: 0; }
+.study-data-wrap { margin-top: 20px; max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+.study-data-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.study-data { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; font-variant-numeric: tabular-nums; }
+.study-data caption { padding: 12px 14px; color: var(--ink-soft); font-size: 12px; font-weight: 650; text-align: left; }
+.study-data th, .study-data td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+.study-data thead th { background: var(--paper-deep); color: var(--ink-soft); font-weight: 650; }
+.study-data tbody th { min-width: 80px; font-weight: 700; }
+.study-data td { white-space: nowrap; }
+.study-data tr.is-emphasized { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.study-results .study-takeaway { margin: 20px 0 0; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--paper-deep); color: var(--ink); font-size: 15px; }
+.study-results .study-conditions { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.study-decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.study-decision-grid article { padding-top: 16px; border-top: 1px solid var(--line); }
+.project-study h4, .standalone-project .project-study h3 { margin: 0 0 8px; font-family: var(--sans); font-size: 16px; font-weight: 700; letter-spacing: 0; line-height: 1.5; }
+.study-decision-grid p { margin: 0; font-size: 14px; }
+.study-note, .project-record { margin-top: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.study-note summary, .project-record > summary { padding: 18px 20px; cursor: pointer; color: var(--ink); font-size: 15px; font-weight: 700; }
+.study-note summary::marker, .project-record > summary::marker { color: var(--accent); }
+.study-note summary:focus-visible, .project-record > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
+.study-note-copy { padding: 0 20px 8px; }
+.study-note-copy p { margin: 0 0 14px; font-size: 14px; }
+.study-next { margin-top: 30px; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.study-next p { margin: 0; font-size: 14px; }
+.project-record-content { padding: 0 18px 20px; }
+.project-record-content .modal-detail-grid { margin-top: 18px; }
+.project-record-content > .modal-evidence { margin-top: 0; }
+@media (max-width: 600px) {
+  .study-process, .study-decision-grid { grid-template-columns: 1fr; gap: 14px; }
+  .study-process li { display: grid; grid-template-columns: 24px 1fr; gap: 0 10px; }
+  .study-process strong { margin-top: 0; }
+  .study-process p { grid-column: 2; }
+  .study-data th, .study-data td { padding: 9px 10px; }
+  .study-data { font-size: 12px; }
+  .study-results .study-takeaway { padding: 14px; }
+  .project-record-content { padding-inline: 10px; }
+  .study-note summary, .project-record > summary { padding: 16px; }
+}
+@media print {
+  .study-note::details-content, .project-record::details-content { content-visibility: visible; display: block; }
+  .study-note-copy, .project-record-content { display: block !important; }
+  .study-data-wrap { overflow: visible; }
+  .study-figure, .study-data, .study-decision-grid article { break-inside: avoid; }
+  .project-study h3, .standalone-project .project-study h2 { font-size: 18pt; }
+  .study-note, .project-record { border: 0; }
+}
+
 </style>
 </head>
 <body>
@@ -2071,7 +2134,7 @@ html:not(.js-ready) .requires-js,
   <main id="main-content" class="shell standalone-project standalone-catalogue">
     <header class="section-heading"><p class="section-kicker">研究方向</p><h1>IC 设计 · 相关项目</h1><p>此方向包含 4 个项目，可查看个人贡献、方法与验证证据。</p></header>
 <nav class="category-links" aria-label="项目方向"><a href="projects/category-rtl.zh.html">RTL / 数字</a><a href="projects/category-ic.zh.html" aria-current="page">IC 设计</a><a href="projects/category-devices.zh.html">器件仿真</a><a href="projects/category-embedded.zh.html">嵌入式系统</a></nav>
-<div class="project-grid"><article class="project-card"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图检查</li><li>提取网表仿真</li></ul></div><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h2>两级 CMOS 运算放大器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图后仿真</li><li>LVS 匹配</li></ul></div><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>个人课程拓展 · 原理图仿真</span></div><h2>CMOS 运放供电抑制研究</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>原理图仿真</li><li>DC / AC 分析</li></ul></div><p>研究 SMIC18MMRF 两级运放在米勒补偿下的供电扰动耦合。</p><ul class="project-highlights"><li>标称原理图仿真低频增益 85.96 dB</li><li>按报告约定，供电到输出传递为 −79.54 dB</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运放的供电抑制研究</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>RTL 仿真</li><li>实现时序检查</li></ul></div><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
+<div class="project-grid"><article class="project-card"><div class="project-meta"><span>2026 年 9 月</span><span>·</span><span>个人课程实验 · 晶体管级设计与验证</span></div><h2>CMOS 逻辑单元与全加器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图检查</li><li>提取网表仿真</li></ul></div><p>完成 NOR2、OR2 与 28 晶体管全加器从原理图到提取版图的设计与验证。</p><ul class="project-highlights"><li>全加器通过 DRC、well / antenna ERC 与精确尺寸 NCC</li><li>IRSIM 全加器检查覆盖全部 8 组输入组合</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Electric</span><span class="tag">CMOS Layout</span><span class="tag">IRSIM</span></div><a class="project-detail-button" href="projects/vlsi-cmos.zh.html">查看详情 <span class="sr-only">— CMOS 逻辑单元与 28 晶体管全加器：原理图、版图与验证</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.03 — 05</span><span>·</span><span>个人课程项目 · 模拟电路与版图</span></div><h2>两级 CMOS 运算放大器</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>版图后仿真</li><li>LVS 匹配</li></ul></div><p>在 Cadence Virtuoso / Spectre 中设计两级 CMOS 运放，并开展寄生提取版图仿真。</p><ul class="project-highlights"><li>版图后仿真：典型工艺角、3 pF 负载下增益 82.93 dB、UGBW 22.48 MHz</li><li>LVS 匹配；仍有 DRC 间距违规，尚未完成物理签核</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">DRC / LVS</span></div><a class="project-detail-button" href="projects/cmos-opamp.zh.html">阅读设计解读 <span class="sr-only">— 两级 CMOS 运算放大器：从器件表征到版图后仿真</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026</span><span>·</span><span>个人课程拓展 · 原理图仿真</span></div><h2>CMOS 运放供电抑制研究</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>原理图仿真</li><li>DC / AC 分析</li></ul></div><p>研究 SMIC18MMRF 两级运放在米勒补偿下的供电扰动耦合。</p><ul class="project-highlights"><li>标称原理图仿真低频增益 85.96 dB</li><li>按报告约定，供电到输出传递为 −79.54 dB</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Cadence Virtuoso</span><span class="tag">Spectre</span><span class="tag">SMIC18MMRF</span></div><a class="project-detail-button" href="projects/supply-rejection.zh.html">查看详情 <span class="sr-only">— 两级 CMOS 运放的供电抑制研究</span></a></div></article><article class="project-card"><div class="project-meta"><span>2026.04 — 06</span><span>·</span><span>两人数字子组 · 六人系统团队</span></div><h2>PT100 测温数字后端</h2><div class="project-evidence-summary is-compact" role="group" aria-label="验证方式与范围"><ul class="evidence-labels"><li>RTL 仿真</li><li>实现时序检查</li></ul></div><p>在六人 PT100 混合信号系统项目中，共同开发并验证 VHDL 数字后端。</p><ul class="project-highlights"><li>5 个设计单元，16 周期串行帧与 12-count 迟滞</li><li>通过模块及集成测试；1 kHz 约束下 WNS &gt; 0、TNS = 0</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">VHDL</span><span class="tag">Xilinx Vivado</span><span class="tag">RTL</span></div><a class="project-detail-button" href="projects/pt100-rtl.zh.html">查看详情 <span class="sr-only">— PT100 测温系统的 VHDL 数字后端</span></a></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>刘力滔 · 学术与工程项目</p><a class="inline-link" href="zh.html#contact">联系</a></div></footer>
   <script>
