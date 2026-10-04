@@ -2048,6 +2048,52 @@ html:not(.js-ready) .requires-js,
 .skill-evidence p { margin: 0; color: var(--ink-soft); font-size: 12px; }
 .skill-evidence .inline-link { width: fit-content; min-height: 36px; font-size: 13px; }
 
+/* A compact overview makes the full collection easy to scan. */
+.project-card.is-overview { padding: 24px; gap: 20px; }
+.project-card.is-overview::after { display: none; }
+.is-overview .project-meta { color: var(--ink-soft); font-weight: 600; letter-spacing: .015em; text-transform: none; }
+.project-card.is-overview h3,
+.standalone-catalogue .project-card.is-overview h2 { max-width: none; margin: 12px 0; font-size: 25px; line-height: 1.25; }
+.overview-copy { min-width: 0; }
+.overview-copy > p { margin: 0; font-size: 14px; line-height: 1.65; }
+.overview-bottom { display: grid; gap: 14px; margin-top: auto; }
+.overview-bottom .project-evidence-summary.is-compact { margin: 0; }
+.overview-bottom .evidence-labels li { padding: 0; border: 0; background: none; color: var(--ink-soft); font-size: 11px; font-weight: 600; }
+.overview-bottom .evidence-labels li + li::before { content: "·"; margin-right: 8px; color: var(--accent); }
+.overview-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.overview-footer .tag-list { margin: 0; padding: 0; gap: 5px; }
+.overview-footer .tag { border: 0; border-radius: 5px; padding: 3px 7px; background: var(--paper-deep); font-size: 11px; }
+.overview-footer .project-detail-button { width: auto; min-height: 44px; padding: 8px 12px; }
+
+.project-toolbar { position: sticky; top: calc(var(--site-header-height, 78px) - 1px); z-index: 30; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 16px; margin-bottom: 22px; padding-block: 12px; border-bottom: 1px solid transparent; background: var(--paper-deep); }
+.project-toolbar.is-stuck { border-bottom-color: var(--line); box-shadow: 0 6px 10px -10px var(--ink-soft); }
+.project-toolbar .project-filters { margin: 0; gap: 8px; }
+.project-toolbar .filter-button { min-height: 44px; padding-inline: 12px; }
+.filter-count { display: inline-block; margin-left: 7px; opacity: .7; font-size: 11px; font-variant-numeric: tabular-nums; }
+.project-toolbar #project-count { margin: 0; color: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; text-align: right; }
+.project-filter-mobile { display: none; }
+#project-return-featured { min-height: 44px; padding: 8px 0; border: 0; background: none; color: var(--accent); font: inherit; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.project-toolbar :is(button, select):focus-visible,
+#project-return-featured:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#projects .project-card { scroll-margin-top: var(--project-toolbar-height, 0px); }
+
+@media (max-width: 1050px) {
+  .project-toolbar #project-filters { display: none; }
+  .project-filter-mobile { display: block; min-width: 0; }
+  .project-filter-mobile select { display: block; width: 100%; min-height: 46px; padding: 8px 32px 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; text-overflow: ellipsis; }
+  .project-toolbar { grid-template-columns: minmax(0, 1fr) minmax(60px, auto); gap: 12px; }
+  .project-toolbar #project-count { max-width: 110px; font-size: 11px; }
+}
+@media (max-width: 760px) {
+  .project-card.is-overview { padding: 20px; gap: 16px; }
+  .project-card.is-overview h3,
+  .standalone-catalogue .project-card.is-overview h2 { font-size: 24px; }
+  .overview-footer { gap: 10px; }
+}
+@media (max-height: 520px) {
+  .project-toolbar { position: static; }
+}
+
 .study-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin: 26px 0; padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper-deep); }
 .study-toc a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .study-toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -2077,6 +2123,7 @@ html:not(.js-ready) .requires-js,
   .project-card-preview:hover img { transform: none; }
 }
 @media print {
+  .project-toolbar, #project-return-featured { display: none !important; }
   .research-project-links, #focus-panel-action, .category-links { display: none; }
   .project-evidence-summary { break-inside: avoid; background: none; }
   .study-toc, .project-discussion-actions, .project-discussion .copy-button, .project-card-preview { display: none; }
@@ -2216,7 +2263,7 @@ html:not(.js-ready) .requires-js,
   <main id="main-content" class="shell standalone-project standalone-catalogue">
     <header class="section-heading"><p class="section-kicker">Research area</p><h1>Embedded projects</h1><p>2 projects in this area, with personal contributions, methods and verification evidence.</p></header>
 <nav class="category-links" aria-label="Project categories"><a href="projects/category-rtl.html">RTL / Digital</a><a href="projects/category-ic.html">IC Design</a><a href="projects/category-devices.html">Device simulation</a><a href="projects/category-embedded.html" aria-current="page">Embedded</a></nav>
-<div class="project-grid"><article class="project-card" id="project-card-radar-robot" data-project-card="radar-robot"><div class="project-meta"><span>Mar — Jun 2026</span><span>·</span><span>Team · Hardware subsystem lead</span></div><h2>Radar-assisted autonomous vehicle</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Hardware prototype</li><li>Vehicle integration</li></ul></div><p>Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.</p><ul class="project-highlights"><li>Integrated an STM32-based PCB, radar, IR array and motor drivers</li><li>Contributed to vehicle debugging and helped resolve leftward drift</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.html">View details <span aria-hidden="true">→</span><span class="sr-only">— Autonomous Path-Following Vehicle with 24 GHz Radar</span></a></div></article><article class="project-card" id="project-card-hexapod-dance" data-project-card="hexapod-dance"><div class="project-meta"><span>May — Jul 2026</span><span>·</span><span>Three-member team · Motion programming &amp; synchronization</span></div><h2>Synchronized hexapod robots</h2><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Hardware demonstration</li><li>Team project</li></ul></div><p>Programmed and debugged synchronized motion for two 18-DOF hexapods.</p><ul class="project-highlights"><li>Completed a 3 min 12 s synchronized team performance</li><li>Team Second Prize at the National Finals and Sichuan Regional Competition</li></ul><div class="project-card-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.html">View details <span aria-hidden="true">→</span><span class="sr-only">— Synchronized performance by two 18-DOF hexapods</span></a></div></article></div>
+<div class="project-grid"><article class="project-card is-overview" id="project-card-radar-robot" data-project-card="radar-robot"><div class="overview-copy"><div class="project-meta"><span>Mar — Jun 2026</span><span>·</span><span>Team · Hardware subsystem lead</span></div><h2>Radar-assisted autonomous vehicle</h2><p>Led hardware development for a path-following vehicle with radar obstacle avoidance and LoRa communication.</p></div><div class="overview-bottom"><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Hardware prototype</li><li>Vehicle integration</li></ul></div><div class="overview-footer"><div class="tag-list"><span class="tag">PCB</span><span class="tag">STM32</span><span class="tag">24 GHz Radar</span></div><a class="project-detail-button" href="projects/radar-robot.html">View details <span aria-hidden="true">→</span><span class="sr-only">— Autonomous Path-Following Vehicle with 24 GHz Radar</span></a></div></div></article><article class="project-card is-overview" id="project-card-hexapod-dance" data-project-card="hexapod-dance"><div class="overview-copy"><div class="project-meta"><span>May — Jul 2026</span><span>·</span><span>Three-member team · Motion programming &amp; synchronization</span></div><h2>Synchronized hexapod robots</h2><p>Programmed and debugged synchronized motion for two 18-DOF hexapods.</p></div><div class="overview-bottom"><div class="project-evidence-summary is-compact" role="group" aria-label="Validation and scope"><ul class="evidence-labels"><li>Hardware demonstration</li><li>Team project</li></ul></div><div class="overview-footer"><div class="tag-list"><span class="tag">Motion programming</span><span class="tag">Hexapod</span><span class="tag">Synchronization</span></div><a class="project-detail-button" href="projects/hexapod-dance.html">View details <span aria-hidden="true">→</span><span class="sr-only">— Synchronized performance by two 18-DOF hexapods</span></a></div></div></article></div>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Litao Liu · Academic and engineering projects</p><a class="inline-link" href="./?lang=en#contact">Contact</a></div></footer>
   <script>
